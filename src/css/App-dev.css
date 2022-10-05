@@ -1,0 +1,119 @@
+@import '~antd/dist/antd.css';
+@import 'https://demo-dev.cimmra.com/cdn/App.css';
+@import url("https://cdn.syncfusion.com/ej2/bootstrap5.css");
+@import 'https://demo-dev.cimmra.com/cdn/supplier-register.css';
+
+
+/* media query starts here */
+
+@media(max-width: 767px) {
+    .category-list Search {
+        margin: 10px;
+    }
+
+    .table {
+        overflow: auto !important;
+        /* color: red; */
+    }
+
+    .shadow {
+        margin: 0px 0px 10px 0px;
+        padding-right: 130px;
+    }
+
+    .btn-approve,
+    .page-title-right {
+        display: inline-flex;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        position: relative;
+        right: 100px;
+        align-items: center;
+
+    }
+
+    .shadow {
+        padding-right: 30px !important;
+    }
+
+
+}
+
+.e-pivotview .e-cellselectionbackground,
+.e-pivotview .e-selectionbackground,
+.e-pivotview .e-grid .e-rowsheader .e-selectionbackground,
+.e-pivotview .e-grid .e-columnsheader.e-selectionbackground {
+    background-color: greenYellow !important;
+}
+
+
+/* new design css */
+body {
+    overflow-y: scroll;
+    color: #43425D;
+    margin: 0;
+    padding: 0;
+}
+
+.form-info {
+    padding: 15px 90px 70px;
+    background-color: #f5f5f5;
+    margin-top: -15px;
+}
+
+.box-table label {
+    display: block !important;
+    margin: 8px 0px;
+    font-weight: 500;
+    font-size: 12px;
+
+}
+
+.box-table {
+    background-color: #fff;
+    box-shadow: rgba(255, 255, 255, 1) 0px 4px 4px 0px;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px 0px;
+}
+
+.box-table h2 {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.box-table input {
+    padding: 4px;
+    width: 200px;
+    border: 1px solid #000;
+    opacity: 75%;
+}
+
+.btn-submit button {
+    background-color: #1890FF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.btn-cancel button {
+    background-color: none;
+    border: 1px solid gray;
+    background: none;
+    color: #1890FF;
+    margin-left: 20px;
+}
+
+.modal-form input,
+select {
+    margin: 10px 5px;
+    width: 250px;
+}
+
+.modal-form label {
+    display: block;
+    padding: 5px 0px;
+}
