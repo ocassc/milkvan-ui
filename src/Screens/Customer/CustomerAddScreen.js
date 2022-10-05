@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext  } from "react";
 import { Col, Form, Row, Input, Button, Select, message } from "antd";
 import axiosInstance from "../../axiosInstance";
 import FormItem from "antd/es/form/FormItem";
+import { UserContext } from "./../../globalContext";
 
 const { Option } = Select;
 
 const CustomerAddScreen = () => {
+  const user = useContext(UserContext);
+
+  debugger
   const [cityList, setCityList] = useState();
   const [stateList, setStateList] = useState();
   const [name, setName] = useState();
