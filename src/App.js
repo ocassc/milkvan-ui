@@ -23,12 +23,12 @@ function App() {
   const [authToken, setAuthToken] = useState(null);
 
   useEffect(() => {
-    debugger
+    
     if (
       localStorage.getItem("authtoken") !== null &&
       localStorage.getItem("authtoken") !== undefined
     ) {
-      setAuthToken(localStorage.getItem("authtoken"));
+      setAuthToken(JSON.parse(localStorage.getItem("authtoken")));
       setWaitstate(false);
     } else {
       setWaitstate(false);
@@ -42,9 +42,9 @@ function App() {
         {!waitstate && (
           <UserContext.Provider
             value={
-              authToken !== (null || undefined)
+              authToken !== null
                 ? {
-                    authToken: localStorage.getItem("authtoken"),
+                    userId: authToken.id,
                     config: {
                       dateFormat: "DD-MMM-YYYY",
                       datetimeFormat: "DD-MMM-YYYY HH:mm",
