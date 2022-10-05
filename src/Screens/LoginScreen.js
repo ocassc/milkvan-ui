@@ -5,15 +5,14 @@ import axiosInstance from "../axiosInstance";
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- 
 
   const onSignin = () => {
     axiosInstance
-      .post("/login",{email :email, password:password})
+      .post("/login", { email: email, password: password })
       .then((res) => {
         console.log(res.data);
         if (res.data && res.data.responseCode === 1) {
-          message.success("Login Successfully");
+          localStorage.setItem("authtoken", res.data.auth);
           window.location.href = "HomeScreen";
         } else message.error("Member Not Found");
       })
@@ -26,46 +25,19 @@ const LoginScreen = () => {
   };
 
   return (
-    <div>
-      <div
-        style={{
-          margin: "80px",
-        }}
-      >
-        <h1
-          style={{
-            margin: "30px",
-            fontWeight: "bold",
-            fontSize: "40px",
-          }}
-        >
-          Sign in
-        </h1>
-      </div>
-      <div>
-        <div className="form-group">
-          <Form
-            style={{
-              position: "relative",
-              zindex: "2",
-              left: "34%",
+    <Row>
+      <Col span={15}></Col>
 
-              overflow: "initial",
-              width: "500px",
-            }}
-          >
-           
+      <Col span={7}>
+        <div className="login-page-form">
+          <h1 className="head">Login</h1>
+          <Form>
             <Row gutter={20}>
               <Col span={16}>
                 <Form.Item colon={false}>
                   <Input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-      
-                    style={{
-                      width: "200px",
-                      borderRadius: "25px",
-                    }}
                     placeholder="Email "
                   />
                 </Form.Item>
@@ -78,10 +50,6 @@ const LoginScreen = () => {
                   <Input
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    style={{
-                      width: "200px",
-                      borderRadius: "25px",
-                    }}
                     placeholder="Password"
                   />
                 </Form.Item>
@@ -89,28 +57,24 @@ const LoginScreen = () => {
             </Row>
 
             <Row gutter={20}>
-              <Col span={16}>
-                <Button type="primary" shape="round" onClick={() => onSignin()}>
+              <Col span={7}>
+                <Button type="primary" onClick={() => onSignin()}>
                   Sign-in
                 </Button>
               </Col>
-            </Row>
-            <Row gutter={20} style={{ marginTop: "10px" }}>
-              <Col span={16}>
-                <h3>Create New Account</h3>
-              </Col>
-            </Row>
-            <Row gutter={20} style={{ marginTop: "10px" }}>
-              <Col span={16}>
-                <Button type="primary" shape="round" onClick={() => onSignup()}>
+              <Col span={7}>
+                <Button type="link" onClick={() => onSignup()}>
                   Sign-up
                 </Button>
               </Col>
             </Row>
           </Form>
         </div>
-      </div>
-    </div>
+      </Col>
+      <Col span={1}>
+        <div className="login-right-bg"></div>
+      </Col>
+    </Row>
   );
 };
 

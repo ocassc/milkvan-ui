@@ -27,130 +27,85 @@ const SignupScreen = () => {
   };
 
   return (
-    <div>
-      <div
-        style={{
-          margin: "50px",
-        }}
-      >
-        <h1
-          style={{
-            margin: "10px",
-            fontWeight: "bold",
-            fontSize: "40px",
-          }}
-        >
-          Create New Account
-        </h1>
-      </div>
+    <div className="login-page-form">
+      <h1 className="head">
+        Login
+      </h1>
+      <Form>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item colon={false}>
+              <Input
+                placeholder="Name"
+                onChange={(e) => setFullname(e.target.value)}
+                value={fullname}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
 
-      <div>
-        <div>
-          <Form
-            style={{
-              position: "relative",
-              zindex: "5",
-              left: "38%",
-              overflow: "initial",
-              width: "500px",
-            }}
-          >
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false}>
-                  <Input
-                    style={{
-                      width: "200px",
-                      borderRadius: "25px",
-                    }}
-                    placeholder="Name"
-                    onChange={(e) => setFullname(e.target.value)}
-                    value={fullname}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item colon={false}>
+              <Input
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item colon={false}>
+              <Input
+                placeholder="Mobile"
+                onChange={(e) => setMobile(e.target.value)}
+                value={mobile}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item
+              colon={false}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Password!",
+                },
+              ]}
+            >
+              <Input
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
 
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false}>
-                  <Input
-                    style={{
-                      width: "200px",
-                      borderRadius: "25px",
-                    }}
-                    placeholder="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false}>
-                  <Input
-                    style={{
-                      width: "200px",
-                      borderRadius: "25px",
-                    }}
-                    placeholder="Mobile"
-                    onChange={(e) => setMobile(e.target.value)}
-                    value={mobile}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item
-                  colon={false}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your Password!",
-                    },
-                  ]}
-                >
-                  <Input
-                    style={{
-                      width: "200px",
-                      borderRadius: "25px",
-                    }}
-                    placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item colon={false}>
+              <Input
+                placeholder="Address"
+                onChange={(e) => setAddress(e.target.value)}
+                value={address}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
 
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false}>
-                  <Input
-                    style={{
-                      width: "200px",
-                      borderRadius: "25px",
-                    }}
-                    placeholder="Address"
-                    onChange={(e) => setAddress(e.target.value)}
-                    value={address}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-
-            <Row gutter={20}>
-              <Col span={12}>
-                <Button type="primary" shape="round" onClick={() => onSignup()}>
-                  Signin
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </div>
-      </div>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Button type="primary" shape="round" onClick={() => onSignup()}>
+              Signin
+            </Button>
+          </Col>
+        </Row>
+      </Form>
     </div>
   );
 };

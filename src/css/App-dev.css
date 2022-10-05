@@ -117,3 +117,9 @@ select {
     display: block;
     padding: 5px 0px;
 }
+
+.login-page-form {
+    overflow: hidden;
+    margin-top: 45%;
+    padding:10px;
+}

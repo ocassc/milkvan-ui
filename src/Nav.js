@@ -1,88 +1,86 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Layout, Menu, Row, Col, Button } from "antd";
+import { Layout, Menu, Dropdown} from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 import { environment } from "./Environment";
+import iconUser from "../src/images/Icon-user.svg";
 import logo from "../src/images/orbit.png";
-import flywell from "../src/images/flywell-logo.png";
+import Icon from '@ant-design/icons';
 
 const { Header } = Layout;
 
 export function Nav() {
-  const logout = (e) => {
-    window.location.href = "/";
-  };
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location = `${environment.url.AUTH_URL}`;
+  }
+  
+  const myaccount = () => {
+    window.location = `${environment.url.MYACCOUNT_URL}`;
+  }
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="0">
+        <button className="ant-btn-link" onClick={myaccount}>My Account</button>
+      </Menu.Item>      
+      <Menu.Divider />
+      <Menu.Item key="1">
+        <button className="ant-btn-link" onClick={handleLogout}>Logout</button>
+      </Menu.Item>
+    </Menu>
+  )
 
   return (
     <Header className="header">
-      <Row>
-        <Col xs={18} sm={24} md={24} lg={24} xl={24}>
-          <div className="logo">
-            <NavLink exact to="">
-              <img
-                alt=""
-                src={environment.env === "demo" ? flywell : logo}
-                style={{ width: "70px", paddingBottom: "10px" }}
-              />
+      <div className="logo">
+        <NavLink to="">
+          <img src={logo} style={{ width: "70px" }} />
+        </NavLink>
+      </div>
+
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={["1"]}
+        style={{
+          margin: "15px",
+          lineHeight: "30px",
+          backgroundColor: "transparent",
+          float: "left",
+          textTransform: "upperCase",
+        }}
+      >
+        <SubMenu
+          key={"1"}
+          title={<span className="submenu-title-wrapper">Masters</span>}
+        >
+          <Menu.Item key={"1.0"}>
+            <NavLink exact to={"/state"}>
+              State
             </NavLink>
-          </div>
-          <Menu
-            mode="horizontal"
-            defaultSelectedKeys={["1"]}
-            style={{
-              lineHeight: "58px",
-              backgroundColor: "transparent",
-              textTransform: "upperCase",
-            }}
-          >
-            {/* <SubMenu
-              key={"1"}
-              title={<span className="submenu-title-wrapper">Budget</span>}
-            >
-              <Menu.Item key={"1.0"}>
-                <NavLink exact to={"/dashboard"}>
-                  Dashboard
-                </NavLink>
-              </Menu.Item>
-
-              <Menu.Item key={"1.1"}>
-                <NavLink exact to={"/year"}>
-                  Year
-                </NavLink>
-              </Menu.Item>
-              <Menu.Item key={"1.2"}>
-                <NavLink exact to={"/definebudget"}>
-                  Budget
-                </NavLink>
-              </Menu.Item>
-              <Menu.Item key={"1.3"}>
-                <NavLink exact to="/budgetgl">
-                  Budget GL Spread
-                </NavLink>
-              </Menu.Item>
-              <Menu.Item key={"1.4"}>
-                <NavLink exact to="/explan">
-                  Expenditure Plan
-                </NavLink>
-              </Menu.Item>
-            </SubMenu> */}
-            <Menu.Item key={'2'}>
-              <NavLink  to={"/MemberListScreen"}>
-                Member
-              </NavLink>
-            </Menu.Item>
-            <Menu.Item key={'3'}>
-              <NavLink  to={"/CustomerListScreen"}>
-                Customer
-              </NavLink>
-            </Menu.Item>
-
-            <Menu.Item style={{ marginLeft: "500px" }}>
-              <Button onClick={(e) => logout(e)}>LogOut</Button>
-            </Menu.Item>
-          </Menu>
-        </Col>
-      </Row>
+          </Menu.Item>
+          <Menu.Item key={"1.1"}>
+            <NavLink exact to={"/city"}>
+              City
+            </NavLink>
+          </Menu.Item>
+        </SubMenu>
+        <Menu.Item key={"2"}>
+          <NavLink to={"/MemberListScreen"}>Member</NavLink>
+        </Menu.Item>
+        <Menu.Item key={"3"}>
+          <NavLink to={"/CustomerListScreen"}>Customer</NavLink>
+        </Menu.Item>
+      </Menu>
+      <div className="dd-logout">
+        <Dropdown overlay={menu} trigger={["click"]}>
+          <a className="ant-dropdown-link" href="#/">
+            <img src={iconUser} className="nav-user-icon" />
+            {localStorage.getItem("username")}​​​​ <Icon type="down" />
+          </a>
+        </Dropdown>
+      </div>
     </Header>
   );
 }
