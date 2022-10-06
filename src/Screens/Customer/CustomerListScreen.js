@@ -160,6 +160,10 @@ const CustomerListScreen = () => {
             {" "}
             MapLocation : {readCustomerObj.mapLocation}
           </li>
+          <li className="list-group-item">
+            {" "}
+            MemeberId : {readCustomerObj.memberId}
+          </li>
         </ul>
       </Modal>
     </div>

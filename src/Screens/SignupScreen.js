@@ -10,18 +10,24 @@ const SignupScreen = () => {
   const [address, setAddress] = useState();
   const [memberData, setMemberData]=useState({});
 
-  // useEffect(() => {
-  //   let mounted = true;
-  //   if (mounted) onReadMember();
-  //   return () => (mounted = false);
-  // }, []);
-  // const onReadMember=(id)=>{
-  //   axiosInstance.get(`/member/${id}`).then((response) => {
-  //     setMemberData(response.data.data);
-  //     console.log(response.data.data)
-  //   });
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      debugger
+      let search = window.location.search;
+      let params = new URLSearchParams(search);
+      let id = params.get("id");
+      onReadMember(id);
+    }
+    return () => (mounted = false);
+  }, []);
+  const onReadMember=(id)=>{
+    axiosInstance.get(`/member/${id}`).then((response) => {
+      setMemberData(response.data.data);
+      console.log(response.data.data)
+    });
   
-  // }
+  }
 
   const onSignup = () => {
     const data = {
