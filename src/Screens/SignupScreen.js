@@ -1,5 +1,5 @@
 import { Col, Form, Row, Input, Button, message } from "antd";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axiosInstance from "../axiosInstance";
 
 const SignupScreen = () => {
@@ -8,6 +8,20 @@ const SignupScreen = () => {
   const [mobile, setMobile] = useState();
   const [password, setPassword] = useState();
   const [address, setAddress] = useState();
+  const [memberData, setMemberData]=useState({});
+
+  // useEffect(() => {
+  //   let mounted = true;
+  //   if (mounted) onReadMember();
+  //   return () => (mounted = false);
+  // }, []);
+  // const onReadMember=(id)=>{
+  //   axiosInstance.get(`/member/${id}`).then((response) => {
+  //     setMemberData(response.data.data);
+  //     console.log(response.data.data)
+  //   });
+  
+  // }
 
   const onSignup = () => {
     const data = {
@@ -29,8 +43,9 @@ const SignupScreen = () => {
   return (
     <div className="login-page-form">
       <h1 className="head">
-        Login
+       Signup
       </h1>
+     
       <Form>
         <Row gutter={20}>
           <Col span={12}>
@@ -101,11 +116,13 @@ const SignupScreen = () => {
         <Row gutter={20}>
           <Col span={12}>
             <Button type="primary" shape="round" onClick={() => onSignup()}>
-              Signin
+              SignUp
             </Button>
           </Col>
         </Row>
       </Form>
+
+     
     </div>
   );
 };

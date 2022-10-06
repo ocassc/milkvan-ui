@@ -28,6 +28,7 @@ function App() {
       localStorage.getItem("authtoken") !== null &&
       localStorage.getItem("authtoken") !== undefined
     ) {
+      
       setAuthToken(JSON.parse(localStorage.getItem("authtoken")));
       setWaitstate(false);
     } else {
@@ -65,6 +66,7 @@ function App() {
                   <Route path="/" element={<LoginScreen />} />
                   <Route path="WelcomeScreen" element={<WelcomeScreen />} />
                   <Route path="SignupScreen" element={<SignupScreen />} />
+                  <Route path="SignupScreen/:id" element={<SignupScreen />} />
                   <Route path="HomeScreen" element={<HomeScreen />} />
                   <Route
                     path="CustomerAddScreen"
