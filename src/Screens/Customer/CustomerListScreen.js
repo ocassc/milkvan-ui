@@ -31,7 +31,7 @@ const CustomerListScreen = () => {
       dataIndex: "mobile",
       key: "mobile",
     },
-
+  
     {
       title: "Action",
       key: "id",
@@ -74,9 +74,9 @@ const CustomerListScreen = () => {
     setIsModalOpen(true);
   };
 
-const modify=(obj)=>{
-  window.location.href=`CustomerEditScreen/${obj.id}`
-}
+  const modify = (obj) => {
+    window.location.href = `CustomerEditScreen/${obj.id}`;
+  };
 
   const removeCustomer = (obj) => {
     Modal.confirm({
@@ -167,6 +167,10 @@ const modify=(obj)=>{
           <li className="list-group-item">
             {" "}
             MemeberId : {readCustomerObj.memberId}
+          </li>
+          <li className="list-group-item">
+            {" "}
+            CompanyId : {readCustomerObj.companyId}
           </li>
         </ul>
       </Modal>

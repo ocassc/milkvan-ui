@@ -24,7 +24,7 @@ const CustomerAddScreen = () => {
   const [referenceBy, setReferenceBy] = useState();
   const [lattitude, setLattitude] = useState();
   const [longitude, setLongitude] = useState();
-
+  
   useEffect(() => {
     let mounted = true;
     if (mounted) getState();
@@ -168,8 +168,13 @@ const CustomerAddScreen = () => {
             <Row gutter={20}>
               <Col span={12}>
                 <Form.Item colon={false} label="Country">
-                  <Select
+                  {/* <Select
                     placeholder="Country"
+                    value={country}
+                    onChange={(e) => setCountry("India")}
+                  /> */}
+                   <Input
+                    placeholder="India"
                     value={country}
                     onChange={(e) => setCountry("India")}
                   />
