@@ -46,7 +46,7 @@ function App() {
             value={
               authToken !== null
                 ? {
-                    userId: authToken.id,
+                    userId: authToken.id === undefined ? 1 : authToken.id,
                     config: {
                       dateFormat: "DD-MMM-YYYY",
                       datetimeFormat: "DD-MMM-YYYY HH:mm",

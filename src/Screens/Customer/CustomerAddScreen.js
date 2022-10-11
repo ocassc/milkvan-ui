@@ -62,7 +62,8 @@ const CustomerAddScreen = () => {
       country: country,
       lattitude: lattitude,
       longitude: longitude,
-      memberId: parseInt(user.userId)
+      memberId: parseInt(user.userId),
+      companyId:1
     };
     axiosInstance.post("/customer", data).then((res) => {
       if (res.data && res.data.responseCode === -1) {

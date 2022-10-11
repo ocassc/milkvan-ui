@@ -4,13 +4,17 @@ import { useParams } from "react-router-dom";
 import { Col, Form, Row, Input, Button, message } from "antd";
 
 const MemberEditScreen = () => {
-  const [memberData, setMemberData] = useState({});
-  const [fullname, setFullname] = useState();
-  const [email, setEmail] = useState();
-  const [mobile, setMobile] = useState();
-  const [password, setPassword] = useState();
-  const [address, setAddress] = useState();
   let { id } = useParams();
+
+  var memberObj = {
+    id: id,
+    email: "",
+    mobile: "",
+    name: "",
+    address: "",
+  };
+  const [memberData, setMemberData] = useState(memberObj);
+
   useEffect(() => {
     let mounted = true;
     if (mounted) onReadMember(id);
@@ -24,13 +28,26 @@ const MemberEditScreen = () => {
   };
 
   const onUpdateMember = () => {
-    axiosInstance.put(`/member/${id}`).then((res) => {
+    axiosInstance.put(`/member/${id}`, memberData).then((res) => {
       if (res.data && res.data.responseCode === -1) {
         message.error("Record Already Exists");
       } else if (res.data && res.data.responseCode === 1) {
         message.success("Record Update successfully");
       } else message.error("Something wrong. Please try again...!");
     });
+  };
+
+  const onEmailChange = (e) => {
+    setMemberData({ ...memberData, email: e.target.value });
+  };
+  const onNameChange = (e) => {
+    setMemberData({ ...memberData, name: e.target.value });
+  };
+  const onMobileChange = (e) => {
+    setMemberData({ ...memberData, mobile: e.target.value });
+  };
+  const onAddressChange = (e) => {
+    setMemberData({ ...memberData, address: e.target.value });
   };
   return (
     <Row>
@@ -45,8 +62,8 @@ const MemberEditScreen = () => {
                 <Form.Item colon={false} label="Name">
                   <Input
                     placeholder="Name"
-                    onChange={(e) => setFullname(e.target.value)}
-                    value={fullname}
+                    onChange={onNameChange}
+                    value={memberData.name}
                   />
                 </Form.Item>
               </Col>
@@ -56,8 +73,8 @@ const MemberEditScreen = () => {
                 <Form.Item colon={false} label="Email">
                   <Input
                     placeholder="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
+                    onChange={onEmailChange}
+                    value={memberData.email}
                   />
                 </Form.Item>
               </Col>
@@ -67,28 +84,8 @@ const MemberEditScreen = () => {
                 <Form.Item colon={false} label="Mobile">
                   <Input
                     placeholder="Mobile"
-                    onChange={(e) => setMobile(e.target.value)}
-                    value={mobile}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item
-                  colon={false}
-                  label="Password"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your Password!",
-                    },
-                  ]}
-                >
-                  <Input
-                    placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
+                    onChange={onMobileChange}
+                    value={memberData.mobile}
                   />
                 </Form.Item>
               </Col>
@@ -99,8 +96,8 @@ const MemberEditScreen = () => {
                 <Form.Item colon={false} label="Address">
                   <Input
                     placeholder="Address"
-                    onChange={(e) => setAddress(e.target.value)}
-                    value={address}
+                    onChange={onAddressChange}
+                    value={memberData.address}
                   />
                 </Form.Item>
               </Col>
