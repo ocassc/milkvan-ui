@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table, Modal, message } from "antd";
 
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
-
+import { useHistory } from 'react-router-dom'
 import { PageTitle } from "../PageTitle";
 import axiosInstance from "../axiosInstance";
 
@@ -10,6 +10,7 @@ const MemberListScreen = () => {
   const [list, setList] = useState([]);
   const [readMemberObj, setReadMemberObj] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const history = useHistory();
 
   useEffect(() => {
     let mounted = true;
@@ -77,7 +78,8 @@ const MemberListScreen = () => {
   };
 
 const modify=(obj)=>{
-  window.location.href=`SignupScreen/${obj.id}`
+  // history.push(`MemberEditScreen/${obj.id}`)
+ window.location.href=`MemberEditScreen/${obj.id}`
 }
 
   const removeMember = (obj) => {

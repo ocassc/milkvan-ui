@@ -13,7 +13,7 @@ const SignupScreen = () => {
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      debugger
+     
       let search = window.location.search;
       let params = new URLSearchParams(search);
       let id = params.get("id");
@@ -26,9 +26,7 @@ const SignupScreen = () => {
       setMemberData(response.data.data);
       console.log(response.data.data)
     });
-  
   }
-
   const onSignup = () => {
     const data = {
       email: email,

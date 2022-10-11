@@ -15,6 +15,7 @@ import HomeScreen from "./Screens/HomeScreen";
 import CustomerAddScreen from "./Screens/Customer/CustomerAddScreen";
 import CustomerListScreen from "./Screens/Customer/CustomerListScreen";
 import MemberListScreen from "./Screens/MemberListScreen";
+import MemberEditScreen from "./Screens/Member/MemberEditScreen";
 
 require("./css/App-dev.css");
 
@@ -66,7 +67,7 @@ function App() {
                   <Route path="/" element={<LoginScreen />} />
                   <Route path="WelcomeScreen" element={<WelcomeScreen />} />
                   <Route path="SignupScreen" element={<SignupScreen />} />
-                  <Route path="SignupScreen/:id" element={<SignupScreen />} />
+                  <Route path="MemberEditScreen/:id" element={<MemberEditScreen />} />
                   <Route path="HomeScreen" element={<HomeScreen />} />
                   <Route
                     path="CustomerAddScreen"
