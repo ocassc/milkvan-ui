@@ -45,9 +45,9 @@ const CustomerListScreen = () => {
             />
             <EditOutlined
               style={{ marginLeft: 12 }}
-              // onClick={() => {
-              //   modify(row);
-              // }}
+              onClick={() => {
+                modify(row);
+              }}
             />
             <DeleteOutlined
               style={{ color: "red", marginLeft: 12 }}
@@ -73,6 +73,10 @@ const CustomerListScreen = () => {
     });
     setIsModalOpen(true);
   };
+
+const modify=(obj)=>{
+  window.location.href=`CustomerEditScreen/${obj.id}`
+}
 
   const removeCustomer = (obj) => {
     Modal.confirm({
