@@ -17,6 +17,7 @@ import CustomerListScreen from "./Screens/Customer/CustomerListScreen";
 import MemberListScreen from "./Screens/MemberListScreen";
 import MemberEditScreen from "./Screens/Member/MemberEditScreen";
 import CustomerEditScreen from "./Screens/Customer/CustomerEditScreen";
+import FatsnfRateMatrix from "./Screens/FatsnfRateMatrix/FatsnfRateMatrix";
 
 require("./css/App-dev.css");
 
@@ -83,6 +84,7 @@ function App() {
                     path="MemberListScreen"
                     element={<MemberListScreen />}
                   />
+                  <Route path="FatsnfRateMatrix" element={<FatsnfRateMatrix/>}/>
                 </Routes>
               </ConfigProvider>
               <Footers />

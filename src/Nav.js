@@ -35,7 +35,7 @@ export function Nav() {
     <Header className="header">
       <div className="logo">
         <NavLink to="">
-          <img src={logo} style={{ width: "70px" }} />
+          <img src={logo} alt='' style={{ width: "70px" }} />
         </NavLink>
       </div>
 
@@ -65,6 +65,11 @@ export function Nav() {
               City
             </NavLink>
           </Menu.Item>
+          <Menu.Item key={"1.2"}>
+            <NavLink exact to={"/FatsnFRateMatrix"}>
+            FatsnFRateMatrix
+            </NavLink>
+          </Menu.Item>
         </SubMenu>
         <Menu.Item key={"2"}>
           <NavLink to={"/MemberListScreen"}>Member</NavLink>
@@ -76,7 +81,7 @@ export function Nav() {
       <div className="dd-logout">
         <Dropdown overlay={menu} trigger={["click"]}>
           <a className="ant-dropdown-link" href="#/">
-            <img src={iconUser} className="nav-user-icon" />
+            <img src={iconUser} alt='' className="nav-user-icon" />
             {localStorage.getItem("username")}​​​​ <Icon type="down" />
           </a>
         </Dropdown>
