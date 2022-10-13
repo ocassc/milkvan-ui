@@ -1,5 +1,6 @@
 import { Button, Form, Input, Table } from "antd";
 import React, { useContext, useEffect, useRef, useState } from "react";
+import axiosInstance from "../../axiosInstance";
 
 const EditableContext = React.createContext(null);
 
@@ -78,7 +79,9 @@ const EditableCell = ({
 };
 
 
-const FatsnfRateMatrix = ({ setFieldsValue}) => {
+const FatsnfRateMatrix = () => {
+ 
+  
   const dataObj = [
     {
       key: "0",
@@ -295,6 +298,18 @@ const FatsnfRateMatrix = ({ setFieldsValue}) => {
       editable: true,
     },
   ];
+
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) getData();
+    return () => (mounted = false);
+  }, []);
+
+  const getData=()=>{
+    axiosInstance.get(`/fatsnfRateMatrix`).then((response) => {
+      setDataSource(response.data.data);
+    });
+  }
 
   const handleSave = (row) => {
     const newData = [...dataSource];
