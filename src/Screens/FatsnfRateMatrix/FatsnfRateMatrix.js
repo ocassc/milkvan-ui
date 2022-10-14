@@ -1,4 +1,4 @@
-import { Button, Form, Input, Table } from "antd";
+import { Button, Form, Input, message, Table } from "antd";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import axiosInstance from "../../axiosInstance";
 
@@ -36,12 +36,12 @@ const EditableCell = ({
     setEditing(!editing);
     form.setFieldsValue({
       [dataIndex]: record[dataIndex],
-     
     });
   };
 
-  const save = async () => {
+  const save = async (e) => {
     try {
+      alert(e.target.value);
       const values = await form.validateFields();
       toggleEdit();
       handleSave({ ...record, ...values });
@@ -60,7 +60,7 @@ const EditableCell = ({
         }}
         name={dataIndex}
       >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save}/>
+        <Input ref={inputRef} onBlur={save} />
       </Form.Item>
     ) : (
       <div
@@ -78,10 +78,8 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 
-
-const FatsnfRateMatrix = () => {
+const FatsnfRateMatrix = ({ onHandleChange }) => {
  
-  
   const dataObj = [
     {
       key: "0",
@@ -305,11 +303,11 @@ const FatsnfRateMatrix = () => {
     return () => (mounted = false);
   }, []);
 
-  const getData=()=>{
+  const getData = () => {
     axiosInstance.get(`/fatsnfRateMatrix`).then((response) => {
       setDataSource(response.data.data);
     });
-  }
+  };
 
   const handleSave = (row) => {
     const newData = [...dataSource];
@@ -317,9 +315,7 @@ const FatsnfRateMatrix = () => {
     const item = newData[index];
     newData.splice(index, 1, { ...item, ...row });
     setDataSource(newData);
-   
   };
-
 
   const components = {
     body: {
@@ -342,7 +338,15 @@ const FatsnfRateMatrix = () => {
       }),
     };
   });
-
+  const onSave = () => {
+    axiosInstance.post(`/fatsnfRateMatrix`, dataSource).then((res) => {
+      if (res.data && res.data.responseCode === -1) {
+        message.error("Record Already Exists");
+      } else if (res.data && res.data.responseCode === 1) {
+        message.success("Record Update successfully");
+      } else message.error("Something wrong. Please try again...!");
+    });
+  };
   return (
     <div>
       <h1>FatsnfRateMatrix</h1>
@@ -357,7 +361,7 @@ const FatsnfRateMatrix = () => {
         />
       </div>
       <div>
-        <Button type="primary" onChange={handleSave}>
+        <Button type="primary" onChange={onSave}>
           Save
         </Button>
       </div>

@@ -1,11 +1,10 @@
-import { Table } from 'antd';
-import React from 'react'
+import React from 'react';
 
 const HomeScreen = () => {
- 
+  
   return (
     <>
-     
+   
     </>
   );
 }

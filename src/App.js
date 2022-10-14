@@ -18,6 +18,15 @@ import MemberListScreen from "./Screens/MemberListScreen";
 import MemberEditScreen from "./Screens/Member/MemberEditScreen";
 import CustomerEditScreen from "./Screens/Customer/CustomerEditScreen";
 import FatsnfRateMatrix from "./Screens/FatsnfRateMatrix/FatsnfRateMatrix";
+import CompanyScreen from "./Screens/Company/CompanyScreen";
+import CompanyEditScreen from "./Screens/Company/CompanyEditScreen";
+import FatScreen from "./Screens/Fat/FatScreen";
+import SnfScreen from "./Screens/Snf/SnfScreen";
+import RoleScreen from "./Screens/Role/RoleScreen";
+import VehicleTypeScreen from "./Screens/Vehicle/VehicleTypeScreen";
+import VehicleScreen from "./Screens/Vehicle/VehicleScreen";
+import RouteScreen from "./Screens/Route/RouteScreen";
+import UserRoleScreen from "./Screens/Role/UserRoleScreen";
 
 require("./css/App-dev.css");
 
@@ -85,6 +94,15 @@ function App() {
                     element={<MemberListScreen />}
                   />
                   <Route path="FatsnfRateMatrix" element={<FatsnfRateMatrix/>}/>
+                  <Route path="CompanyScreen" element={<CompanyScreen/>}/>
+                  <Route path="ComapnyEditScreen/:id" element={<CompanyEditScreen/>}/>
+                  <Route path="FatScreen" element={<FatScreen/>}/>
+                  <Route path="SnfScreen" element={<SnfScreen/>}/>
+                  <Route path="RoleScreen" element={<RoleScreen/>}/>
+                  <Route path="VehicleScreen" element={<VehicleScreen/>}/>
+                  <Route path="VehicleTypeScreen" element={<VehicleTypeScreen/>}/>
+                  <Route path="RouteScreen" element={<RouteScreen/>}/>
+                  <Route path="UserRole" element={<UserRoleScreen/>}/>
                 </Routes>
               </ConfigProvider>
               <Footers />

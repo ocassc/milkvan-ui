@@ -70,6 +70,41 @@ export function Nav() {
             FatsnFRateMatrix
             </NavLink>
           </Menu.Item>
+          <Menu.Item key={"1.3"}>
+            <NavLink exact to={"/FatScreen"}>
+            Fat
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key={"1.4"}>
+            <NavLink exact to={"/SnfScreen"}>
+            Snf
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key={"1.5"}>
+            <NavLink exact to={"/RoleScreen"}>
+           Role
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key={"1.6"}>
+            <NavLink exact to={"/VehicleScreen"}>
+            Vehicle
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key={"1.7"}>
+            <NavLink exact to={"/VehicleTypeScreen"}>
+            VehicleType
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key={"1.8"}>
+            <NavLink exact to={"/RouteScreen"}>
+           Route
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key={"1.9"}>
+            <NavLink exact to={"/UserRole"}>
+          UserRole
+            </NavLink>
+          </Menu.Item>
         </SubMenu>
         <Menu.Item key={"2"}>
           <NavLink to={"/MemberListScreen"}>Member</NavLink>
@@ -77,6 +112,10 @@ export function Nav() {
         <Menu.Item key={"3"}>
           <NavLink to={"/CustomerListScreen"}>Customer</NavLink>
         </Menu.Item>
+        <Menu.Item key={"4"}>
+          <NavLink to={"/CompanyScreen"}>Company</NavLink>
+        </Menu.Item>
+        
       </Menu>
       <div className="dd-logout">
         <Dropdown overlay={menu} trigger={["click"]}>
