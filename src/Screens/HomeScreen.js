@@ -1,12 +1,13 @@
-import React from 'react';
+import React from "react";
+
 
 const HomeScreen = () => {
   
   return (
-    <>
-   
-    </>
+    <div>
+     
+    </div>
   );
-}
+};
 
-export default HomeScreen
+export default HomeScreen;

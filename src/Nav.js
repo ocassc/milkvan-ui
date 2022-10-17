@@ -105,6 +105,16 @@ export function Nav() {
           UserRole
             </NavLink>
           </Menu.Item>
+          <Menu.Item key={"2.0"}>
+            <NavLink exact to={"/DefaultUserSetting"}>
+            DefaultUserSetting
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item key={"2.1"}>
+            <NavLink exact to={"/VehicleService"}>
+           VehicleService
+            </NavLink>
+          </Menu.Item>
         </SubMenu>
         <Menu.Item key={"2"}>
           <NavLink to={"/MemberListScreen"}>Member</NavLink>

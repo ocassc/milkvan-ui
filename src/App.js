@@ -27,6 +27,8 @@ import VehicleTypeScreen from "./Screens/Vehicle/VehicleTypeScreen";
 import VehicleScreen from "./Screens/Vehicle/VehicleScreen";
 import RouteScreen from "./Screens/Route/RouteScreen";
 import UserRoleScreen from "./Screens/Role/UserRoleScreen";
+import DefaultUserSetting from "./Screens/DefaultUserSetting/DefaultUserSetting";
+import VehicleService from "./Screens/Vehicle/VehicleService";
 
 require("./css/App-dev.css");
 
@@ -103,6 +105,8 @@ function App() {
                   <Route path="VehicleTypeScreen" element={<VehicleTypeScreen/>}/>
                   <Route path="RouteScreen" element={<RouteScreen/>}/>
                   <Route path="UserRole" element={<UserRoleScreen/>}/>
+                  <Route path="DefaultUserSetting" element={<DefaultUserSetting/>}/>
+                  <Route path="VehicleService" element={<VehicleService/>}/>
                 </Routes>
               </ConfigProvider>
               <Footers />
