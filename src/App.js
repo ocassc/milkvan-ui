@@ -14,7 +14,7 @@ import SignupScreen from "./Screens/SignupScreen";
 import HomeScreen from "./Screens/HomeScreen";
 import CustomerAddScreen from "./Screens/Customer/CustomerAddScreen";
 import CustomerListScreen from "./Screens/Customer/CustomerListScreen";
-import MemberListScreen from "./Screens/MemberListScreen";
+import MemberListScreen from "./Screens/Member/MemberListScreen";
 import MemberEditScreen from "./Screens/Member/MemberEditScreen";
 import CustomerEditScreen from "./Screens/Customer/CustomerEditScreen";
 import FatsnfRateMatrix from "./Screens/FatsnfRateMatrix/FatsnfRateMatrix";

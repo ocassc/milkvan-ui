@@ -233,7 +233,7 @@ const CustomerAddScreen = () => {
               </Col>
               <Col span={12}>
                 <FormItem colon={false} label=" MapLocation">
-                  <iframe
+                  <iframe title="Maplocation"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28450.546553129665!2d75.68522088150291!3d26.956817166570143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4cd47d26a84b%3A0xaca32f17838b07d0!2sGovindpura%2C%20Jaipur%2C%20Rajasthan%20302012!5e0!3m2!1sen!2sin!4v1664946376325!5m2!1sen!2sin"
                     style={{
                       width: "300px",
