@@ -1,5 +1,5 @@
 import { Col, Form, Row, Input, Button, message } from "antd";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axiosInstance from "../axiosInstance";
 
 const SignupScreen = () => {
@@ -8,25 +8,7 @@ const SignupScreen = () => {
   const [mobile, setMobile] = useState();
   const [password, setPassword] = useState();
   const [address, setAddress] = useState();
-  const [memberData, setMemberData]=useState({});
 
-  useEffect(() => {
-    let mounted = true;
-    if (mounted) {
-     
-      let search = window.location.search;
-      let params = new URLSearchParams(search);
-      let id = params.get("id");
-      onReadMember(id);
-    }
-    return () => (mounted = false);
-  }, []);
-  const onReadMember=(id)=>{
-    axiosInstance.get(`/member/${id}`).then((response) => {
-      setMemberData(response.data.data);
-      console.log(response.data.data)
-    });
-  }
   const onSignup = () => {
     const data = {
       email: email,
@@ -46,10 +28,8 @@ const SignupScreen = () => {
 
   return (
     <div className="login-page-form">
-      <h1 className="head">
-       Signup
-      </h1>
-     
+      <h1 className="head">Signup</h1>
+
       <Form>
         <Row gutter={20}>
           <Col span={12}>
@@ -125,8 +105,6 @@ const SignupScreen = () => {
           </Col>
         </Row>
       </Form>
-
-     
     </div>
   );
 };

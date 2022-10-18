@@ -110,11 +110,6 @@ export function Nav() {
             DefaultUserSetting
             </NavLink>
           </Menu.Item>
-          <Menu.Item key={"2.1"}>
-            <NavLink exact to={"/VehicleService"}>
-           VehicleService
-            </NavLink>
-          </Menu.Item>
         </SubMenu>
         <Menu.Item key={"2"}>
           <NavLink to={"/MemberListScreen"}>Member</NavLink>
@@ -124,6 +119,9 @@ export function Nav() {
         </Menu.Item>
         <Menu.Item key={"4"}>
           <NavLink to={"/CompanyScreen"}>Company</NavLink>
+        </Menu.Item>
+        <Menu.Item key={"5"}>
+          <NavLink to={"/PickupListScreen"}>Pickup</NavLink>
         </Menu.Item>
         
       </Menu>

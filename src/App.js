@@ -28,7 +28,8 @@ import VehicleScreen from "./Screens/Vehicle/VehicleScreen";
 import RouteScreen from "./Screens/Route/RouteScreen";
 import UserRoleScreen from "./Screens/Role/UserRoleScreen";
 import DefaultUserSetting from "./Screens/DefaultUserSetting/DefaultUserSetting";
-import VehicleService from "./Screens/Vehicle/VehicleService";
+import PickupListScreen from "./Screens/Pickup/PickupListScreen";
+import PickupAddScreen from "./Screens/Pickup/PickupAddScreen";
 
 require("./css/App-dev.css");
 
@@ -37,12 +38,10 @@ function App() {
   const [authToken, setAuthToken] = useState(null);
 
   useEffect(() => {
-    
     if (
       localStorage.getItem("authtoken") !== null &&
       localStorage.getItem("authtoken") !== undefined
     ) {
-      
       setAuthToken(JSON.parse(localStorage.getItem("authtoken")));
       setWaitstate(false);
     } else {
@@ -80,9 +79,15 @@ function App() {
                   <Route path="/" element={<LoginScreen />} />
                   <Route path="WelcomeScreen" element={<WelcomeScreen />} />
                   <Route path="SignupScreen" element={<SignupScreen />} />
-                  <Route path="MemberEditScreen/:id" element={<MemberEditScreen />} />
+                  <Route
+                    path="MemberEditScreen/:id"
+                    element={<MemberEditScreen />}
+                  />
                   <Route path="HomeScreen" element={<HomeScreen />} />
-                  <Route path="CustomerEditScreen/:id" element={<CustomerEditScreen/>}/>
+                  <Route
+                    path="CustomerEditScreen/:id"
+                    element={<CustomerEditScreen />}
+                  />
                   <Route
                     path="CustomerAddScreen"
                     element={<CustomerAddScreen />}
@@ -95,18 +100,31 @@ function App() {
                     path="MemberListScreen"
                     element={<MemberListScreen />}
                   />
-                  <Route path="FatsnfRateMatrix" element={<FatsnfRateMatrix/>}/>
-                  <Route path="CompanyScreen" element={<CompanyScreen/>}/>
-                  <Route path="ComapnyEditScreen/:id" element={<CompanyEditScreen/>}/>
-                  <Route path="FatScreen" element={<FatScreen/>}/>
-                  <Route path="SnfScreen" element={<SnfScreen/>}/>
-                  <Route path="RoleScreen" element={<RoleScreen/>}/>
-                  <Route path="VehicleScreen" element={<VehicleScreen/>}/>
-                  <Route path="VehicleTypeScreen" element={<VehicleTypeScreen/>}/>
-                  <Route path="RouteScreen" element={<RouteScreen/>}/>
-                  <Route path="UserRole" element={<UserRoleScreen/>}/>
-                  <Route path="DefaultUserSetting" element={<DefaultUserSetting/>}/>
-                  <Route path="VehicleService" element={<VehicleService/>}/>
+                  <Route
+                    path="FatsnfRateMatrix"
+                    element={<FatsnfRateMatrix />}
+                  />
+                  <Route path="CompanyScreen" element={<CompanyScreen />} />
+                  <Route
+                    path="ComapnyEditScreen/:id"
+                    element={<CompanyEditScreen />}
+                  />
+                  <Route path="FatScreen" element={<FatScreen />} />
+                  <Route path="SnfScreen" element={<SnfScreen />} />
+                  <Route path="RoleScreen" element={<RoleScreen />} />
+                  <Route path="VehicleScreen" element={<VehicleScreen />} />
+                  <Route
+                    path="VehicleTypeScreen"
+                    element={<VehicleTypeScreen />}
+                  />
+                  <Route path="RouteScreen" element={<RouteScreen />} />
+                  <Route path="UserRole" element={<UserRoleScreen />} />
+                  <Route
+                    path="DefaultUserSetting"
+                    element={<DefaultUserSetting />}
+                  />
+                  <Route path="PickupListScreen" element={<PickupListScreen/>}/>
+                  <Route path="PickupAddScreen" element={<PickupAddScreen/>}/>
                 </Routes>
               </ConfigProvider>
               <Footers />

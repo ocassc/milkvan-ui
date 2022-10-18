@@ -12,7 +12,6 @@ const LoginScreen = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data && res.data.responseCode === 1) {
-          
           localStorage.setItem("authtoken", JSON.stringify(res.data.auth));
           window.location.href = "HomeScreen";
         } else message.error("Member Not Found");
