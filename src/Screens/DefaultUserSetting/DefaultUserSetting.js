@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
-
+import { UserContext } from "../../globalContext";
 const DefaultUserSetting = () => {
+  const user = useContext(UserContext);
   const [snf, setSnf] = useState("");
   const [fat, setFat] = useState("");
   const [dateFormate, setDateFormate] = useState("");
@@ -97,6 +98,7 @@ const DefaultUserSetting = () => {
       dateFormate:dateFormate,
       showCompanyName:showCompanyName,
       showUserName:showUserName,
+      userId: parseInt(user.userId),
     };
     axiosInstance.post(`/defaultUserSetting`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
