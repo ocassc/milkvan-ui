@@ -1,10 +1,13 @@
-import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
+import { Col, Form, Row, Button, Input, message, Table, Modal,Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
+const { Option } = Select;
 
 const CompanyScreen = () => {
   const [companyData, setCompanyData] = useState([]);
+  const[stateList, setStateList]=useState();
+  const [cityList, setCityList] = useState();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [registerDate, setRegisterDate] = useState("");
@@ -19,8 +22,25 @@ const CompanyScreen = () => {
   useEffect(() => {
     let mounted = true;
     if (mounted) getCompany();
+    getState();
     return () => (mounted = false);
   }, []);
+
+
+  const getState=()=>{
+    axiosInstance.get("/state").then((response) => {
+      setStateList(response.data.data);
+    });
+  }
+  const onStateChange = (stateid, e) => {
+    axiosInstance.get(`/city/state/${stateid}`).then((response) => {
+      setCityList(response.data.data);
+      setStateName(stateid);
+    });
+  };
+  const onCityChange = (e) => {
+    setCityName(e);
+  };
 
   const columns = [
     {
@@ -178,20 +198,30 @@ const CompanyScreen = () => {
           <Row gutter={20}>
             <Col span={12}>
               <Form.Item colon={false} label="State">
-                <Input
-                  placeholder="State"
-                  value={stateName}
-                  onChange={(e) => setStateName(e.target.value)}
-                />
+              <Select
+                    placeholder="State"
+                    value={stateName}
+                    onChange={onStateChange}
+                  >
+                    {stateList &&
+                      stateList.map((stateList) => (
+                        <Option key={stateList.id}>{stateList.name}</Option>
+                      ))}
+                  </Select>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item colon={false} label="City">
-                <Input
-                  placeholder="City"
-                  value={cityName}
-                  onChange={(e) => setCityName(e.target.value)}
-                />
+              <Select
+                    placeholder="City"
+                    value={cityName}
+                    onChange={onCityChange}
+                  >
+                    {cityList &&
+                      cityList.map((cityList) => (
+                        <Option key={cityList.id}>{cityList.name}</Option>
+                      ))}
+                  </Select>
               </Form.Item>
             </Col>
             <Col span={12}>
