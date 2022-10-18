@@ -22,7 +22,7 @@ const PickupAddScreen = () => {
     const [uom, setUom] = useState("");
     const [amount, setAmount] = useState("");
     const [rate, setRate] = useState("");
-    const [date, setDate] = useState("");
+    const [transactionDate, setTransactionDate] = useState(null);
     const [fat, setFat] = useState("");
     const [snf, setSnf] = useState("");
     const [routeId, setRouteId] = useState("");
@@ -65,13 +65,13 @@ const PickupAddScreen = () => {
           uom: uom,
           milkType: milkType,
           vehicleShift: vehicleShift,
-          date: date,
+          transactionDate: new Date(transactionDate),
           routeId: routeId,
           customerId: customerId,
           vehicleId: vehicleId,
           userId: parseInt(user.userId),
         };
-        axiosInstance.post(`/vehicleService`, data).then((res) => {
+        axiosInstance.post(`/pickup`, data).then((res) => {
           if (res.data && res.data.responseCode === -1) {
             message.error("Record Already Exists");
           } else if (res.data && res.data.responseCode === 1) {
@@ -142,8 +142,8 @@ const PickupAddScreen = () => {
               <Form.Item colon={false} label="Date">
                 <Input
                   placeholder="Date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
+                  value={transactionDate}
+                  onChange={(e) => setTransactionDate(e.target.value)}
                 />
               </Form.Item>
             </Col>

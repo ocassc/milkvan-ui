@@ -1,124 +1,167 @@
-import React, { useEffect, useState } from "react";
-import { Table, Modal, message } from "antd";
-import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
-import { PageTitle } from '../../PageTitle';
+import React, { useContext, useEffect, useState } from "react";
+import { Table, Modal, message, Form, Row, Col, Input, Button } from "antd";
+import { EditOutlined, DeleteOutlined, EyeOutlined} from "@ant-design/icons";
+import { PageTitle } from "../../PageTitle";
 import axiosInstance from "../../axiosInstance";
+import { UserContext } from "../../globalContext";
 
 const PickupListScreen = () => {
-    const [pickupService, setPickupService] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [readPickupObj, setReadPickupObj] = useState({});
+  const user = useContext(UserContext);
 
-    useEffect(() => {
-        let mounted = true;
-        if (mounted) getPickup();
-       
-        return () => (mounted = false);
-      }, []);
+  const [pickupService, setPickupService] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [readPickupObj, setReadPickupObj] = useState({});
+  const[fromDate, setFromDate]=useState('');
+  const[toDate, setToDate]=useState('');
 
 
-      const columns = [
-        {
-          title: "ID",
-          dataIndex: "id",
-          key: "id",
-        },
-        {
-          title: "SNF",
-          dataIndex: "snf",
-          key: "snf",
-        },
-        {
-          title: "FAT",
-          dataIndex: "fat",
-          key: "fat",
-        },
-        {
-          title: "Rate",
-          dataIndex: "rate",
-          key: "rate",
-        },
-    
-        {
-          title: "MilkType",
-          dataIndex: "milkType",
-          key: "milkType",
-        },
-        {
-          title: "Date",
-          dataIndex: "date",
-          key: "date",
-        },
-        {
-          title: "Action",
-          key: "id",
-          render: (row) => {
-            return (
-              <>
-                <EyeOutlined
-                  onClick={() => {
-                    readPickup(row);
-                  }}
-                />
-                <EditOutlined
-                  style={{ marginLeft: 12 }}
-                  // onClick={() => {
-                  //   modify(row);
-                  // }}
-                />
-                <DeleteOutlined
-                  style={{ color: "red", marginLeft: 12 }}
-                  onClick={() => {
-                    removePickup(row);
-                  }}
-                />
-              </>
-            );
-          },
-        },
-      ];
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) getPickup(user.userId);
 
-      const getPickup=()=>{
-        axiosInstance.get(`/vehicleService`).then((res) => {
-            setPickupService(res.data.data);
-          });
-      }
+    return () => (mounted = false);
+  }, []);
 
-      const readPickup=(obj)=>{
-        axiosInstance.get(`/vehicleService/${obj.id}`).then((response) => {
-            setReadPickupObj(response.data.data);
-          });
-          setIsModalOpen(true);
-      }
+  const columns = [
+    {
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "SNF",
+      dataIndex: "snf",
+      key: "snf",
+    },
+    {
+      title: "FAT",
+      dataIndex: "fat",
+      key: "fat",
+    },
+    {
+      title: "Rate",
+      dataIndex: "rate",
+      key: "rate",
+    },
 
-      const removePickup=(obj)=>{
-        Modal.confirm({
-            title: "Do you want to remove this Member?",
-            okText: "Yes",
-            okType: "danger",
-            cancelText: "No",
-            onOk() {
-              axiosInstance.delete(`/vehicleService/${obj.id}`).then((res) => {
-                if (res.data && res.data.responseCode === 1) {
-                  message.success("Record Deleted successfully");
-                } else message.error("Something wrong. Please try again...!");
-              });
-            },
-            onCancel() {},
-          });
-      }
-      const onAddClick = () => {
-        window.location.href = "PickupAddScreen";
-      };
+    {
+      title: "MilkType",
+      dataIndex: "milkType",
+      key: "milkType",
+    },
+    {
+      title: "Date",
+      dataIndex: "transactionDate",
+      key: "transactionDate",
+    },
+    {
+      title: "Action",
+      key: "id",
+      render: (row) => {
+        return (
+          <>
+            <EyeOutlined
+              onClick={() => {
+                readPickup(row);
+              }}
+            />
+            <EditOutlined
+              style={{ marginLeft: 12 }}
+              // onClick={() => {
+              //   modify(row);
+              // }}
+            />
+            <DeleteOutlined
+              style={{ color: "red", marginLeft: 12 }}
+              onClick={() => {
+                removePickup(row);
+              }}
+            />
+          </>
+        );
+      },
+    },
+  ];
+
+  const getPickup = () => {
+    axiosInstance.get(`/pickup/user/${user.userId}`).then((res) => {
+      setPickupService(res.data.data);
+    });
+  };
+
+  const readPickup = (obj) => {
+    axiosInstance.get(`/pickup/${obj.id}`).then((response) => {
+      setReadPickupObj(response.data.data);
+    });
+    setIsModalOpen(true);
+  };
+
+  const removePickup = (obj) => {
+    Modal.confirm({
+      title: "Do you want to remove this Member?",
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
+      onOk() {
+        axiosInstance.delete(`/pickup/${obj.id}`).then((res) => {
+          if (res.data && res.data.responseCode === 1) {
+            message.success("Record Deleted successfully");
+          } else message.error("Something wrong. Please try again...!");
+        });
+      },
+      onCancel() {},
+    });
+  };
+  const onAddClick = () => {
+    window.location.href = "PickupAddScreen";
+  };
+
+
+const onGo=()=>{
+   
+   axiosInstance.post(`/pickup/user/${user.userId}`,{
+    fromDate:new Date(fromDate),
+    toDate:new Date(toDate)
+   }).then((res) => {
+    if (res.data && res.data.responseCode === -1) {
+      message.error("Record Already Exists");
+    } else if (res.data && res.data.responseCode === 1) {
+      message.success("Record saved successfully");
+      setPickupService();
+    } else message.error("Something wrong. Please try again...!");
+  });
+}
+
   return (
     <div>
-    <div>PickupListScreen</div>
-    <div>
+      <div>PickupListScreen</div>
+      <div>
         <PageTitle title="Customer List">
           <button className="btn-tck" onClick={() => onAddClick()}>
             + Add New{" "}
           </button>
         </PageTitle>
+       
+        <Row gutter={5}>
+            <Col span={7}>
+              <Form.Item colon={false} label="From">
+                    <Input  value={fromDate} onChange={(e)=> setFromDate(e.target.value)}/>
+                </Form.Item>
+                </Col>
+                <Col span={7}>
+              <Form.Item colon={false} label="To">
+                    <Input value={toDate} onChange={(e)=> setToDate(e.target.value)} />
+                </Form.Item>
+                </Col>
+               
+            <Col span={3}>
+              <Form.Item colon={false} >
+                    <Button type="primary" onClick={onGo}>Go</Button>
+                </Form.Item>
+                </Col>
+            </Row>
+           
+        
       </div>
       <div>
         <Table columns={columns} dataSource={pickupService} />
@@ -131,10 +174,7 @@ const PickupListScreen = () => {
       >
         <ul className="list-group w-50">
           <li className="list-group-item"> ID : {readPickupObj.id}</li>
-          <li className="list-group-item">
-            {" "}
-            User-ID : {readPickupObj.userId}
-          </li>
+          <li className="list-group-item"> User-ID : {readPickupObj.userId}</li>
           <li className="list-group-item">
             {" "}
             Route-Id : {readPickupObj.routeId}
@@ -147,26 +187,11 @@ const PickupListScreen = () => {
             {" "}
             Customer-Id : {readPickupObj.customerId}
           </li>
-          <li className="list-group-item">
-            {" "}
-            SNF : {readPickupObj.snf}
-          </li>
-          <li className="list-group-item">
-            {" "}
-            FAT : {readPickupObj.fat}
-          </li>
-          <li className="list-group-item">
-            {" "}
-            Rate : {readPickupObj.rate}
-          </li>
-          <li className="list-group-item">
-            {" "}
-            Amount : {readPickupObj.amount}
-          </li>
-          <li className="list-group-item">
-            {" "}
-            UMO : {readPickupObj.uom}
-          </li>
+          <li className="list-group-item"> SNF : {readPickupObj.snf}</li>
+          <li className="list-group-item"> FAT : {readPickupObj.fat}</li>
+          <li className="list-group-item"> Rate : {readPickupObj.rate}</li>
+          <li className="list-group-item"> Amount : {readPickupObj.amount}</li>
+          <li className="list-group-item"> UMO : {readPickupObj.uom}</li>
           <li className="list-group-item">
             {" "}
             Milk-Type : {readPickupObj.milkType}
@@ -176,17 +201,14 @@ const PickupListScreen = () => {
             Vehicle-Shif : {readPickupObj.vehicleShift}
           </li>
 
-          <li className="list-group-item">
-            {" "}
-            Date : {readPickupObj.date}
-          </li>
+          <li className="list-group-item"> Date : {readPickupObj.date}</li>
           <li className="list-group-item">
             CompanyId : {readPickupObj.companyId}
           </li>
         </ul>
       </Modal>
-      </div>
-  )
-}
+    </div>
+  );
+};
 
-export default PickupListScreen
+export default PickupListScreen;
