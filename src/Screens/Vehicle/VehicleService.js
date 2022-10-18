@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext} from "react";
 import {
   Col,
   Form,
@@ -12,8 +12,12 @@ import {
 } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
+import { UserContext } from "../../globalContext";
 const { Option } = Select;
 const VehicleService = () => {
+
+  const user = useContext(UserContext);
+
   const [vehicleService, setVehicleService] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [readVehicleServiceObj, setReadVehicleServiceObj] = useState({});
@@ -143,6 +147,7 @@ const VehicleService = () => {
       routeId: routeId,
       customerId: customerId,
       vehicleId: vehicleId,
+      userId: parseInt(user.userId),
     };
     axiosInstance.post(`/vehicleService`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
