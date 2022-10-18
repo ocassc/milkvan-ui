@@ -92,11 +92,11 @@ const DefaultUserSetting = () => {
   };
   const onSave = () => {
     const data = {
-      snf: snf,
-      fat: fat,
-      dateFormate: dateFormate,
-      showCompanyName: showCompanyName,
-      showUserName: showUserName,
+      snf:snf,
+      fat:fat,
+      dateFormate:dateFormate,
+      showCompanyName:showCompanyName,
+      showUserName:showUserName,
     };
     axiosInstance.post(`/defaultUserSetting`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {

@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
+import {
+  Col,
+  Form,
+  Row,
+  Button,
+  Input,
+  message,
+  Table,
+  Modal,
+  Select,
+} from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
-
+const { Option } = Select;
 const VehicleService = () => {
   const [vehicleService, setVehicleService] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [readVehicleServiceObj, setReadVehicleServiceObj] = useState({});
+  const [routeList, setRouteList] = useState("");
+  const [customerList, setCustomerList] = useState("");
+  const [vehicleList, setVehicleList] = useState("");
   const [milkType, setMilkType] = useState("");
   const [vehicleShift, setVehicleShift] = useState("");
   const [uom, setUom] = useState("");
@@ -15,10 +28,16 @@ const VehicleService = () => {
   const [date, setDate] = useState("");
   const [fat, setFat] = useState("");
   const [snf, setSnf] = useState("");
+  const [routeId, setRouteId] = useState("");
+  const [customerId, setCustomerId] = useState("");
+  const [vehicleId, setVehicleId] = useState("");
 
   useEffect(() => {
     let mounted = true;
     if (mounted) getVehicleService();
+    getRoute();
+    getCustomer();
+    getVehicle();
     return () => (mounted = false);
   }, []);
 
@@ -88,6 +107,22 @@ const VehicleService = () => {
       setVehicleService(res.data.data);
     });
   };
+
+  const getRoute = () => {
+    axiosInstance.get(`/route`).then((res) => {
+      setRouteList(res.data.data);
+    });
+  };
+  const getCustomer = () => {
+    axiosInstance.get(`/customer`).then((res) => {
+      setCustomerList(res.data.data);
+    });
+  };
+  const getVehicle = () => {
+    axiosInstance.get(`/vehicle`).then((res) => {
+      setVehicleList(res.data.data);
+    });
+  };
   const readVehicleService = (obj) => {
     axiosInstance.get(`/vehicleService/${obj.id}`).then((response) => {
       setReadVehicleServiceObj(response.data.data);
@@ -105,6 +140,9 @@ const VehicleService = () => {
       milkType: milkType,
       vehicleShift: vehicleShift,
       date: date,
+      routeId: routeId,
+      customerId: customerId,
+      vehicleId: vehicleId,
     };
     axiosInstance.post(`/vehicleService`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
@@ -130,6 +168,16 @@ const VehicleService = () => {
       },
       onCancel() {},
     });
+  };
+
+  const onRouteChange = (e) => {
+    setRouteId(e);
+  };
+  const onCustomeridChange = (e) => {
+    setCustomerId(e);
+  };
+  const onVehicleidChange = (e) => {
+    setVehicleId(e);
   };
   return (
     <div>
@@ -212,6 +260,50 @@ const VehicleService = () => {
           </Row>
           <Row gutter={20}>
             <Col span={12}>
+              <Form.Item colon={false} label="Route-Id">
+                <Select
+                  placeholder="Route-Id"
+                  value={routeId}
+                  onChange={onRouteChange}
+                >
+                  {routeList &&
+                    routeList.map((routeList) => (
+                      <Option key={routeList.id}>{routeList.id}</Option>
+                    ))}
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item colon={false} label="Vehicle-Id">
+                <Select
+                  placeholder="Vehicle-Id"
+                  value={vehicleId}
+                  onChange={onVehicleidChange}
+                >
+                  {vehicleList &&
+                    routeList.map((vehicleList) => (
+                      <Option key={vehicleList.id}>{vehicleList.id}</Option>
+                    ))}
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item colon={false} label=" Customer-Id">
+                <Select
+                  placeholder=" Customer-Id"
+                  value={customerId}
+                  onChange={onCustomeridChange}
+                >
+                  {customerList &&
+                    customerList.map((customerList) => (
+                      <Option key={customerList.id}>{customerList.id}</Option>
+                    ))}
+                </Select>
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={20}>
+            <Col span={12}>
               <Button type="primary" onClick={onSave}>
                 Save
               </Button>
@@ -272,7 +364,7 @@ const VehicleService = () => {
           </li>
           <li className="list-group-item">
             {" "}
-            Vehicle-Shif : {readVehicleServiceObj.vehicleShif}
+            Vehicle-Shif : {readVehicleServiceObj.vehicleShift}
           </li>
 
           <li className="list-group-item">
