@@ -1,6 +1,7 @@
-import { Button, Form, Input, message, Table } from "antd";
+import { Button, Col, Form, Input, message, Row, Table } from "antd";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import axiosInstance from "../../axiosInstance";
+import { UserContext } from "../../globalContext";
 
 const EditableContext = React.createContext(null);
 
@@ -79,6 +80,13 @@ const EditableCell = ({
 };
 
 const FatsnfRateMatrix = ({ onHandleChange }) => {
+  const user=useContext(UserContext);
+ const[effectiveFrom, setEffectiveFrom]=useState("");
+ const[effectiveTo, setEffectiveTo]=useState("");
+ const [snf, setSnf]=useState("");
+ const [fat, setFat]=useState("");
+ const [rate, setRate]= useState("");
+
  
   const dataObj = [
     {
@@ -338,7 +346,7 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
       }),
     };
   });
-  const onSave = () => {
+  const onHandleSave = () => {
     axiosInstance.post(`/fatsnfRateMatrix`, dataSource).then((res) => {
       if (res.data && res.data.responseCode === -1) {
         message.error("Record Already Exists");
@@ -347,10 +355,87 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
       } else message.error("Something wrong. Please try again...!");
     });
   };
+
+  const onSave=()=>{
+    const data={
+      effectiveFrom:effectiveFrom,
+      effectiveTo:effectiveTo,
+      snf:snf,
+      fat:fat,
+      rate:rate,
+      companyId:1,
+      userId:parseInt(user.userId),
+    }
+    axiosInstance.post(`/fatsnfRateMatrix`, data).then((res) => {
+      if (res.data && res.data.responseCode === -1) {
+        message.error("Record Already Exists");
+      } else if (res.data && res.data.responseCode === 1) {
+        message.success("Record Update successfully");
+      } else message.error("Something wrong. Please try again...!");
+    });
+  }
   return (
     <div>
       <h1>FatsnfRateMatrix</h1>
-
+<div>
+  <Form>
+  <Row gutter={20}>
+  <Col span={12}>
+            <Form.Item colon={false} label="SNF">
+              <Input
+                placeholder="SNF"
+                value={snf}
+                onChange={(e) => setSnf(e.target.value)}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item colon={false} label="FAT">
+              <Input
+                placeholder="FAT"
+                value={fat}
+                onChange={(e) => setFat(e.target.value)}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item colon={false} label="Rate">
+              <Input
+                placeholder="Rate"
+                value={rate}
+                onChange={(e) => setRate(e.target.value)}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item colon={false} label="EffectiveFrom">
+              <Input
+                placeholder="EffectiveFrom"
+                value={effectiveFrom}
+                onChange={(e) => setEffectiveFrom(e.target.value)}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item colon={false} label="EffectiveTo">
+              <Input
+                placeholder="EffectiveTo"
+                value={effectiveTo}
+                onChange={(e) => setEffectiveTo(e.target.value)}
+              />
+            </Form.Item>
+          </Col>
+        
+        </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Button type="primary" onClick={onSave}>
+              Save
+            </Button>
+          </Col>
+        </Row>
+  </Form>
+</div>
       <div>
         <Table
           components={components}
@@ -361,7 +446,7 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
         />
       </div>
       <div>
-        <Button type="primary" onChange={onSave}>
+        <Button type="primary" onChange={onHandleSave}>
           Save
         </Button>
       </div>
