@@ -75,9 +75,9 @@ const PickupListScreen = () => {
             />
             <EditOutlined
               style={{ marginLeft: 12 }}
-              // onClick={() => {
-              //   modify(row);
-              // }}
+              onClick={() => {
+                modifyPickup(row);
+              }}
             />
             <DeleteOutlined
               style={{ color: "red", marginLeft: 12 }}
@@ -102,6 +102,10 @@ const PickupListScreen = () => {
       setReadPickupObj(response.data.data);
     });
     setIsModalOpen(true);
+  };
+
+  const modifyPickup=(obj)=>{
+    window.location.href=`PickupEditScreen/${obj.id}`
   };
 
   const removePickup = (obj) => {
@@ -146,7 +150,7 @@ const PickupListScreen = () => {
 
   return (
     <div>
-      <div>PickupListScreen</div>
+      
       <div>
         <PageTitle title="PickUp List">
           <button className="btn-tck" onClick={() => onAddClick()}>
@@ -183,7 +187,7 @@ const PickupListScreen = () => {
         <Table columns={columns} dataSource={pickupService} />
       </div>
       <Modal
-        title="Role-List"
+        title="PickUp-Details"
         open={isModalOpen}
         onOk={() => setIsModalOpen(false)}
         onCancel={() => setIsModalOpen(false)}
@@ -191,6 +195,9 @@ const PickupListScreen = () => {
         <ul className="list-group w-50">
           <li className="list-group-item"> ID : {readPickupObj.id}</li>
           <li className="list-group-item"> User-ID : {readPickupObj.userId}</li>
+          <li className="list-group-item">
+            CompanyId : {readPickupObj.companyId}
+          </li>
           <li className="list-group-item">
             {" "}
             Route-Id : {readPickupObj.routeId}
@@ -222,9 +229,7 @@ const PickupListScreen = () => {
             {" "}
             Date : {readPickupObj.transactionDate}
           </li>
-          <li className="list-group-item">
-            CompanyId : {readPickupObj.companyId}
-          </li>
+          
         </ul>
       </Modal>
     </div>

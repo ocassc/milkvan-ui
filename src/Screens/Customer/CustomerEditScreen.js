@@ -96,6 +96,7 @@ const CustomerEditScreen = () => {
         message.error("Record Already Exists");
       } else if (res.data && res.data.responseCode === 1) {
         message.success("Record Update successfully");
+        window.location.href="/CustomerListScreen"
       } else message.error("Something wrong. Please try again...!");
     });
   };

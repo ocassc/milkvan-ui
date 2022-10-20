@@ -30,6 +30,7 @@ import UserRoleScreen from "./Screens/Role/UserRoleScreen";
 import DefaultUserSetting from "./Screens/DefaultUserSetting/DefaultUserSetting";
 import PickupListScreen from "./Screens/Pickup/PickupListScreen";
 import PickupAddScreen from "./Screens/Pickup/PickupAddScreen";
+import PickupEditScreen from "./Screens/Pickup/PickupEditScreen";
 
 require("./css/App-dev.css");
 
@@ -125,6 +126,7 @@ function App() {
                   />
                   <Route path="PickupListScreen" element={<PickupListScreen/>}/>
                   <Route path="PickupAddScreen" element={<PickupAddScreen/>}/>
+                  <Route path="PickupEditScreen/:id" element={<PickupEditScreen/>}/>
                 </Routes>
               </ConfigProvider>
               <Footers />
