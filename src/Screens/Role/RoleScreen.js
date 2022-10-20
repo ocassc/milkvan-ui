@@ -1,11 +1,13 @@
 import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axiosInstance from "../../axiosInstance";
+import { UserContext } from "../../globalContext";
 
 const RoleScreen = () => {
+  const user =useContext(UserContext)
   const [name, setName] = useState("");
-  const [companyId, setCompanyId] = useState("");
+  
   const [roleData, setRoleData] = useState([]);
   const [readRoleObj, setReadRoleObj] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,7 +78,8 @@ const RoleScreen = () => {
   const onSave = () => {
     const data = {
       name: name,
-      companyId: companyId,
+      userId:parseInt(user.userId),
+      companyId: 1,
     };
     axiosInstance.post(`/role`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
@@ -118,15 +121,7 @@ const RoleScreen = () => {
               />
             </Form.Item>
           </Col>
-          <Col span={12}>
-            <Form.Item colon={false} label="Company-Id">
-              <Input
-                placeholder="Company-Id"
-                value={companyId}
-                onChange={(e) => setCompanyId(e.target.value)}
-              />
-            </Form.Item>
-          </Col>
+        
         </Row>
         <Row gutter={20}>
           <Col span={12}>
@@ -148,6 +143,7 @@ const RoleScreen = () => {
         <ul className="list-group w-50">
           <li className="list-group-item"> ID : {readRoleObj.id}</li>
           <li className="list-group-item"> Value : {readRoleObj.name}</li>
+          <li className="list-group-item"> UserId : {readRoleObj.userId}</li>
           <li className="list-group-item"> CompanyId : {readRoleObj.companyId}</li>
          
         </ul>

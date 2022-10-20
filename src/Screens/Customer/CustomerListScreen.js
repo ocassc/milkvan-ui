@@ -164,13 +164,14 @@ const CustomerListScreen = () => {
             {" "}
             MapLocation : {readCustomerObj.mapLocation}
           </li>
-          <li className="list-group-item">
-            {" "}
-            MemeberId : {readCustomerObj.memberId}
-          </li>
+         
           <li className="list-group-item">
             {" "}
             CompanyId : {readCustomerObj.companyId}
+          </li>
+          <li className="list-group-item">
+            {" "}
+            UserId : {readCustomerObj.userId}
           </li>
         </ul>
       </Modal>

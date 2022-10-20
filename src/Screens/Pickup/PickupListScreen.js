@@ -1,6 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Table, Modal, message, Form, Row, Col, Input, Button } from "antd";
-import { EditOutlined, DeleteOutlined, EyeOutlined} from "@ant-design/icons";
+import {
+  Table,
+  Modal,
+  message,
+  Form,
+  Row,
+  Col,
+  Button,
+  DatePicker,
+  Space,
+} from "antd";
+import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { PageTitle } from "../../PageTitle";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
@@ -11,14 +21,12 @@ const PickupListScreen = () => {
   const [pickupService, setPickupService] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [readPickupObj, setReadPickupObj] = useState({});
-  const[fromDate, setFromDate]=useState('');
-  const[toDate, setToDate]=useState('');
-
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
   useEffect(() => {
     let mounted = true;
     if (mounted) getPickup(user.userId);
-
     return () => (mounted = false);
   }, []);
 
@@ -116,52 +124,60 @@ const PickupListScreen = () => {
     window.location.href = "PickupAddScreen";
   };
 
-
-const onGo=()=>{
-   
-   axiosInstance.post(`/pickup/user/${user.userId}`,{
-    fromDate:new Date(fromDate),
-    toDate:new Date(toDate)
-   }).then((res) => {
-    if (res.data && res.data.responseCode === -1) {
-      message.error("Record Already Exists");
-    } else if (res.data && res.data.responseCode === 1) {
-      message.success("Record saved successfully");
-      setPickupService();
-    } else message.error("Something wrong. Please try again...!");
-  });
-}
+  const onGo = () => {
+    axiosInstance
+      .post(`/pickup/user/${user.userId}`, {
+        fromDate: fromDate,
+        toDate: toDate,
+      })
+      .then((res) => {
+        if (res.data && res.data.responseCode === -1) {
+          message.error("Record Already Exists");
+        } else if (res.data && res.data.responseCode === 1) {
+          message.success("Record saved successfully");
+          setPickupService(res.data.data)
+        } else message.error("Something wrong. Please try again...!");
+      });
+  };
+  const onChange = (date, dateString) => {
+    setFromDate(date, dateString);
+    setToDate(date, dateString);
+  };
 
   return (
     <div>
       <div>PickupListScreen</div>
       <div>
-        <PageTitle title="Customer List">
+        <PageTitle title="PickUp List">
           <button className="btn-tck" onClick={() => onAddClick()}>
             + Add New{" "}
           </button>
         </PageTitle>
-       
+
         <Row gutter={5}>
-            <Col span={7}>
-              <Form.Item colon={false} label="From">
-                    <Input  value={fromDate} onChange={(e)=> setFromDate(e.target.value)}/>
-                </Form.Item>
-                </Col>
-                <Col span={7}>
-              <Form.Item colon={false} label="To">
-                    <Input value={toDate} onChange={(e)=> setToDate(e.target.value)} />
-                </Form.Item>
-                </Col>
-               
-            <Col span={3}>
-              <Form.Item colon={false} >
-                    <Button type="primary" onClick={onGo}>Go</Button>
-                </Form.Item>
-                </Col>
-            </Row>
-           
-        
+          <Col span={7}>
+            <Form.Item colon={false} label="From">
+              <Space direction="vertical">
+                <DatePicker onChange={onChange} />
+              </Space>
+            </Form.Item>
+          </Col>
+          <Col span={7}>
+            <Form.Item colon={false} label="To">
+              <Space direction="vertical">
+                <DatePicker onChange={onChange} />
+              </Space>
+            </Form.Item>
+          </Col>
+
+          <Col span={3}>
+            <Form.Item colon={false}>
+              <Button type="primary" onClick={onGo}>
+                Go
+              </Button>
+            </Form.Item>
+          </Col>
+        </Row>
       </div>
       <div>
         <Table columns={columns} dataSource={pickupService} />
@@ -190,6 +206,7 @@ const onGo=()=>{
           <li className="list-group-item"> SNF : {readPickupObj.snf}</li>
           <li className="list-group-item"> FAT : {readPickupObj.fat}</li>
           <li className="list-group-item"> Rate : {readPickupObj.rate}</li>
+          <li className="list-group-item"> Quantity : {readPickupObj.quantity}</li>
           <li className="list-group-item"> Amount : {readPickupObj.amount}</li>
           <li className="list-group-item"> UMO : {readPickupObj.uom}</li>
           <li className="list-group-item">
@@ -201,7 +218,10 @@ const onGo=()=>{
             Vehicle-Shif : {readPickupObj.vehicleShift}
           </li>
 
-          <li className="list-group-item"> Date : {readPickupObj.date}</li>
+          <li className="list-group-item">
+            {" "}
+            Date : {readPickupObj.transactionDate}
+          </li>
           <li className="list-group-item">
             CompanyId : {readPickupObj.companyId}
           </li>

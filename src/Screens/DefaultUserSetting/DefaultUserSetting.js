@@ -1,13 +1,24 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
+import {
+  Col,
+  Form,
+  Row,
+  Button,
+  Input,
+  message,
+  Table,
+  Modal,
+} from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
 const DefaultUserSetting = () => {
+  let defaultDate = new Date();
+  defaultDate.setDate(defaultDate.getDate());
   const user = useContext(UserContext);
   const [snf, setSnf] = useState("");
   const [fat, setFat] = useState("");
-  const [dateFormate, setDateFormate] = useState("");
+  const [dateFormate, setDateFormate] = useState(defaultDate);
   const [showCompanyName, setShowCompanyName] = useState("");
   const [showUserName, setShowUserName] = useState("");
   const [deafultUser, setDefaulteUser] = useState([]);
@@ -93,12 +104,13 @@ const DefaultUserSetting = () => {
   };
   const onSave = () => {
     const data = {
-      snf:snf,
-      fat:fat,
-      dateFormate:dateFormate,
-      showCompanyName:showCompanyName,
-      showUserName:showUserName,
+      snf: snf,
+      fat: fat,
+      dateFormate: dateFormate,
+      showCompanyName: showCompanyName,
+      showUserName: showUserName,
       userId: parseInt(user.userId),
+      companyId:1
     };
     axiosInstance.post(`/defaultUserSetting`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
@@ -124,6 +136,9 @@ const DefaultUserSetting = () => {
       },
       onCancel() {},
     });
+  };
+  const onSetDate = (event) => {
+    setDateFormate(new Date(event.target.value));
   };
 
   return (
@@ -170,11 +185,7 @@ const DefaultUserSetting = () => {
             </Col>
             <Col span={12}>
               <Form.Item colon={false} label="Date">
-                <Input
-                  placeholder="Date"
-                  value={dateFormate}
-                  onChange={(e) => setDateFormate(e.target.value)}
-                />
+                <Input disabled={true} value={dateFormate.toLocaleDateString("en-CA")} onChange={onSetDate}/>
               </Form.Item>
             </Col>
           </Row>
@@ -200,12 +211,25 @@ const DefaultUserSetting = () => {
           <li className="list-group-item"> ID : {readDefaultUserObj.id}</li>
           <li className="list-group-item"> SNF : {readDefaultUserObj.snf}</li>
           <li className="list-group-item"> FAT : {readDefaultUserObj.fat}</li>
-          <li className="list-group-item"> Comapny-Name : {readDefaultUserObj.showCompanyName}</li>
-          <li className="list-group-item"> User-Name : {readDefaultUserObj.showUserName}</li>
-          <li className="list-group-item"> Date : {readDefaultUserObj.dateFormate}</li>
+          <li className="list-group-item">
+            {" "}
+            Comapny-Name : {readDefaultUserObj.showCompanyName}
+          </li>
+          <li className="list-group-item">
+            {" "}
+            User-Name : {readDefaultUserObj.showUserName}
+          </li>
+          <li className="list-group-item">
+            {" "}
+            Date : {readDefaultUserObj.dateFormate}
+          </li>
           <li className="list-group-item">
             {" "}
             CompanyId : {readDefaultUserObj.companyId}
+          </li>
+          <li className="list-group-item">
+            {" "}
+            UserId : {readDefaultUserObj.userId}
           </li>
         </ul>
       </Modal>

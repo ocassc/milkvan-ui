@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
+import { UserContext } from "../../globalContext";
 
 const RouteScreen = () => {
+  const user = useContext(UserContext);
     const [name, setName] = useState("");
-  const [companyId, setCompanyId] = useState("");
   const [routeData, setRouteData] = useState([]);
   const [readRouteObj, setReadRouteObj] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,7 +77,8 @@ const RouteScreen = () => {
   const onSave = () => {
     const data = {
       name: name,
-      companyId: companyId,
+      companyId:1,
+      userId: parseInt(user.userId)
     };
     axiosInstance.post(`/route`, data).then((res) => {
         if (res.data && res.data.responseCode === -1) {
@@ -118,15 +120,7 @@ const RouteScreen = () => {
               />
             </Form.Item>
           </Col>
-          <Col span={12}>
-            <Form.Item colon={false} label="Company-Id">
-              <Input
-                placeholder="Company-Id"
-                value={companyId}
-                onChange={(e) => setCompanyId(e.target.value)}
-              />
-            </Form.Item>
-          </Col>
+          
         </Row>
         <Row gutter={20}>
           <Col span={12}>
@@ -150,6 +144,7 @@ const RouteScreen = () => {
           <li className="list-group-item"> ID : {readRouteObj.id}</li>
           <li className="list-group-item"> Type : {readRouteObj.name}</li>
           <li className="list-group-item"> CompanyId : {readRouteObj.companyId}</li>
+          <li className="list-group-item"> UserId : {readRouteObj.userId}</li>
          
         </ul>
       </Modal>

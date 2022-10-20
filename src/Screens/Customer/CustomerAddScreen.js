@@ -1,5 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Col, Form, Row, Input, Button, Select, message } from "antd";
+import {
+  Col,
+  Form,
+  Row,
+  Input,
+  Button,
+  Select,
+  message,
+  Space,
+  DatePicker,
+} from "antd";
 import axiosInstance from "../../axiosInstance";
 import FormItem from "antd/es/form/FormItem";
 import { UserContext } from "./../../globalContext";
@@ -62,7 +72,7 @@ const CustomerAddScreen = () => {
       country: country,
       lattitude: lattitude,
       longitude: longitude,
-      memberId: parseInt(user.userId),
+      userId: parseInt(user.userId),
       companyId: 1,
     };
     axiosInstance.post("/customer", data).then((res) => {
@@ -70,8 +80,12 @@ const CustomerAddScreen = () => {
         message.error("Record Already Exists");
       } else if (res.data && res.data.responseCode === 1) {
         message.success("Record saved successfully");
+        window.location.href="/CustomerListScreen"
       } else message.error("Something wrong. Please try again...!");
     });
+  };
+  const onChange = (date, dateString) => {
+    setRegisterDate(date, dateString)
   };
 
   return (
@@ -114,11 +128,10 @@ const CustomerAddScreen = () => {
               </Col>
               <Col span={12}>
                 <Form.Item colon={false} label="Registration-Date">
-                  <Input
-                    placeholder="Registration-Date"
-                    value={registerDate}
-                    onChange={(e) => setRegisterDate(e.target.value)}
-                  />
+                 
+                  <Space direction="vertical">
+                    <DatePicker  value={registerDate} onChange={onChange} />
+                  </Space>
                 </Form.Item>
               </Col>
             </Row>
@@ -233,7 +246,8 @@ const CustomerAddScreen = () => {
               </Col>
               <Col span={12}>
                 <FormItem colon={false} label=" MapLocation">
-                  <iframe title="Maplocation"
+                  <iframe
+                    title="Maplocation"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28450.546553129665!2d75.68522088150291!3d26.956817166570143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4cd47d26a84b%3A0xaca32f17838b07d0!2sGovindpura%2C%20Jaipur%2C%20Rajasthan%20302012!5e0!3m2!1sen!2sin!4v1664946376325!5m2!1sen!2sin"
                     style={{
                       width: "300px",

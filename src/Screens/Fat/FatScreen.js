@@ -1,11 +1,12 @@
 import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axiosInstance from "../../axiosInstance";
+import { UserContext } from "../../globalContext";
 
 const FatScreen = () => {
+  const user= useContext(UserContext)
   const [value, setValue] = useState("");
-  const [companyId, setCompanyId] = useState("");
   const [fatData, setFatData] = useState([]);
   const [readFatObj, setReadFatObj] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -75,7 +76,8 @@ const FatScreen = () => {
   const onSave = () => {
     const data = {
       value: value,
-      companyId: companyId,
+      companyId: 1,
+      userId:parseInt(user.userId)
     };
     axiosInstance.post(`/fat`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
@@ -116,15 +118,7 @@ const FatScreen = () => {
                 />
               </Form.Item>
             </Col>
-            <Col span={12}>
-              <Form.Item colon={false} label="Company-Id">
-                <Input
-                  placeholder="Company-Id"
-                  value={companyId}
-                  onChange={(e) => setCompanyId(e.target.value)}
-                />
-              </Form.Item>
-            </Col>
+           
           </Row>
           <Row gutter={20}>
             <Col span={12}>
@@ -148,6 +142,7 @@ const FatScreen = () => {
           <li className="list-group-item"> ID : {readFatObj.id}</li>
           <li className="list-group-item"> Value : {readFatObj.value}</li>
           <li className="list-group-item"> CompanyId : {readFatObj.companyId}</li>
+          <li className="list-group-item"> UserId : {readFatObj.userId}</li>
          
         </ul>
       </Modal>

@@ -1,11 +1,12 @@
 import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
+import { UserContext } from "../../globalContext";
 
 const SnfScreen = () => {
+  const user=useContext(UserContext)
   const [value, setValue] = useState("");
-  const [companyId, setCompanyId] = useState("");
   const [snfData, setSnfData] = useState([]);
   const [readSnfObj, setReadSnfObj] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -75,7 +76,8 @@ const SnfScreen = () => {
   const onSave = () => {
     const data = {
       value: value,
-      companyId: companyId,
+      companyId: 1,
+      userId:parseInt(user.userId)
     };
     axiosInstance.post(`/snf`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
@@ -118,15 +120,7 @@ const SnfScreen = () => {
                 />
               </Form.Item>
             </Col>
-            <Col span={12}>
-              <Form.Item colon={false} label="Company-Id">
-                <Input
-                  placeholder="Company-Id"
-                  value={companyId}
-                  onChange={(e) => setCompanyId(e.target.value)}
-                />
-              </Form.Item>
-            </Col>
+           
           </Row>
           <Row gutter={20}>
             <Col span={12}>
@@ -151,6 +145,7 @@ const SnfScreen = () => {
           <li className="list-group-item"> ID : {readSnfObj.id}</li>
           <li className="list-group-item"> Value : {readSnfObj.value}</li>
           <li className="list-group-item"> CompanyId : {readSnfObj.companyId}</li>
+          <li className="list-group-item"> UserId : {readSnfObj.userId}</li>
          
         </ul>
       </Modal>
