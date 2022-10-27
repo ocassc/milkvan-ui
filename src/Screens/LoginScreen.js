@@ -75,6 +75,7 @@ const LoginScreen = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email "
+                    autoFocus={true}
                   />
                 </Form.Item>
               </Col>

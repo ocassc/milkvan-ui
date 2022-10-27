@@ -76,6 +76,7 @@ const SignupScreen = () => {
                     message: "Please input your name!",
                   },
                 ]}
+                autoFocus={true}
               />
             </Form.Item>
           </Col>
@@ -98,6 +99,7 @@ const SignupScreen = () => {
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
+                
               />
             </Form.Item>
           </Col>
