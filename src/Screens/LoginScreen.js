@@ -24,6 +24,13 @@ const LoginScreen = () => {
     window.location.href = "SignupScreen";
   };
 
+  const onFinish = (values) => {
+    console.log("Success:", values);
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
     <Row>
       <Col span={15}></Col>
@@ -31,10 +38,39 @@ const LoginScreen = () => {
       <Col span={7}>
         <div className="login-page-form">
           <h1 className="head">Login</h1>
-          <Form>
+          <Form
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onSignin();
+              }
+            }}
+            name="basic"
+            labelCol={{
+              span: 8,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}
+            initialValues={{
+              remember: true,
+            }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
+          >
             <Row gutter={20}>
               <Col span={16}>
-                <Form.Item colon={false}>
+                <Form.Item
+                  colon={false}
+                  label="Email"
+                  name="email"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your Email!",
+                    },
+                  ]}
+                >
                   <Input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -46,7 +82,17 @@ const LoginScreen = () => {
 
             <Row gutter={20}>
               <Col span={16}>
-                <Form.Item colon={false}>
+                <Form.Item
+                  colon={false}
+                  label="Password"
+                  name="password"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your Password!",
+                    },
+                  ]}
+                >
                   <Input
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -58,13 +104,18 @@ const LoginScreen = () => {
 
             <Row gutter={20}>
               <Col span={7}>
-                <Button type="primary" onClick={() => onSignin()}>
-                  Sign-in
-                </Button>
-              </Col>
-              <Col span={7}>
                 <Button type="link" onClick={() => onSignup()}>
                   Sign-up
+                </Button>
+              </Col>
+
+              <Col span={7}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  onClick={() => onSignin()}
+                >
+                  Sign-in
                 </Button>
               </Col>
             </Row>

@@ -124,9 +124,15 @@ function App() {
                     path="DefaultUserSetting"
                     element={<DefaultUserSetting />}
                   />
-                  <Route path="PickupListScreen" element={<PickupListScreen/>}/>
-                  <Route path="PickupAddScreen" element={<PickupAddScreen/>}/>
-                  <Route path="PickupEditScreen/:id" element={<PickupEditScreen/>}/>
+                  <Route
+                    path="PickupListScreen"
+                    element={<PickupListScreen />}
+                  />
+                  <Route path="PickupAddScreen" element={<PickupAddScreen />} />
+                  <Route
+                    path="PickupEditScreen/:id"
+                    element={<PickupEditScreen />}
+                  />
                 </Routes>
               </ConfigProvider>
               <Footers />
@@ -137,56 +143,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
-// function DefaultContainer() {
-//   const [waitstate, setWaitstate] = useState(true);
-
-//   return (
-//     <BrowserRouter >
-//       <div className="App">
-//         {!waitstate ? (
-//           <UserContext.Provider
-//         >
-//             <Layout className="layout">
-//               <Nav />
-//               <Content className="container">
-//                 <ConfigProvider locale={enUS}>
-//                   <Route
-//                     render={({ location }) => (
-//                       <TransitionGroup>
-//                         <CSSTransition
-//                           key={location.key}
-//                           timeout={450}
-//                           classNames="fade"
-//                         >
-//                           {/* <Switch location={location}>
-//                             <Route
-//                               exact
-//                               path="/dashboard"
-//                               component={Dashboard}
-//                             />
-
-//                             <Route exact path="/member" component={Member} />
-//                             <Route exact path="/shapes" component={Shapes} />
-
-//                             <Route exact path="/shapeinfo" component={ShapeDetailIndex} />
-//                             <Route path="*" component={NotFound} />
-//                           </Switch> */}
-//                         </CSSTransition>
-//                       </TransitionGroup>
-//                     )}
-//                   />
-//                 </ConfigProvider>
-//               </Content>
-//              <Footers/>
-//             </Layout>
-//           </UserContext.Provider>
-//         ) : (
-//           <span>Loading....</span>
-//         )}
-//       </div>
-//     </BrowserRouter>
-//   );
-// }
 
 export default App;
