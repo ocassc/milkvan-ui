@@ -185,7 +185,7 @@ const DefaultUserSetting = () => {
             </Col>
             <Col span={12}>
               <Form.Item colon={false} label="Date">
-                <Input disabled={true} value={dateFormate.toLocaleDateString("en-CA")} onChange={onSetDate}/>
+                <Input disabled={true} value={dateFormate.toLocaleDateString("CA")} onChange={onSetDate}/>
               </Form.Item>
             </Col>
           </Row>

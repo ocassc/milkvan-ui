@@ -215,7 +215,7 @@ const PickupListScreen = () => {
           <li className="list-group-item"> Rate : {readPickupObj.rate}</li>
           <li className="list-group-item"> Quantity : {readPickupObj.quantity}</li>
           <li className="list-group-item"> Amount : {readPickupObj.amount}</li>
-          <li className="list-group-item"> UMO : {readPickupObj.uom}</li>
+          <li className="list-group-item"> UOM : {readPickupObj.uom}</li>
           <li className="list-group-item">
             {" "}
             Milk-Type : {readPickupObj.milkType}
