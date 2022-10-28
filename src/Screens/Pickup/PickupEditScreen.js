@@ -126,7 +126,7 @@ const PickupEditScreen = () => {
             </Col>
           </Row>
           <Row gutter={20}>
-            <Col span={7}>
+              <Col span={20}>
               <Button type="primary" onClick={() => onUpdateCustomer()}>
                 Save
               </Button>

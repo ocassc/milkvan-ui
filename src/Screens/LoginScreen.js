@@ -24,13 +24,6 @@ const LoginScreen = () => {
     window.location.href = "SignupScreen";
   };
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-
   return (
     <Row>
       <Col span={15}></Col>
@@ -44,19 +37,6 @@ const LoginScreen = () => {
                 onSignin();
               }
             }}
-            name="basic"
-            labelCol={{
-              span: 8,
-            }}
-            wrapperCol={{
-              span: 16,
-            }}
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
           >
             <Row gutter={20}>
               <Col span={16}>
@@ -67,7 +47,8 @@ const LoginScreen = () => {
                   rules={[
                     {
                       required: true,
-                      message: "Please input your Email!",
+                      type: "email",
+                      message: "Please input Valid Email!",
                     },
                   ]}
                 >

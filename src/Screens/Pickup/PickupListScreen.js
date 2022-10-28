@@ -222,7 +222,7 @@ const PickupListScreen = () => {
           </li>
           <li className="list-group-item">
             {" "}
-            Vehicle-Shif : {readPickupObj.vehicleShift}
+            Pickup Shift : {readPickupObj.pickupShift}
           </li>
 
           <li className="list-group-item">

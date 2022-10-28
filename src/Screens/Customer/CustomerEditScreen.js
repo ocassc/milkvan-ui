@@ -105,9 +105,9 @@ const CustomerEditScreen = () => {
     <Row>
       <Col span={15}></Col>
       <Col span={10}>
-        <div className="login-page-form">
+        <div >
           <h1 className="head">Edit-Customer</h1>
-          <Form>
+          <Form >
             <Row gutter={20}>
               <Col span={12}>
                 <Form.Item colon={false} label="Full Name">
@@ -240,7 +240,7 @@ const CustomerEditScreen = () => {
             </Row>
 
             <Row gutter={20}>
-              <Col span={7}>
+          <Col span={12}>
                 <Button type="primary" onClick={() => onUpdateCustomer()}>
                   Save
                 </Button>

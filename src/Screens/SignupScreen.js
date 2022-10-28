@@ -23,6 +23,7 @@ const SignupScreen = () => {
         message.error("Record Already Exists");
       } else if (res.data && res.data.responseCode === 1) {
         message.success("Record saved successfully");
+        window.location.href="HomeScreen"
       } else message.error("Something wrong. Please try again...!");
     });
   };

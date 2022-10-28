@@ -33,6 +33,7 @@ const MemberEditScreen = () => {
         message.error("Record Already Exists");
       } else if (res.data && res.data.responseCode === 1) {
         message.success("Record Update successfully");
+        window.location.href = "MemberListScreen";
       } else message.error("Something wrong. Please try again...!");
     });
   };
@@ -52,11 +53,12 @@ const MemberEditScreen = () => {
   return (
     <Row>
       <Col span={15}></Col>
-
-      <Col span={7}>
-        <div className="login-page-form">
+      <Col span={10}>
+        <div>
           <h1 className="head">Edit-Member</h1>
-          <Form>
+          <Form
+           
+          >
             <Row gutter={20}>
               <Col span={12}>
                 <Form.Item colon={false} label="Name">
@@ -104,7 +106,7 @@ const MemberEditScreen = () => {
             </Row>
 
             <Row gutter={20}>
-              <Col span={7}>
+              <Col span={12}>
                 <Button type="primary" onClick={() => onUpdateMember()}>
                   Save
                 </Button>

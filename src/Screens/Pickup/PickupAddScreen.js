@@ -7,7 +7,7 @@ const { Option } = Select;
 const PickupAddScreen = () => {
   let defaultDate = new Date();
   defaultDate.setDate(defaultDate.getDate());
-
+  defaultDate.setTime(defaultDate.getTime());
   const user = useContext(UserContext);
   const [routeList, setRouteList] = useState("");
   const [customerList, setCustomerList] = useState("");
@@ -101,147 +101,154 @@ const PickupAddScreen = () => {
     var amount = e * rate;
     setAmount(amount);
   };
+  const onUOMChange = (e) => {
+    setUom(e);
+  };
 
   const onSetDate = (event) => {
     setTransactionDate(new Date(event.target.value));
   };
+  const onShiftChange = (e) => {
+    setPickupShift(e);
+  };
 
   return (
     <div>
-      <div>
-        <Form>
-          <Row gutter={20}>
-            <Col span={12}>
-              <Form.Item colon={false} label="SNF">
-                <Input
-                  placeholder="SNF"
-                  value={snf}
-                  onChange={(e) => setSnf(e.target.value)}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item colon={false} label="FAT">
-                <Input
-                  placeholder="FAT"
-                  value={fat}
-                  onChange={(e) => onFatChange(e.target.value)}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item colon={false} disabled label="Rate">
-                <Input placeholder="Rate" disabled={true} value={rate} />
-              </Form.Item>
-            </Col>
+      <h1 className="head">Edit-Customer</h1>
+      <Form>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item colon={false} label="SNF">
+              <Input
+                placeholder="SNF"
+                value={snf}
+                onChange={(e) => setSnf(e.target.value)}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item colon={false} label="FAT">
+              <Input
+                placeholder="FAT"
+                value={fat}
+                onChange={(e) => onFatChange(e.target.value)}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item colon={false} disabled label="Rate">
+              <Input placeholder="Rate" disabled={true} value={rate} />
+            </Form.Item>
+          </Col>
 
-            <Col span={12}>
-              <Form.Item colon={false} label="Quantity">
-                <Input
-                  placeholder="Quantity"
-                  value={quantity}
-                  onChange={(e) => onQuantityChange(e.target.value)}
-                />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={20}>
-            <Col span={12}>
-              <Form.Item colon={false} label="Amount">
-                <Input placeholder="Amount" disabled={true} value={amount} />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item colon={false} label="Umo">
-                <Input
-                  placeholder="Umo"
-                  value={uom}
-                  onChange={(e) => setUom(e.target.value)}
-                />
-              </Form.Item>
-            </Col>
+          <Col span={12}>
+            <Form.Item colon={false} label="Quantity">
+              <Input
+                placeholder="Quantity"
+                value={quantity}
+                onChange={(e) => onQuantityChange(e.target.value)}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item colon={false} label="Amount">
+              <Input placeholder="Amount" disabled={true} value={amount} />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item colon={false} label="UOM">
+              <Select placeholder="UOM" value={uom} onChange={onUOMChange}>
+                <Option key={"Kg"}>Kg</Option>
+                <Option key={"Litre"}>Litre</Option>
+              </Select>
+            </Form.Item>
+          </Col>
 
-            <Col span={12}>
-              <Form.Item colon={false} label="Milk-Type">
-                <Input
-                  placeholder="Milk-Type"
-                  value={milkType}
-                  onChange={(e) => setMilkType(e.target.value)}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item colon={false} label="Pickup-Shift">
-                <Input
-                  placeholder="Pickup-Shift"
-                  value={pickupShift}
-                  onChange={(e) => setPickupShift(e.target.value)}
-                />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={20}>
-            <Col span={12}>
-              <Form.Item colon={false} label="Route-Id">
-                <Select
-                  placeholder="Route-Id"
-                  value={routeId}
-                  onChange={onRouteChange}
-                >
-                  {routeList &&
-                    routeList.map((routeList) => (
-                      <Option key={routeList.id}>{routeList.id}</Option>
-                    ))}
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item colon={false} label="Vehicle-Id">
-                <Select
-                  placeholder="Vehicle-Id"
-                  value={vehicleId}
-                  onChange={onVehicleidChange}
-                >
-                  {vehicleList &&
-                    routeList.map((vehicleList) => (
-                      <Option key={vehicleList.id}>{vehicleList.id}</Option>
-                    ))}
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item colon={false} label=" Customer-Id">
-                <Select
-                  placeholder=" Customer-Id"
-                  value={customerId}
-                  onChange={onCustomeridChange}
-                >
-                  {customerList &&
-                    customerList.map((customerList) => (
-                      <Option key={customerList.id}>{customerList.id}</Option>
-                    ))}
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item colon={false} label="Date">
-                <Input
-                  disabled={true}
-                  value={transactionDate.toLocaleDateString("en-CA")}
-                  onChange={onSetDate}
-                />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={20}>
-            <Col span={12}>
-              <Button type="primary" onClick={onSave}>
-                Save
-              </Button>
-            </Col>
-          </Row>
-        </Form>
-      </div>
+          <Col span={12}>
+            <Form.Item colon={false} label="Milk Type">
+              <Input
+                placeholder="Milk Type"
+                value={milkType}
+                onChange={(e) => setMilkType(e.target.value)}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item colon={false} label="Pickup Shift">
+              <Select
+                placeholder="Pickup Shift"
+                value={pickupShift}
+                onChange={onShiftChange}
+              >
+                <Option key={"Morning Shift"}>Morning Shift</Option>
+                <Option key={"Evening Shift"}>Evening Shift</Option>
+              </Select>
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item colon={false} label="RouteId">
+              <Select
+                placeholder="RouteId"
+                value={routeId}
+                onChange={onRouteChange}
+              >
+                {routeList &&
+                  routeList.map((routeList) => (
+                    <Option key={routeList.id}>{routeList.id}</Option>
+                  ))}
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item colon={false} label="VehicleId">
+              <Select
+                placeholder="VehicleId"
+                value={vehicleId}
+                onChange={onVehicleidChange}
+              >
+                {vehicleList &&
+                  routeList.map((vehicleList) => (
+                    <Option key={vehicleList.id}>{vehicleList.id}</Option>
+                  ))}
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item colon={false} label=" CustomerId">
+              <Select
+                placeholder="CustomerId"
+                value={customerId}
+                onChange={onCustomeridChange}
+              >
+                {customerList &&
+                  customerList.map((customerList) => (
+                    <Option key={customerList.id}>{customerList.id}</Option>
+                  ))}
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item colon={false} label="Date">
+              <Input
+                disabled={true}
+                value={transactionDate.toLocaleDateString("CA")}
+                onChange={onSetDate}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={20}>
+          <Col span={20}>
+            <Button type="primary" onClick={onSave}>
+              Save
+            </Button>
+          </Col>
+        </Row>
+      </Form>
     </div>
   );
 };
