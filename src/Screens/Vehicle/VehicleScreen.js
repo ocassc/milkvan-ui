@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Col,
   Form,
@@ -12,10 +12,11 @@ import {
 } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
+import { UserContext } from "../../globalContext";
 const { Option } = Select;
 const VehicleScreen = () => {
+  const user= useContext(UserContext);
   const [name, setName] = useState("");
-  const [companyId, setCompanyId] = useState("");
   const [contactPerson, setContactPerson] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [vehcleType, setVehcleType] = useState("");
@@ -107,11 +108,12 @@ const VehicleScreen = () => {
   const onSave = () => {
     const data = {
       name: name,
-      companyId: companyId,
       registrationNo: registrationNo,
       contactNumber: contactNumber,
       contactPerson: contactPerson,
       vehcleType: vehcleType,
+      userId:parseInt(user.userId),
+      companyId:1,
     };
     axiosInstance.post(`/vehicle`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
@@ -197,15 +199,6 @@ const VehicleScreen = () => {
               </Select>
             </Form.Item>
           </Col>
-          <Col span={12}>
-            <Form.Item colon={false} label="Company-Id">
-              <Input
-                placeholder="Company-Id"
-                value={companyId}
-                onChange={(e) => setCompanyId(e.target.value)}
-              />
-            </Form.Item>
-          </Col>
         </Row>
         <Row gutter={20}>
           <Col span={12}>
@@ -246,6 +239,10 @@ const VehicleScreen = () => {
           <li className="list-group-item">
             {" "}
             CompanyId : {readVehicleObj.companyId}
+          </li>
+          <li className="list-group-item">
+            {" "}
+            UserId : {readVehicleObj.userId}
           </li>
          
         </ul>

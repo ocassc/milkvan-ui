@@ -1,13 +1,31 @@
-import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
+import {
+  Col,
+  Form,
+  Row,
+  Button,
+  Input,
+  message,
+  Table,
+  Modal,
+  Select,
+} from "antd";
 import React, { useEffect, useState } from "react";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
+const { Option } = Select;
 
 const CompanyScreen = () => {
+  
+  let defaultDate = new Date();
+  defaultDate.setDate(defaultDate.getDate());
+
+
   const [companyData, setCompanyData] = useState([]);
+  const [stateList, setStateList] = useState();
+  const [cityList, setCityList] = useState();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [registerDate, setRegisterDate] = useState("");
+  const [registerDate, setRegisterDate] = useState(defaultDate);
   const [country, setCountry] = useState("");
   const [stateName, setStateName] = useState("");
   const [cityName, setCityName] = useState("");
@@ -19,8 +37,24 @@ const CompanyScreen = () => {
   useEffect(() => {
     let mounted = true;
     if (mounted) getCompany();
+    getState();
     return () => (mounted = false);
   }, []);
+
+  const getState = () => {
+    axiosInstance.get("/state").then((response) => {
+      setStateList(response.data.data);
+    });
+  };
+  const onStateChange = (stateid, e) => {
+    axiosInstance.get(`/city/state/${stateid}`).then((response) => {
+      setCityList(response.data.data);
+      setStateName(stateid);
+    });
+  };
+  const onCityChange = (e) => {
+    setCityName(e);
+  };
 
   const columns = [
     {
@@ -130,6 +164,10 @@ const CompanyScreen = () => {
     });
   };
 
+  const onSetDate = (event) => {
+    setRegisterDate(new Date(event.target.value));
+  };
+
   return (
     <div>
       <div>
@@ -150,9 +188,9 @@ const CompanyScreen = () => {
             <Col span={12}>
               <Form.Item colon={false} label="Register-Date">
                 <Input
-                  placeholder="Register-Date"
-                  value={registerDate}
-                  onChange={(e) => setRegisterDate(e.target.value)}
+                  disabled={true}
+                  value={registerDate.toLocaleDateString("en-CA")}
+                  onChange={onSetDate}
                 />
               </Form.Item>
             </Col>
@@ -178,20 +216,30 @@ const CompanyScreen = () => {
           <Row gutter={20}>
             <Col span={12}>
               <Form.Item colon={false} label="State">
-                <Input
+                <Select
                   placeholder="State"
                   value={stateName}
-                  onChange={(e) => setStateName(e.target.value)}
-                />
+                  onChange={onStateChange}
+                >
+                  {stateList &&
+                    stateList.map((stateList) => (
+                      <Option key={stateList.id}>{stateList.name}</Option>
+                    ))}
+                </Select>
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item colon={false} label="City">
-                <Input
+                <Select
                   placeholder="City"
                   value={cityName}
-                  onChange={(e) => setCityName(e.target.value)}
-                />
+                  onChange={onCityChange}
+                >
+                  {cityList &&
+                    cityList.map((cityList) => (
+                      <Option key={cityList.id}>{cityList.name}</Option>
+                    ))}
+                </Select>
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -236,7 +284,14 @@ const CompanyScreen = () => {
         <ul className="list-group w-50">
           <li className="list-group-item"> ID : {readCompanyObj.id}</li>
           <li className="list-group-item"> Name : {readCompanyObj.name}</li>
-          <li className="list-group-item"> Name : {readCompanyObj.address}</li>
+          <li className="list-group-item">
+            {" "}
+            Address : {readCompanyObj.address}
+          </li>
+          <li className="list-group-item">
+            {" "}
+            REgister-Date : {readCompanyObj.registerDate}
+          </li>
           <li className="list-group-item"> City : {readCompanyObj.cityName}</li>
           <li className="list-group-item">
             {" "}

@@ -1,4 +1,4 @@
-import { Button, Form, Input, message, Table } from "antd";
+import { Button, Col, Form, Input, message, Row, Table } from "antd";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import axiosInstance from "../../axiosInstance";
 import jsonToPivotjson from "json-to-pivot-json";
@@ -83,6 +83,25 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
       } else message.error("Something wrong. Please try again...!");
     });
   };
+
+  const onSave=()=>{
+    const data={
+      effectiveFrom:effectiveFrom,
+      effectiveTo:effectiveTo,
+      snf:snf,
+      fat:fat,
+      rate:rate,
+      companyId:1,
+      userId:parseInt(user.userId),
+    }
+    axiosInstance.post(`/fatsnfRateMatrix`, data).then((res) => {
+      if (res.data && res.data.responseCode === -1) {
+        message.error("Record Already Exists");
+      } else if (res.data && res.data.responseCode === 1) {
+        message.success("Record Update successfully");
+      } else message.error("Something wrong. Please try again...!");
+    });
+  }
   return (
     <div>
       <h1>Fat Snf Rate Matrix</h1>
@@ -95,7 +114,7 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
         ></ReactTable>
       </div>
       <div>
-        <Button type="primary" onChange={onSave}>
+        <Button type="primary" onChange={onHandleSave}>
           Save
         </Button>
       </div>

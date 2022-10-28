@@ -4,7 +4,7 @@ import { Layout, Menu, Dropdown} from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 import { environment } from "./Environment";
 import iconUser from "../src/images/Icon-user.svg";
-import logo from "../src/images/orbit.png";
+import logo from "../src/images/logo.jpg";
 import Icon from '@ant-design/icons';
 
 const { Header } = Layout;
@@ -34,7 +34,7 @@ export function Nav() {
   return (
     <Header className="header">
       <div className="logo">
-        <NavLink to="">
+        <NavLink to="/HomeScreen">
           <img src={logo} alt='' style={{ width: "70px" }} />
         </NavLink>
       </div>
@@ -67,7 +67,7 @@ export function Nav() {
           </Menu.Item>
           <Menu.Item key={"1.2"}>
             <NavLink exact to={"/FatsnFRateMatrix"}>
-            FatsnFRateMatrix
+            Fat Snf Rate Matrix
             </NavLink>
           </Menu.Item>
           <Menu.Item key={"1.3"}>
@@ -92,7 +92,7 @@ export function Nav() {
           </Menu.Item>
           <Menu.Item key={"1.7"}>
             <NavLink exact to={"/VehicleTypeScreen"}>
-            VehicleType
+            Vehicle Type
             </NavLink>
           </Menu.Item>
           <Menu.Item key={"1.8"}>
@@ -102,17 +102,12 @@ export function Nav() {
           </Menu.Item>
           <Menu.Item key={"1.9"}>
             <NavLink exact to={"/UserRole"}>
-          UserRole
+          User Role
             </NavLink>
           </Menu.Item>
           <Menu.Item key={"2.0"}>
             <NavLink exact to={"/DefaultUserSetting"}>
-            DefaultUserSetting
-            </NavLink>
-          </Menu.Item>
-          <Menu.Item key={"2.1"}>
-            <NavLink exact to={"/VehicleService"}>
-           VehicleService
+            Default User Setting
             </NavLink>
           </Menu.Item>
         </SubMenu>
@@ -122,8 +117,9 @@ export function Nav() {
         <Menu.Item key={"3"}>
           <NavLink to={"/CustomerListScreen"}>Customer</NavLink>
         </Menu.Item>
-        <Menu.Item key={"4"}>
-          <NavLink to={"/CompanyScreen"}>Company</NavLink>
+       
+        <Menu.Item key={"5"}>
+          <NavLink to={"/PickupListScreen"}>Pickup</NavLink>
         </Menu.Item>
         
       </Menu>

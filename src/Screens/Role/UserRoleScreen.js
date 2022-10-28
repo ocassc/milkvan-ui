@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
-
+import { UserContext } from "../../globalContext";
 const UserRoleScreen = () => {
-  const [userId, setUserId] = useState("");
+  const user = useContext(UserContext);
   const [roleId, setRoleId] = useState("");
-  const [companyId, setCompanyId] = useState("");
   const [userRoleData, setUserRoleData] = useState([]);
   const [userRoleObj, setUserRoleObj] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -82,9 +81,9 @@ const UserRoleScreen = () => {
 
   const onSave = () => {
     const data = {
-      userId: userId,
+      userId: parseInt(user.userId),
       roleId:roleId,
-      companyId: companyId,
+      companyId: 1,
     };
     axiosInstance.post(`/userrole`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
@@ -118,15 +117,6 @@ const UserRoleScreen = () => {
         <Form>
           <Row gutter={20}>
             <Col span={12}>
-              <Form.Item colon={false} label="UserId">
-                <Input
-                  placeholder="UserId"
-                  value={userId}
-                  onChange={(e) => setUserId(e.target.value)}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
               <Form.Item colon={false} label="Role-Id">
                 <Input
                   placeholder="Role-Id"
@@ -135,15 +125,7 @@ const UserRoleScreen = () => {
                 />
               </Form.Item>
             </Col>
-            <Col span={12}>
-              <Form.Item colon={false} label="Company-Id">
-                <Input
-                  placeholder="Company-Id"
-                  value={companyId}
-                  onChange={(e) => setCompanyId(e.target.value)}
-                />
-              </Form.Item>
-            </Col>
+           
           </Row>
           <Row gutter={20}>
             <Col span={12}>

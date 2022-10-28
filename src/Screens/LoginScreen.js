@@ -12,7 +12,6 @@ const LoginScreen = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data && res.data.responseCode === 1) {
-          
           localStorage.setItem("authtoken", JSON.stringify(res.data.auth));
           window.location.href = "HomeScreen";
         } else message.error("Member Not Found");
@@ -32,14 +31,32 @@ const LoginScreen = () => {
       <Col span={7}>
         <div className="login-page-form">
           <h1 className="head">Login</h1>
-          <Form>
+          <Form
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onSignin();
+              }
+            }}
+          >
             <Row gutter={20}>
               <Col span={16}>
-                <Form.Item colon={false}>
+                <Form.Item
+                  colon={false}
+                  label="Email"
+                  name="email"
+                  rules={[
+                    {
+                      required: true,
+                      type: "email",
+                      message: "Please input Valid Email!",
+                    },
+                  ]}
+                >
                   <Input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email "
+                    autoFocus={true}
                   />
                 </Form.Item>
               </Col>
@@ -47,7 +64,17 @@ const LoginScreen = () => {
 
             <Row gutter={20}>
               <Col span={16}>
-                <Form.Item colon={false}>
+                <Form.Item
+                  colon={false}
+                  label="Password"
+                  name="password"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your Password!",
+                    },
+                  ]}
+                >
                   <Input
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -59,13 +86,18 @@ const LoginScreen = () => {
 
             <Row gutter={20}>
               <Col span={7}>
-                <Button type="primary" onClick={() => onSignin()}>
-                  Sign-in
-                </Button>
-              </Col>
-              <Col span={7}>
                 <Button type="link" onClick={() => onSignup()}>
                   Sign-up
+                </Button>
+              </Col>
+
+              <Col span={7}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  onClick={() => onSignin()}
+                >
+                  Sign-in
                 </Button>
               </Col>
             </Row>

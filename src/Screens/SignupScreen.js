@@ -1,6 +1,7 @@
 import { Col, Form, Row, Input, Button, message } from "antd";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axiosInstance from "../axiosInstance";
+
 
 const SignupScreen = () => {
   const [fullname, setFullname] = useState();
@@ -8,25 +9,7 @@ const SignupScreen = () => {
   const [mobile, setMobile] = useState();
   const [password, setPassword] = useState();
   const [address, setAddress] = useState();
-  const [memberData, setMemberData]=useState({});
 
-  useEffect(() => {
-    let mounted = true;
-    if (mounted) {
-     
-      let search = window.location.search;
-      let params = new URLSearchParams(search);
-      let id = params.get("id");
-      onReadMember(id);
-    }
-    return () => (mounted = false);
-  }, []);
-  const onReadMember=(id)=>{
-    axiosInstance.get(`/member/${id}`).then((response) => {
-      setMemberData(response.data.data);
-      console.log(response.data.data)
-    });
-  }
   const onSignup = () => {
     const data = {
       email: email,
@@ -40,24 +23,61 @@ const SignupScreen = () => {
         message.error("Record Already Exists");
       } else if (res.data && res.data.responseCode === 1) {
         message.success("Record saved successfully");
+        window.location.href="HomeScreen"
       } else message.error("Something wrong. Please try again...!");
     });
   };
+  const onFinish = (values) => {
+    console.log("Success:", values);
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
 
   return (
-    <div className="login-page-form">
-      <h1 className="head">
-       Signup
-      </h1>
-     
-      <Form>
+    <div>
+      <h1 className="head">Sign up</h1>
+
+      <Form
+        name="basic"
+        labelCol={{
+          span: 8,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
         <Row gutter={20}>
           <Col span={12}>
-            <Form.Item colon={false}>
+            <Form.Item
+              colon={false}
+              label="Name"
+              name="name"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your name!",
+                },
+              ]}
+            >
               <Input
                 placeholder="Name"
                 onChange={(e) => setFullname(e.target.value)}
                 value={fullname}
+                name="name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your name!",
+                  },
+                ]}
+                autoFocus={true}
               />
             </Form.Item>
           </Col>
@@ -65,18 +85,39 @@ const SignupScreen = () => {
 
         <Row gutter={20}>
           <Col span={12}>
-            <Form.Item colon={false}>
+            <Form.Item
+              colon={false}
+              label="Email"
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Email!",
+                },
+              ]}
+            >
               <Input
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
+                
               />
             </Form.Item>
           </Col>
         </Row>
         <Row gutter={20}>
           <Col span={12}>
-            <Form.Item colon={false}>
+            <Form.Item
+              colon={false}
+              label="Mobile"
+              name="mobile"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Mobile!",
+                },
+              ]}
+            >
               <Input
                 placeholder="Mobile"
                 onChange={(e) => setMobile(e.target.value)}
@@ -89,6 +130,8 @@ const SignupScreen = () => {
           <Col span={12}>
             <Form.Item
               colon={false}
+              label="Password"
+              name="password"
               rules={[
                 {
                   required: true,
@@ -107,7 +150,17 @@ const SignupScreen = () => {
 
         <Row gutter={20}>
           <Col span={12}>
-            <Form.Item colon={false}>
+            <Form.Item
+              colon={false}
+              label="Address"
+              name="address"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Address!",
+                },
+              ]}
+            >
               <Input
                 placeholder="Address"
                 onChange={(e) => setAddress(e.target.value)}
@@ -119,14 +172,12 @@ const SignupScreen = () => {
 
         <Row gutter={20}>
           <Col span={12}>
-            <Button type="primary" shape="round" onClick={() => onSignup()}>
-              SignUp
+            <Button type="primary" shape="round" htmlType="submit" onClick={() => onSignup()}>
+              Sign up
             </Button>
           </Col>
         </Row>
       </Form>
-
-     
     </div>
   );
 };

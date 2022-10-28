@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
+import { UserContext } from "../../globalContext";
 
 const VehicleTypeScreen = () => {
+  const user= useContext(UserContext)
   const [name, setName] = useState("");
-  const [companyId, setCompanyId] = useState("");
   const [vehicleTypeData, setVehicleTypeData] = useState([]);
   const [readVehicleObj, setReadVehicleObj] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,7 +77,8 @@ const VehicleTypeScreen = () => {
   const onSave = () => {
     const data = {
       name: name,
-      companyId: companyId,
+      companyId:1,
+      userId:parseInt(user.userId)
     };
     axiosInstance.post(`/vehicleType`, data).then((res) => {
         if (res.data && res.data.responseCode === -1) {
@@ -118,15 +120,7 @@ const VehicleTypeScreen = () => {
               />
             </Form.Item>
           </Col>
-          <Col span={12}>
-            <Form.Item colon={false} label="Company-Id">
-              <Input
-                placeholder="Company-Id"
-                value={companyId}
-                onChange={(e) => setCompanyId(e.target.value)}
-              />
-            </Form.Item>
-          </Col>
+         
         </Row>
         <Row gutter={20}>
           <Col span={12}>
@@ -150,6 +144,7 @@ const VehicleTypeScreen = () => {
           <li className="list-group-item"> ID : {readVehicleObj.id}</li>
           <li className="list-group-item"> Type : {readVehicleObj.name}</li>
           <li className="list-group-item"> CompanyId : {readVehicleObj.companyId}</li>
+          <li className="list-group-item"> UserId : {readVehicleObj.userId}</li>
          
         </ul>
       </Modal>
