@@ -114,9 +114,15 @@ const PickupAddScreen = () => {
 
   return (
     <div>
-      <h1 className="head">Edit-Customer</h1>
-      <Form>
-        <Row gutter={20}>
+      <h1 className="head">Add Pickup</h1>
+      <Form  name="basic"
+        labelCol={{
+          span: 5,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}>
+        <Row gutter={15}>
           <Col span={12}>
             <Form.Item colon={false} label="SNF">
               <Input
@@ -242,7 +248,7 @@ const PickupAddScreen = () => {
           </Col>
         </Row>
         <Row gutter={20}>
-          <Col span={20}>
+          <Col span={23}>
             <Button type="primary" onClick={onSave}>
               Save
             </Button>

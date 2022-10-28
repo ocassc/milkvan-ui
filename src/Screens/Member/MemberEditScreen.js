@@ -51,12 +51,16 @@ const MemberEditScreen = () => {
     setMemberData({ ...memberData, address: e.target.value });
   };
   return (
-    <Row>
-      <Col span={15}></Col>
-      <Col span={10}>
+   
         <div>
           <h1 className="head">Edit-Member</h1>
-          <Form
+          <Form name="basic"
+            labelCol={{
+              span: 7,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}
            
           >
             <Row gutter={20}>
@@ -114,11 +118,9 @@ const MemberEditScreen = () => {
             </Row>
           </Form>
         </div>
-      </Col>
-      <Col span={1}>
-        <div className="login-right-bg"></div>
-      </Col>
-    </Row>
+      
+      
+    
   );
 };
 export default MemberEditScreen;

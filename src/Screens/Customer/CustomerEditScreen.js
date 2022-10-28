@@ -102,12 +102,17 @@ const CustomerEditScreen = () => {
   };
 
   return (
-    <Row>
-      <Col span={15}></Col>
-      <Col span={10}>
+   
         <div >
           <h1 className="head">Edit-Customer</h1>
-          <Form >
+          <div>
+          <Form  name="basic"
+            labelCol={{
+              span: 7,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}>
             <Row gutter={20}>
               <Col span={12}>
                 <Form.Item colon={false} label="Full Name">
@@ -248,8 +253,7 @@ const CustomerEditScreen = () => {
             </Row>
           </Form>
         </div>
-      </Col>
-    </Row>
+        </div>
   );
 };
 

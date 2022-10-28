@@ -1,15 +1,16 @@
-import { Button, Col, Form, Input, message, Row, Table } from "antd";
+import { Button, Input, message } from "antd";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import axiosInstance from "../../axiosInstance";
 import jsonToPivotjson from "json-to-pivot-json";
 import { ReactTable } from "../../shared/ReactTable";
 import { PageContext } from "./service";
 
-const FatsnfRateMatrix = ({ onHandleChange }) => {
+const FatsnfRateMatrix = () => {
   const context = useContext(PageContext);
 
   let dataObj = [];
   const [dataSource, setDataSource] = useState(dataObj);
+
 
   useEffect(() => {
     let mounted = true;
@@ -25,8 +26,7 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
         value: "rate",
       };
       var output = jsonToPivotjson(response.data.data, options);
-      console.log("output");
-      console.log(output);
+
       setDataSource(output);
     });
   };
@@ -46,9 +46,12 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
           accessor: key.toString(),
           Cell: (params) => {
             return (
-              
               <div>
-                <Input value={params.row.original[key]} /> 
+                <label>{params.row.original[key]}</label>
+                <Input
+                  initialValue={params.row.original[key]}
+                  onChange={(e) => onRate(e, params.row.original.fat, key)}
+                />
               </div>
             );
           },
@@ -65,27 +68,22 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
   };
 
   const columns = getColumns();
+  const onRate = (value, f, s) => {
+    let tempds = dataSource;
 
-  const handleSave = (row) => {
-    const newData = [...dataSource];
-    const index = newData.findIndex((item) => row.key === item.key);
-    const item = newData[index];
-    newData.splice(index, 1, { ...item, ...row });
-    setDataSource(newData);
+    dataSource.find((d) => d.fat == f)[s] = value.target.value;
+    console.log(tempds);
+    setDataSource(dataSource);
+   
+
+    //setDataSource()
+    // alert(f)
+    // alert(s)
+    // alert(value.target.value)
   };
 
-  // const onSave = () => {
-  //   axiosInstance.post(`/fatsnfRateMatrix`, dataSource).then((res) => {
-  //     if (res.data && res.data.responseCode === -1) {
-  //       message.error("Record Already Exists");
-  //     } else if (res.data && res.data.responseCode === 1) {
-  //       message.success("Record Update successfully");
-  //     } else message.error("Something wrong. Please try again...!");
-  //   });
-  // };
-
-  const onHandleSave=()=>{
-    const data={
+  const onHandleSave = () => {
+    const data = {
       // effectiveFrom:effectiveFrom,
       // effectiveTo:effectiveTo,
       // snf:snf,
@@ -93,7 +91,7 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
       // rate:rate,
       // companyId:1,
       // userId:parseInt(user.userId),
-    }
+    };
     axiosInstance.post(`/fatsnfRateMatrix`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
         message.error("Record Already Exists");
@@ -101,7 +99,7 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
         message.success("Record Update successfully");
       } else message.error("Something wrong. Please try again...!");
     });
-  }
+  };
   return (
     <div>
       <h1>Fat Snf Rate Matrix</h1>
