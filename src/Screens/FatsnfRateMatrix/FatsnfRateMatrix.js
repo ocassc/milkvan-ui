@@ -74,25 +74,25 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
     setDataSource(newData);
   };
 
-  const onSave = () => {
-    axiosInstance.post(`/fatsnfRateMatrix`, dataSource).then((res) => {
-      if (res.data && res.data.responseCode === -1) {
-        message.error("Record Already Exists");
-      } else if (res.data && res.data.responseCode === 1) {
-        message.success("Record Update successfully");
-      } else message.error("Something wrong. Please try again...!");
-    });
-  };
+  // const onSave = () => {
+  //   axiosInstance.post(`/fatsnfRateMatrix`, dataSource).then((res) => {
+  //     if (res.data && res.data.responseCode === -1) {
+  //       message.error("Record Already Exists");
+  //     } else if (res.data && res.data.responseCode === 1) {
+  //       message.success("Record Update successfully");
+  //     } else message.error("Something wrong. Please try again...!");
+  //   });
+  // };
 
-  const onSave=()=>{
+  const onHandleSave=()=>{
     const data={
-      effectiveFrom:effectiveFrom,
-      effectiveTo:effectiveTo,
-      snf:snf,
-      fat:fat,
-      rate:rate,
-      companyId:1,
-      userId:parseInt(user.userId),
+      // effectiveFrom:effectiveFrom,
+      // effectiveTo:effectiveTo,
+      // snf:snf,
+      // fat:fat,
+      // rate:rate,
+      // companyId:1,
+      // userId:parseInt(user.userId),
     }
     axiosInstance.post(`/fatsnfRateMatrix`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
