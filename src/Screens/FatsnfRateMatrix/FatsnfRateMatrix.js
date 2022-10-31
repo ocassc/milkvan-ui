@@ -4,7 +4,7 @@ import axiosInstance from "../../axiosInstance";
 import jsonToPivotjson from "json-to-pivot-json";
 import { ReactTable } from "../../shared/ReactTable";
 import { PageContext } from "./service";
-import unpivot from 'array-unpivot'
+import unpivot from "array-unpivot";
 const FatsnfRateMatrix = () => {
   const context = useContext(PageContext);
 
@@ -27,7 +27,7 @@ const FatsnfRateMatrix = () => {
       var output = jsonToPivotjson(response.data.data, options);
 
       setDataSource(output);
-      console.log(unpivot(output))
+      console.log(unpivot(output));
     });
   };
 
@@ -35,7 +35,7 @@ const FatsnfRateMatrix = () => {
     var clist = [
       {
         Header: "Fat/Snf",
-        accessor: "fat", 
+        accessor: "fat",
       },
     ];
 
@@ -75,7 +75,7 @@ const FatsnfRateMatrix = () => {
     console.log(tempds);
     setDataSource(dataSource);
 
-console.log(unpivot(dataSource))
+    console.log(unpivot(dataSource));
     //setDataSource()
     // alert(f)
     // alert(s)
@@ -84,7 +84,6 @@ console.log(unpivot(dataSource))
   
 
   const onHandleSave = () => {
-  
     axiosInstance.post(`/fatsnfRateMatrix`, dataSource).then((res) => {
       if (res.data && res.data.responseCode === -1) {
         message.error("Record Already Exists");
