@@ -73,7 +73,7 @@ const FatsnfRateMatrix = () => {
     dataSource.find((d) => d.fat === f)[s] = value.target.value;
     console.log(tempds);
     setDataSource(dataSource);
-
+    setDataSource({...dataSource, rate: value.target.value})
     //setDataSource()
     // alert(f)
     // alert(s)
@@ -81,7 +81,7 @@ const FatsnfRateMatrix = () => {
   };
 
   const onHandleSave = () => {
-    axiosInstance.post(`/fatsnfRateMatrix`, dataSource).then((res) => {
+    axiosInstance.put(`/fatsnfRateMatrix`, dataSource).then((res) => {
       if (res.data && res.data.responseCode === -1) {
         message.error("Record Already Exists");
       } else if (res.data && res.data.responseCode === 1) {
