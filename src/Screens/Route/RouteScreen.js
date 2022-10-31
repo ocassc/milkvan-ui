@@ -107,9 +107,15 @@ const RouteScreen = () => {
   }
   return (
     <div>
-    <div>RouteScreen</div>
+    <div><h1>RouteScreen</h1></div>
     <div>
-        <Form>
+        <Form name="basic"
+            labelCol={{
+              span: 6,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}>
         <Row gutter={20}>
           <Col span={12}>
             <Form.Item colon={false} label="Name">

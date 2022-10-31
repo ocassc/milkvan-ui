@@ -53,7 +53,7 @@ const DefaultUserSetting = () => {
       key: "showCompanyName",
     },
     {
-      title: "Comapny-Name",
+      title: "User-Name",
       dataIndex: "showUserName",
       key: "showUserName",
     },
@@ -143,7 +143,7 @@ const DefaultUserSetting = () => {
 
   return (
     <div>
-      <div>Default User Setting</div>
+      <div><h1>Default User Setting</h1></div>
       <div>
         <Form  name="basic"
             labelCol={{
