@@ -2,6 +2,7 @@ import { Button, Col, Form, Input, message, Row, Table } from "antd";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import axiosInstance from "../../axiosInstance";
 import jsonToPivotjson from "json-to-pivot-json";
+import unpivotJson from "../../shared/JsonUnpivot";
 import { ReactTable } from "../../shared/ReactTable";
 import { PageContext } from "./service";
 
@@ -85,6 +86,7 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
   // };
 
   const onHandleSave=()=>{
+    unpivotJson(dataSource,{column:'fat'})
     const data={
       // effectiveFrom:effectiveFrom,
       // effectiveTo:effectiveTo,
@@ -114,7 +116,7 @@ const FatsnfRateMatrix = ({ onHandleChange }) => {
         ></ReactTable>
       </div>
       <div>
-        <Button type="primary" onChange={onHandleSave}>
+        <Button type="primary" onClick={onHandleSave}>
           Save
         </Button>
       </div>
