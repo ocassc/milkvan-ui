@@ -6,8 +6,10 @@ import unpivotJson from "../../shared/JsonUnpivot";
 import { ReactTable } from "../../shared/ReactTable";
 import { PageContext } from "./service";
 import unpivot from "array-unpivot";
+import { UserContext } from "../../globalContext";
 const FatsnfRateMatrix = () => {
   const context = useContext(PageContext);
+  const user = useContext(UserContext);
 
   let dataObj = [];
   const [dataSource, setDataSource] = useState(dataObj);
@@ -25,10 +27,10 @@ const FatsnfRateMatrix = () => {
         column: "snf",
         value: "rate",
       };
+      
       var output = jsonToPivotjson(response.data.data, options);
 
       setDataSource(output);
-      console.log(unpivot(output));
     });
   };
 
@@ -50,7 +52,7 @@ const FatsnfRateMatrix = () => {
               <div>
                 <label>{params.row.original[key]}</label>
                 <Input
-                  value={params.row.original[key]}
+                  // value={params.row.original[key]}
                   onChange={(e) => onRate(e, params.row.original.fat, key)}
                 />
               </div>
@@ -74,34 +76,27 @@ const FatsnfRateMatrix = () => {
 
     dataSource.find((d) => d.fat === f)[s] = value.target.value;
     console.log(tempds);
+
     setDataSource(dataSource);
 
-    console.log(unpivot(dataSource));
     //setDataSource()
     // alert(f)
     // alert(s)
     // alert(value.target.value)
   };
-  
 
-  const onHandleSave=()=>{
-    unpivotJson(dataSource,{column:'fat'})
-    const data={
-      // effectiveFrom:effectiveFrom,
-      // effectiveTo:effectiveTo,
-      // snf:snf,
-      // fat:fat,
-      // rate:rate,
-      // companyId:1,
-      // userId:parseInt(user.userId),
-    }
-    axiosInstance.post(`/fatsnfRateMatrix`, data).then((res) => {
-      if (res.data && res.data.responseCode === -1) {
-        message.error("Record Already Exists");
-      } else if (res.data && res.data.responseCode === 1) {
-        message.success("Record Update successfully");
-      } else message.error("Something wrong. Please try again...!");
-    });
+  const onHandleSave = (value, f, s) => {
+    let unPivotData = unpivotJson(dataSource, { column: "fat" });
+
+    axiosInstance
+      .put(`/fatsnfRateMatrix/${1}/${parseInt(user.userId)}`, unPivotData)
+      .then((res) => {
+        if (res.data && res.data.responseCode === -1) {
+          message.error("Record Already Exists");
+        } else if (res.data && res.data.responseCode === 1) {
+          message.success("Record Update successfully");
+        } else message.error("Something wrong. Please try again...!");
+      });
   };
   return (
     <div>
