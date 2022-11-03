@@ -104,8 +104,8 @@ const PickupListScreen = () => {
     setIsModalOpen(true);
   };
 
-  const modifyPickup=(obj)=>{
-    window.location.href=`PickupEditScreen/${obj.id}`
+  const modifyPickup = (obj) => {
+    window.location.href = `PickupEditScreen/${obj.id}`;
   };
 
   const removePickup = (obj) => {
@@ -139,7 +139,7 @@ const PickupListScreen = () => {
           message.error("Record Already Exists");
         } else if (res.data && res.data.responseCode === 1) {
           message.success("Record saved successfully");
-          setPickupService(res.data.data)
+          setPickupService(res.data.data);
         } else message.error("Something wrong. Please try again...!");
       });
   };
@@ -150,38 +150,41 @@ const PickupListScreen = () => {
 
   return (
     <div>
-      
       <div>
         <PageTitle title="PickUp List">
           <button className="btn-tck" onClick={() => onAddClick()}>
             + Add New{" "}
           </button>
         </PageTitle>
-
-        <Row gutter={5}>
-          <Col span={7}>
+        <Form
+          name="basic"
+          labelCol={{
+            span: 7,
+          }}
+          wrapperCol={{
+            span: 16,
+          }}
+        >
+          <Row gutter={3}>
             <Form.Item colon={false} label="From">
               <Space direction="vertical">
                 <DatePicker onChange={onChange} />
               </Space>
             </Form.Item>
-          </Col>
-          <Col span={7}>
+
             <Form.Item colon={false} label="To">
               <Space direction="vertical">
                 <DatePicker onChange={onChange} />
               </Space>
             </Form.Item>
-          </Col>
 
-          <Col span={3}>
             <Form.Item colon={false}>
               <Button type="primary" onClick={onGo}>
                 Go
               </Button>
             </Form.Item>
-          </Col>
-        </Row>
+          </Row>
+        </Form>
       </div>
       <div>
         <Table columns={columns} dataSource={pickupService} />
@@ -213,7 +216,10 @@ const PickupListScreen = () => {
           <li className="list-group-item"> SNF : {readPickupObj.snf}</li>
           <li className="list-group-item"> FAT : {readPickupObj.fat}</li>
           <li className="list-group-item"> Rate : {readPickupObj.rate}</li>
-          <li className="list-group-item"> Quantity : {readPickupObj.quantity}</li>
+          <li className="list-group-item">
+            {" "}
+            Quantity : {readPickupObj.quantity}
+          </li>
           <li className="list-group-item"> Amount : {readPickupObj.amount}</li>
           <li className="list-group-item"> UOM : {readPickupObj.uom}</li>
           <li className="list-group-item">
@@ -229,7 +235,6 @@ const PickupListScreen = () => {
             {" "}
             Date : {readPickupObj.transactionDate}
           </li>
-          
         </ul>
       </Modal>
     </div>

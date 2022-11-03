@@ -143,9 +143,16 @@ const VehicleScreen = () => {
 
   return (
     <div>
-      <div>VehicleScreen</div>
+      <div><h1>VehicleScreen</h1></div>
 
       <div>
+        <Form name="basic"
+            labelCol={{
+              span: 6,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}>
         <Row gutter={20}>
           <Col span={12}>
             <Form.Item colon={false} label="Name">
@@ -201,12 +208,13 @@ const VehicleScreen = () => {
           </Col>
         </Row>
         <Row gutter={20}>
-          <Col span={12}>
+          <Col span={24}>
             <Button type="primary" onClick={onSave}>
               Save
             </Button>
           </Col>
         </Row>
+        </Form>
       </div>
       <div>
         <Table columns={columns} dataSource={vehicleData} />

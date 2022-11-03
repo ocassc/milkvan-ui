@@ -53,7 +53,7 @@ const DefaultUserSetting = () => {
       key: "showCompanyName",
     },
     {
-      title: "Comapny-Name",
+      title: "User-Name",
       dataIndex: "showUserName",
       key: "showUserName",
     },
@@ -143,9 +143,15 @@ const DefaultUserSetting = () => {
 
   return (
     <div>
-      <div>DefaultUserSetting</div>
+      <div><h1>Default User Setting</h1></div>
       <div>
-        <Form>
+        <Form  name="basic"
+            labelCol={{
+              span: 6,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}>
           <Row gutter={20}>
             <Col span={12}>
               <Form.Item colon={false} label="SNF">
@@ -190,7 +196,7 @@ const DefaultUserSetting = () => {
             </Col>
           </Row>
           <Row gutter={20}>
-            <Col span={12}>
+            <Col span={24}>
               <Button type="primary" onClick={onSave}>
                 Save
               </Button>

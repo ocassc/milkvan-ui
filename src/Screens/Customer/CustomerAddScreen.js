@@ -1,13 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  Col,
-  Form,
-  Row,
-  Input,
-  Button,
-  Select,
-  message,
-} from "antd";
+import { Col, Form, Row, Input, Button, Select, message } from "antd";
 import axiosInstance from "../../axiosInstance";
 import FormItem from "antd/es/form/FormItem";
 import { UserContext } from "./../../globalContext";
@@ -80,7 +72,7 @@ const CustomerAddScreen = () => {
         message.error("Record Already Exists");
       } else if (res.data && res.data.responseCode === 1) {
         message.success("Record saved successfully");
-        window.location.href="/CustomerListScreen"
+        window.location.href = "/CustomerListScreen";
       } else message.error("Something wrong. Please try again...!");
     });
   };
@@ -94,16 +86,28 @@ const CustomerAddScreen = () => {
         <h1>Add New Customer</h1>
 
         <div>
-          <Form>
+          <Form
+            name="basic"
+            labelCol={{
+              span: 7,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}
+          >
             <Row gutter={20}>
               <Col span={12}>
-                <Form.Item colon={false} label="Full Name"  name="name"
+                <Form.Item
+                  colon={false}
+                  label="Full Name"
+                  name="name"
                   rules={[
                     {
                       required: true,
                       message: "Please input your Name!",
                     },
-                  ]}>
+                  ]}
+                >
                   <Input
                     placeholder="Full-Name"
                     value={name}
@@ -113,15 +117,18 @@ const CustomerAddScreen = () => {
                 </Form.Item>
               </Col>
               <Col span={12}>
-                <Form.Item colon={false} label="Email"  name="email"
+                <Form.Item
+                  colon={false}
+                  label="Email"
+                  name="email"
                   rules={[
                     {
-                      
                       required: true,
                       type: "email",
                       message: "Please input valid Email!",
                     },
-                  ]}>
+                  ]}
+                >
                   <Input
                     placeholder="Email"
                     value={email}
@@ -133,13 +140,17 @@ const CustomerAddScreen = () => {
 
             <Row gutter={20}>
               <Col span={12}>
-                <Form.Item colon={false} label="Mobile"  name="mobile"
+                <Form.Item
+                  colon={false}
+                  label="Mobile"
+                  name="mobile"
                   rules={[
                     {
                       required: true,
                       message: "Please input your Mobile!",
                     },
-                  ]}>
+                  ]}
+                >
                   <Input
                     placeholder="Mobile"
                     value={mobile}
@@ -149,12 +160,11 @@ const CustomerAddScreen = () => {
               </Col>
               <Col span={12}>
                 <Form.Item colon={false} label="Registration Date">
-                 
-                <Input
-                  disabled={true}
-                  value={registerDate.toLocaleDateString("CA")}
-                  onChange={onSetDate}
-                />
+                  <Input
+                    disabled={true}
+                    value={registerDate.toLocaleDateString("CA")}
+                    onChange={onSetDate}
+                  />
                 </Form.Item>
               </Col>
             </Row>
@@ -204,7 +214,6 @@ const CustomerAddScreen = () => {
             <Row gutter={20}>
               <Col span={12}>
                 <Form.Item colon={false} label="Country">
-                
                   <Input
                     placeholder="India"
                     value={country}
@@ -282,16 +291,18 @@ const CustomerAddScreen = () => {
             </Row>
 
             <Row gutter={20}>
-              <Col span={12}>
-                <Button type="primary" htmlType="submit" onClick={() => onAdd()}>
+              <Col span={23}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  onClick={() => onAdd()}
+                >
                   Add
                 </Button>
               </Col>
             </Row>
           </Form>
         </div>
-
-        <div></div>
       </div>
     </div>
   );

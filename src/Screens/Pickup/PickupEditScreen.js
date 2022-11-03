@@ -67,9 +67,16 @@ const PickupEditScreen = () => {
   };
   return (
     <div>
-      <div><PageTitle title="PickUp-Edit"></PageTitle></div>
       <div>
-        <Form>
+        <h1>Edit Pickup</h1>
+      <div>
+        <Form  name="basic"
+            labelCol={{
+              span: 7,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}>
           <Row gutter={20}>
             <Col span={12}>
               <Form.Item colon={false} label="SNF">
@@ -126,7 +133,7 @@ const PickupEditScreen = () => {
             </Col>
           </Row>
           <Row gutter={20}>
-              <Col span={20}>
+              <Col span={24}>
               <Button type="primary" onClick={() => onUpdateCustomer()}>
                 Save
               </Button>
@@ -134,6 +141,7 @@ const PickupEditScreen = () => {
           </Row>
         </Form>
       </div>
+    </div>
     </div>
   );
 };

@@ -109,8 +109,15 @@ const RoleScreen = () => {
 
   return (
     <div>
-      <div>RoleScreen</div>
+      <div><h1>RoleScreen</h1></div>
       <div>
+        <Form name="basic"
+            labelCol={{
+              span: 6,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}>
         <Row gutter={20}>
           <Col span={12}>
             <Form.Item colon={false} label="Name">
@@ -130,6 +137,7 @@ const RoleScreen = () => {
             </Button>
           </Col>
         </Row>
+        </Form>
       </div>
       <div>
         <Table columns={columns} dataSource={roleData} />
