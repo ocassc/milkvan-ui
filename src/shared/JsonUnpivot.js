@@ -8,7 +8,7 @@ var unpivotJson = function (data, options) {
     for (const [key, value] of Object.entries(rec)) {
       if (key !== "fat") {
         var doc = {};
-        doc.snf = parseInt(key);
+        doc.snf = parseFloat(key);
         doc.rate = value;
         doc.fat = rec.fat;
         out.push(doc);

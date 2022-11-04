@@ -20,6 +20,12 @@ const FatsnfRateMatrix = () => {
     return () => (mounted = false);
   }, []);
 
+  // useEffect(() => {
+  //   let mounted = true;
+  //   if (mounted) getData();
+  //   return () => (mounted = false);
+  //}, [dataSource]);
+
   const getData = () => {
     axiosInstance.get(`/fatsnfRateMatrix/user/1`).then((response) => {
       var options = {
@@ -27,9 +33,9 @@ const FatsnfRateMatrix = () => {
         column: "snf",
         value: "rate",
       };
-      
-      var output = jsonToPivotjson(response.data.data, options);
 
+      var output = jsonToPivotjson(response.data.data, options);
+      console.log(output)
       setDataSource(output);
     });
   };
@@ -48,12 +54,18 @@ const FatsnfRateMatrix = () => {
           Header: key,
           accessor: key.toString(),
           Cell: (params) => {
+            let datakey = params.row.original.fat + "-" + key;
             return (
               <div>
-                <label>{params.row.original[key]}</label>
-                <Input
-                  // value={params.row.original[key]}
-                  onChange={(e) => onRate(e, params.row.original.fat, key)}
+                {/* <div>{params.row.original[key]}</div> */}
+                <input
+                  data-index={datakey}
+                  type="text"
+                  className="form-control"
+                  defaultValue= {params.row.original[key]}
+                  onChange={(e) =>
+                    onRateChange(e, params.row.original.fat, key)
+                  }
                 />
               </div>
             );
@@ -71,23 +83,31 @@ const FatsnfRateMatrix = () => {
   };
 
   const columns = getColumns();
-  const onRate = (value, f, s) => {
+  const onRateChange = (e, f, s) => {
+    // const dataSourceCopy = dataSource.slice();
+    // const objectCopy = Object.assign({}, dataSourceCopy.find((d) => d.fat === f));
+    
+    // //objectCopy[s] = e.target.value;
+    // dataSourceCopy.find((d) => d.fat === f)[s] = e.target.value;
+    // setDataSource({ data: dataSourceCopy });
+
     let tempds = dataSource;
 
-    dataSource.find((d) => d.fat === f)[s] = value.target.value;
+    tempds.find((d) => d.fat === f)[s] = e.target.value;
+    console.log('tempds');
     console.log(tempds);
+    setDataSource(tempds);
 
-    setDataSource(dataSource);
-
-    //setDataSource()
-    // alert(f)
-    // alert(s)
-    // alert(value.target.value)
+    // //setDataSource()
+    // // alert(f)
+    // // alert(s)
+    // // alert(value.target.value)
   };
 
   const onHandleSave = (value, f, s) => {
     let unPivotData = unpivotJson(dataSource, { column: "fat" });
-
+    console.log('unPivotData')
+    console.log(unPivotData)
     axiosInstance
       .put(`/fatsnfRateMatrix/${1}/${parseInt(user.userId)}`, unPivotData)
       .then((res) => {
