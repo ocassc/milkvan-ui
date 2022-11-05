@@ -5,7 +5,7 @@ import jsonToPivotjson from "json-to-pivot-json";
 import unpivotJson from "../../shared/JsonUnpivot";
 import { ReactTable } from "../../shared/ReactTable";
 import { PageContext } from "./service";
-import unpivot from "array-unpivot";
+import { PageTitle } from "../../PageTitle";
 import { UserContext } from "../../globalContext";
 const FatsnfRateMatrix = () => {
   const context = useContext(PageContext);
@@ -100,10 +100,12 @@ const FatsnfRateMatrix = () => {
   return (
     <div>
       <Row>
-        <Col span={4}>
-          <div>
-            <h1>Rate Matrix</h1>
-          </div>
+      <Col span={10}>
+      <PageTitle title="Rate Matrix">
+          {/* <button className="btn-tck" onClick={() => onAddClick()}>
+            + Add New{" "}
+          </button> */}
+        </PageTitle>
         </Col>
       </Row>
 

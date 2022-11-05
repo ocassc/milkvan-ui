@@ -60,47 +60,47 @@ export function Nav() {
           title={<span className="submenu-title-wrapper">Masters</span>}
         >
           <Menu.Item key={"1.0"}>
-            <NavLink exact to={"/FatsnFRateMatrix"}>
+            <NavLink exact={true} to={"/FatsnFRateMatrix"}>
            Rate Matrix
             </NavLink>
           </Menu.Item>
           <Menu.Item key={"1.1"}>
-            <NavLink exact to={"/FatScreen"}>
+            <NavLink exact={true} to={"/FatScreen"}>
             Fat
             </NavLink>
           </Menu.Item>
           <Menu.Item key={"1.2"}>
-            <NavLink exact to={"/SnfScreen"}>
+            <NavLink exact={true} to={"/SnfScreen"}>
             Snf
             </NavLink>
           </Menu.Item>
           <Menu.Item key={"1.3"}>
-            <NavLink exact to={"/RoleScreen"}>
+            <NavLink exact={true} to={"/RoleScreen"}>
            Role
             </NavLink>
           </Menu.Item>
           <Menu.Item key={"1.4"}>
-            <NavLink exact to={"/VehicleScreen"}>
+            <NavLink exact={true} to={"/VehicleScreen"}>
             Vehicle
             </NavLink>
           </Menu.Item>
           <Menu.Item key={"1.5"}>
-            <NavLink exact to={"/VehicleTypeScreen"}>
+            <NavLink exact={true} to={"/VehicleTypeScreen"}>
             Vehicle Type
             </NavLink>
           </Menu.Item>
           <Menu.Item key={"1.6"}>
-            <NavLink exact to={"/RouteScreen"}>
+            <NavLink exact={true} to={"/RouteScreen"}>
            Route
             </NavLink>
           </Menu.Item>
           <Menu.Item key={"1.7"}>
-            <NavLink exact to={"/UserRole"}>
+            <NavLink exact={true} to={"/UserRole"}>
           User Role
             </NavLink>
           </Menu.Item>
           <Menu.Item key={"1.8"}>
-            <NavLink exact to={"/DefaultUserSetting"}>
+            <NavLink exact={true} to={"/DefaultUserSetting"}>
             Default User Setting
             </NavLink>
           </Menu.Item>

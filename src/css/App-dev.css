@@ -1,7 +1,10 @@
 @import '~antd/dist/antd.css';
-@import 'https://demo-dev.cimmra.com/cdn/App.css';
+@import 'assets/fonts/fonts.css';
+@import 'variables.css';
+@import 'style.css';
+@import 'responsive.css';
+@import 'ag-grid-custom.css';
 @import url("https://cdn.syncfusion.com/ej2/bootstrap5.css");
-@import 'https://demo-dev.cimmra.com/cdn/supplier-register.css';
 
 
 /* media query starts here */

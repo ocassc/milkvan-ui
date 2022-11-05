@@ -1,0 +1,208 @@
+/* s Below css only for supplier registration tabs only */
+
+.progressbar {
+  counter-reset: step;
+  background: rgb(223, 240, 255);
+  padding: 15px !important;
+  overflow: hidden;
+  padding: 20px;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.progressbar li {
+  list-style-type: none;
+  float: left;
+  min-width: 150px;
+  position: relative;
+  text-align: center;
+}
+
+.progressbar li::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 25px;
+  height: 25px;
+  /* border: 1px solid #ccc; */
+  border-radius: 50%;
+  line-height: 25px;
+  display: block;
+  text-align: center;
+  margin: 0 auto 0px auto;
+  background-color: #fff;
+}
+
+.progressbar li::after {
+  position: absolute;
+  content: '';
+  height: 1px;
+  width: 70%;
+  background-color: #bdc3c7;
+  top: 15px;
+  left: -35%;
+}
+
+.progressbar li:first-child:after {
+  content: none;
+}
+
+.progressbar li.active {
+  color: var(--text-color);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.progressbar li.disable {
+  color: #ccc;
+}
+
+.progressbar li.active::before {
+  border-color: var(--link-color);
+  background-color: var(--link-color);
+  color: #fff;
+}
+
+.step-container {
+  margin: 25px 60px;
+  padding-bottom: 20px;
+  height: 68vh;
+  overflow-x: hidden;
+}
+
+.step-container h2 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.ant-layout-footer {
+  padding: 5px;
+  background: #dff0ff1a;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 500;
+  border-top: 1px solid #dff0ff1a;
+}
+
+.custom-step-item {
+  margin: 0px -30px !important;
+  text-align: center;
+  background: rgb(223, 240, 255);
+}
+
+.custom-step-content {
+  padding: 20px 40px;
+}
+
+.custom-step-content .pnl-tab-content {
+  padding: 0px;
+}
+
+.custom-step-content .action-button {
+  padding: 20px 0px;
+}
+
+.custom-step-content .title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: 'quattrocento-normal';
+}
+
+.custom-step-content .title span {
+  font-size: 14px;
+  color: var(--gray-dark)
+}
+
+.header-register {
+  margin: 15px;
+}
+
+.header-register h1 {
+  margin-bottom: 0px;
+  font-size: 1.6rem;
+}
+
+.header-register p {
+  margin: 0px;
+}
+
+.header-register .company-logo {
+  display: flex;
+  align-items: center;
+}
+
+.ant-layout-content {
+  background-color: var(--body-bg);
+  height: auto;
+  overflow-x: unset;
+}
+
+.btn-bottom {
+  margin: 10px 0px;
+}
+
+/* .preview-items{
+    
+} */
+
+.preview-items h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.preview-items .btn-bottom {
+  margin: 30px 0px;
+}
+
+.scroll-view {
+  margin: 0px;
+  padding-bottom: 20px;
+  height: 68vh;
+  overflow-x: hidden;
+  padding: 20px 5px;
+}
+
+.onBoard-supplier-details .scroll-view .supplier-details-tabs .container{
+  margin-bottom: 10px;
+}
+
+.onBoard-supplier-details .scroll-view .supplier-details-tabs .container h1{
+  font-size: 16px;
+}
+
+.onBoard-supplier-details .scroll-view .supplier-details-tabs .container .container{
+  margin-bottom: 5px;
+}
+
+/* s Responsive */
+
+@media (max-width: 767px) {
+  .progressbar {
+    padding: 10px !important;
+    display: flex !important;
+    overflow: scroll !important;
+  }
+  .custom-step-item {
+    margin: 0px !important;
+    margin-right: -10px !important;
+  }
+  .header-register {
+    margin: 15px 5px !important;
+  }
+  .step-container {
+    margin: 25px 0px;
+    padding-bottom: 20px;
+    height: 68vh;
+    overflow-x: hidden;
+  }
+  .header-register h1 {
+    margin-bottom: 0px;
+    font-size: 1rem;
+  }
+}
+
+/* e Below css only for supplier registration tabs only */

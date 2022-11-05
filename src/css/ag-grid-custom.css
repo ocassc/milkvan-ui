@@ -1,0 +1,24 @@
+.ag-theme-balham {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;    
+    font-size: var(--base-font-size);
+}
+
+
+.ag-theme-balham .ag-root-wrapper {
+    border: solid 1px;
+    border-color: #bdc3c7;
+    border-color: var(--border-color-base);
+}
+
+.ag-theme-balham .ag-filter-toolpanel-header, .ag-theme-balham .ag-filter-toolpanel-search, .ag-theme-balham .ag-status-bar, .ag-theme-balham .ag-header-row{
+    color:#fff;
+}
+
+.ag-theme-balham .ag-row-odd {
+    background-color: #F9F9F9;
+    background-color: var(--ag-odd-row-background-color, #F9F9F9);
+}
+
+.ag-theme-balham .ag-row{
+    border-color: #e6e6e6;
+}

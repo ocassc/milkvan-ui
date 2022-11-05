@@ -1,0 +1,18 @@
+/* cyrillic-ext */
+
+@font-face {
+  font-family: 'montserrat';
+  font-style:  normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("Montserrat-Regular.ttf") format("truetype")
+}
+
+@font-face {
+  font-family: 'montserrat-light';
+  font-style:  normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("Montserrat-Light.ttf") format("truetype")
+}
+

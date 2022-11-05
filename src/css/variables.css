@@ -1,0 +1,86 @@
+:root {
+  /*  theme-1  */
+
+  --nav-top-left: #B7C8E5;
+    --nav-top-right: #E1F5FE;
+  /* --nav-top-left: #9A1E5F;
+  --nav-top-right: #9A1E5F; */
+  --body-bg: #fff;
+  --text-color: #43425d;
+  --base-font-size: 0.875rem;
+  --primary-color: #9A1E5F ;
+  --form-selector:#3E8EF7;
+  --link-color: #88165B;
+  --success-color: #52c41a;
+  --warning-color: #faad14;
+  --error-color: #f5222d;
+  --heading-color: rgba(0, 0, 0, 0.85);  
+  --text-color-secondary: rgba(0, 0, 0, 0.45);
+  --disabled-color: rgba(0, 0, 0, 0.25);
+  --border-radius-base: 2px;
+  --border-color-base: #d9d9d9;
+  --box-shadow-base: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --gray-light: #CBCBCB;
+  --gray-lightest: #fbfbfb;
+  --gray-dark: #818B94;
+  --gray-darkest: #585a61;
+  --color-1:#007C89;
+  --top-nav-color:#43425D;
+  --ag-header-foreground-color:#333;
+  --top-nav-color-hover:#d8ebf9;
+  --top-nav-color-hover-shaow:#c5d7ee;
+  --tabs-active-border:var(--primary-color);
+  --btn-primary-color:var(--primary-color);
+}
+
+/* .default {} */
+
+.dark {
+  --text-color: #fff;
+  --body-bg: #eee;
+  --nav-top-right: #000;
+  --nav-top-left: #333;
+}
+
+.light {
+  --bg: #eee;
+  --nav-top-right: #ccc;
+  --nav-top-left: #eee;
+  --text-color: #333;
+}
+
+.supplier {
+  /* --nav-top-right: #ffc171;
+  --nav-top-left: #ff5a5f; */
+  --nav-top-right: #E9CFA7;
+  --nav-top-left: #FEC071;
+  --ag-header-color: #333;
+  
+}
+
+.organizer{
+  --nav-top-left: var(--primary-color);
+  --nav-top-right:var(--primary-color);
+  --top-nav-color:#fff;   
+  --ag-header-foreground-color:var(--primary-color);
+  --top-nav-color-hover:#8c1051fc;
+  --top-nav-color-hover-shaow:#7e0544;
+  --tabs-active:var(--primary-color);  
+  --tabs-hover:#7e0544;
+
+}
+
+.admin{ 
+  --nav-top-left: #B7C8E5;
+  --nav-top-right: #E1F5FE; 
+  --top-nav-color:#43425D;
+  --ag-header-foreground-color:#333;
+  --top-nav-color-hover:#d8ebf9;
+  --top-nav-color-hover-shaow:#c5d7ee;
+  --tabs-active:#1890ff;
+  --tabs-active-border:#1890ff;
+  --tabs-hover:#40a9ff;
+  --btn-primary-color:#1890ff;
+
+  
+}

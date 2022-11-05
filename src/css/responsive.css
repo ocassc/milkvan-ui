@@ -1,0 +1,17 @@
+
+@media(max-width: 767px) {
+    :root {--base-font-size: 13px;}
+
+    .container{
+        padding: 10px !important;
+    }
+
+    .ant-layout-header.header{
+        padding: 0 10px !important;
+    }
+    .logo {
+      
+        margin: 0px 5px 0px 0px !important;
+    
+    }
+}
