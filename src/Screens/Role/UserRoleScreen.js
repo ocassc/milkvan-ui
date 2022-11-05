@@ -3,6 +3,7 @@ import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
+import { PageTitle } from "../../PageTitle";
 const UserRoleScreen = () => {
   const user = useContext(UserContext);
   const [roleId, setRoleId] = useState("");
@@ -112,8 +113,10 @@ const UserRoleScreen = () => {
   };
   return (
     <div>
-      <Row> <Col span={5}>
-      <div><h1>User Role Screen</h1></div>
+       <Row>
+      <Col span={10}>
+      <PageTitle title="User Role Screen">
+        </PageTitle>
         </Col>
       </Row>
       
@@ -125,8 +128,8 @@ const UserRoleScreen = () => {
             wrapperCol={{
               span: 16,
             }}>
-          <Row gutter={20}>
-            <Col span={12}>
+          <Row gutter={5}>
+            <Col span={10}>
               <Form.Item colon={false} label="Role Id">
                 <Input
                   placeholder="Role Id"
@@ -135,15 +138,13 @@ const UserRoleScreen = () => {
                 />
               </Form.Item>
             </Col>
-           
-          </Row>
-          <Row gutter={20}>
-            <Col span={12}>
+            <Col>
               <Button type="primary" onClick={onSave}>
                 Save
               </Button>
             </Col>
           </Row>
+  
         </Form>
       </div>
       <div>

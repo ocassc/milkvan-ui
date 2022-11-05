@@ -2,16 +2,15 @@ import { Col, Form, Row, Input, Button, message } from "antd";
 import React, { useState, useContext } from "react";
 import axiosInstance from "../axiosInstance";
 import { UserContext } from "../globalContext";
+import logo from "../../src/images/logo.jpg";
 const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const user = useContext(UserContext);
 
-
-  if(user.userId !== undefined && user.userId !== null)
-  {
+  if (user.userId !== undefined && user.userId !== null) {
     //redict dashboard
-    window.location.href="HomeScreen"
+    window.location.href = "HomeScreen";
   }
 
   const onSignin = () => {
@@ -32,13 +31,24 @@ const LoginScreen = (props) => {
     window.location.href = "SignupScreen";
   };
 
+  const onForgotPassword = () => {
+    window.location.href = "ForgotPassword";
+  };
+
   return (
     <Row>
-      <Col span={12}></Col>
+      <Col span={10}></Col>
 
       <Col span={11}>
         <div className="login-page-form">
+          <img
+            src={logo}
+            alt=""
+            style={{ width: "70px", height: "70px", alignItems: "center" }}
+          />
+
           <h1 className="head">Login</h1>
+
           <Form
             name="basic"
             labelCol={{
@@ -90,7 +100,8 @@ const LoginScreen = (props) => {
                     },
                   ]}
                 >
-                  <Input type="password"
+                  <Input
+                    type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
@@ -100,13 +111,7 @@ const LoginScreen = (props) => {
             </Row>
 
             <Row gutter={20}>
-              <Col span={7}>
-                <Button type="primary" onClick={() => onSignup()}>
-                  Sign-up
-                </Button>
-              </Col>
-
-              <Col span={7}>
+              <Col span={24}>
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -116,10 +121,22 @@ const LoginScreen = (props) => {
                 </Button>
               </Col>
             </Row>
+            <Row gutter={20}>
+              <Col span={24}>
+                <Button type="secondary" onClick={() => onSignup()}>
+                  Sign-up
+                </Button>
+              </Col>
+              <Col span={10}>
+                <Button type="link" onClick={() => onForgotPassword()}>
+                  ForgotPassword
+                </Button>
+              </Col>
+            </Row>
           </Form>
         </div>
       </Col>
-      <Col span={1}>
+      <Col span={2}>
         <div className="login-right-bg"></div>
       </Col>
     </Row>

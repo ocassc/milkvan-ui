@@ -1,6 +1,7 @@
 import { Col, Form, Row, Input, Button, message } from "antd";
 import React, { useState } from "react";
 import axiosInstance from "../axiosInstance";
+import { PageTitle } from "../PageTitle";
 
 const SignupScreen = () => {
   const [fullname, setFullname] = useState();
@@ -35,11 +36,10 @@ const SignupScreen = () => {
 
   return (
     <div>
-      <Row>
-        <Col span={3}>
-          <div>
-            <h1 className="head">Sign up</h1>
-          </div>
+       <Row>
+      <Col span={10}>
+      <PageTitle title="Sign up">
+        </PageTitle>
         </Col>
       </Row>
 
@@ -97,7 +97,8 @@ const SignupScreen = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your Email!",
+                  type: "email",
+                  message: "Please input Valid Email!",
                 },
               ]}
             >
@@ -120,9 +121,13 @@ const SignupScreen = () => {
                   required: true,
                   message: "Please input your Mobile!",
                 },
+                {
+                  max:"10",
+                  message:"Maximum 10 Digits"
+                }
               ]}
             >
-              <Input
+              <Input 
                 placeholder="Mobile"
                 onChange={(e) => setMobile(e.target.value)}
                 value={mobile}
@@ -143,7 +148,7 @@ const SignupScreen = () => {
                 },
               ]}
             >
-              <Input
+              <Input  type="password"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}

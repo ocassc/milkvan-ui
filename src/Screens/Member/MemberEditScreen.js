@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../../axiosInstance";
 import { useParams } from "react-router-dom";
 import { Col, Form, Row, Input, Button, message } from "antd";
+import { PageTitle } from "../../PageTitle";
 
 const MemberEditScreen = () => {
   let { id } = useParams();
@@ -51,81 +52,77 @@ const MemberEditScreen = () => {
     setMemberData({ ...memberData, address: e.target.value });
   };
   return (
-   
-        <div>
-<Row>
-      <Col span={5}>
-      <div ><h1 className="head">Edit Member</h1></div></Col>
+    <div>
+      <Row>
+        <Col span={10}>
+          <PageTitle title="Edit Member"></PageTitle>
+        </Col>
       </Row>
 
-         
-          <Form name="basic"
-            labelCol={{
-              span: 7,
-            }}
-            wrapperCol={{
-              span: 16,
-            }}
-           
-          >
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false} label="Name">
-                  <Input
-                    placeholder="Name"
-                    onChange={onNameChange}
-                    value={memberData.name}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false} label="Email">
-                  <Input
-                    placeholder="Email"
-                    onChange={onEmailChange}
-                    value={memberData.email}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false} label="Mobile">
-                  <Input
-                    placeholder="Mobile"
-                    onChange={onMobileChange}
-                    value={memberData.mobile}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
+      <Form
+        name="basic"
+        labelCol={{
+          span: 7,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
+      >
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item colon={false} label="Name">
+              <Input
+                placeholder="Name"
+                onChange={onNameChange}
+                value={memberData.name}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item colon={false} label="Email">
+              <Input
+                placeholder="Email"
+                onChange={onEmailChange}
+                value={memberData.email}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item colon={false} label="Mobile">
+              <Input
+                placeholder="Mobile"
+                onChange={onMobileChange}
+                value={memberData.mobile}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
 
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false} label="Address">
-                  <Input
-                    placeholder="Address"
-                    onChange={onAddressChange}
-                    value={memberData.address}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Form.Item colon={false} label="Address">
+              <Input
+                placeholder="Address"
+                onChange={onAddressChange}
+                value={memberData.address}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
 
-            <Row gutter={20}>
-              <Col span={12}>
-                <Button type="primary" onClick={() => onUpdateMember()}>
-                  Save
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </div>
-      
-      
-    
+        <Row gutter={20}>
+          <Col span={12}>
+            <Button type="primary" onClick={() => onUpdateMember()}>
+              Save
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+    </div>
   );
 };
 export default MemberEditScreen;

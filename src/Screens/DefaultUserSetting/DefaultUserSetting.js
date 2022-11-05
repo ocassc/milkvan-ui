@@ -12,6 +12,7 @@ import {
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
+import { PageTitle } from "../../PageTitle";
 const DefaultUserSetting = () => {
   let defaultDate = new Date();
   defaultDate.setDate(defaultDate.getDate());
@@ -143,9 +144,11 @@ const DefaultUserSetting = () => {
 
   return (
     <div>
-      <Row >
-      <Col span={5}>
-      <div ><h1>Default User Setting</h1></div></Col>
+       <Row>
+      <Col span={10}>
+      <PageTitle title="Default User Setting">
+        </PageTitle>
+        </Col>
       </Row>
      
       <div>
@@ -156,7 +159,7 @@ const DefaultUserSetting = () => {
             wrapperCol={{
               span: 16,
             }}>
-          <Row gutter={20}>
+          <Row gutter={10}>
             <Col span={12}>
               <Form.Item colon={false} label="SNF">
                 <Input

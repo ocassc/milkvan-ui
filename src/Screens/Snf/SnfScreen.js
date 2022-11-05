@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
+import { PageTitle } from "../../PageTitle";
 
 const SnfScreen = () => {
   const user=useContext(UserContext)
@@ -107,9 +108,11 @@ const SnfScreen = () => {
 
   return (
     <div>
-      <Row >
-      <Col span={4}>
-      <div ><h1>Snf Screen</h1></div></Col>
+       <Row>
+      <Col span={10}>
+      <PageTitle title="Snf Screen">
+        </PageTitle>
+        </Col>
       </Row>
       
       <div>
@@ -120,8 +123,8 @@ const SnfScreen = () => {
             wrapperCol={{
               span: 16,
             }}>
-          <Row gutter={20}>
-            <Col span={12}>
+          <Row gutter={5}>
+            <Col span={10}>
               <Form.Item colon={false} label="Value">
                 <Input
                   placeholder="Value"
@@ -130,15 +133,13 @@ const SnfScreen = () => {
                 />
               </Form.Item>
             </Col>
-           
-          </Row>
-          <Row gutter={20}>
-            <Col span={12}>
+            <Col>
               <Button type="primary" onClick={onSave}>
                 Save
               </Button>
             </Col>
           </Row>
+          
         </Form>
       </div>
       <div>

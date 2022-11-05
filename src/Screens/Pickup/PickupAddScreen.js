@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Col, Form, Row, Button, Input, message, Select } from "antd";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
+import { PageTitle } from "../../PageTitle";
 const { Option } = Select;
 
 const PickupAddScreen = () => {
@@ -114,9 +115,11 @@ const PickupAddScreen = () => {
 
   return (
     <div>
-      <Row>
-      <Col span={4}>
-      <div ><h1 className="head">Add Pickup</h1></div></Col>
+        <Row>
+      <Col span={10}>
+      <PageTitle title="Add Pickup">
+        </PageTitle>
+        </Col>
       </Row>
       <div>
       <Form  name="basic"
@@ -202,43 +205,43 @@ const PickupAddScreen = () => {
         </Row>
         <Row gutter={20}>
           <Col span={12}>
-            <Form.Item colon={false} label="Route Id">
+            <Form.Item colon={false} label="Route">
               <Select
-                placeholder="Route Id"
+                placeholder="Route"
                 value={routeId}
                 onChange={onRouteChange}
               >
                 {routeList &&
                   routeList.map((routeList) => (
-                    <Option key={routeList.id}>{routeList.id}</Option>
+                    <Option key={routeList.id}>{routeList.name}</Option>
                   ))}
               </Select>
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item colon={false} label="Vehicle Id">
+            <Form.Item colon={false} label="Vehicle">
               <Select
-                placeholder="Vehicle Id"
+                placeholder="Vehicle"
                 value={vehicleId}
                 onChange={onVehicleidChange}
               >
                 {vehicleList &&
-                  routeList.map((vehicleList) => (
-                    <Option key={vehicleList.id}>{vehicleList.id}</Option>
+                  vehicleList.map((vehicleList) => (
+                    <Option key={vehicleList.id}>{vehicleList.name}</Option>
                   ))}
               </Select>
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item colon={false} label=" Customer Id">
+            <Form.Item colon={false} label=" Customer">
               <Select
-                placeholder="Customer Id"
+                placeholder="Customer"
                 value={customerId}
                 onChange={onCustomeridChange}
               >
                 {customerList &&
                   customerList.map((customerList) => (
-                    <Option key={customerList.id}>{customerList.id}</Option>
+                    <Option key={customerList.id}>{customerList.name}</Option>
                   ))}
               </Select>
             </Form.Item>

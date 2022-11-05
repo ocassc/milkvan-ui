@@ -17,12 +17,14 @@ import { UserContext } from "../../globalContext";
 
 const PickupListScreen = () => {
   const user = useContext(UserContext);
+  let defaultDate = new Date();
+  defaultDate.setDate(defaultDate.getDate());
 
   const [pickupService, setPickupService] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [readPickupObj, setReadPickupObj] = useState({});
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
+  const [fromDate, setFromDate] = useState();
+  const [toDate, setToDate] = useState(defaultDate);
 
   useEffect(() => {
     let mounted = true;
@@ -50,6 +52,16 @@ const PickupListScreen = () => {
       title: "Rate",
       dataIndex: "rate",
       key: "rate",
+    },
+    {
+      title: "Quantity",
+      dataIndex: "quantity",
+      key: "quantity",
+    },
+    {
+      title: "Amount",
+      dataIndex: "amount",
+      key: "amount",
     },
 
     {
@@ -136,16 +148,19 @@ const PickupListScreen = () => {
       })
       .then((res) => {
         if (res.data && res.data.responseCode === -1) {
-          message.error("Record Already Exists");
+          message.error("Failed! please contact administor.");
         } else if (res.data && res.data.responseCode === 1) {
-          message.success("Record saved successfully");
+          message.success("Filter applied successfully");
           setPickupService(res.data.data);
         } else message.error("Something wrong. Please try again...!");
       });
   };
-  const onChange = (date, dateString) => {
+  const onFromChange = (date, dateString) => {
     setFromDate(date, dateString);
+  };
+  const onToChange = (date, dateString) => {
     setToDate(date, dateString);
+    
   };
 
   return (
@@ -171,15 +186,15 @@ const PickupListScreen = () => {
           }}
         >
           <Row gutter={3}>
-            <Form.Item colon={false} label="From">
+          <Form.Item colon={false} label="From">
               <Space direction="vertical">
-                <DatePicker onChange={onChange} />
+                <DatePicker onChange={onFromChange} />
               </Space>
             </Form.Item>
 
             <Form.Item colon={false} label="To">
               <Space direction="vertical">
-                <DatePicker onChange={onChange} />
+                <DatePicker onChange={onToChange} />
               </Space>
             </Form.Item>
 

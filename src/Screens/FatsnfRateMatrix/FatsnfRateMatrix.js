@@ -102,17 +102,19 @@ const FatsnfRateMatrix = () => {
       <Row>
       <Col span={10}>
       <PageTitle title="Rate Matrix">
-          {/* <button className="btn-tck" onClick={() => onAddClick()}>
-            + Add New{" "}
-          </button> */}
         </PageTitle>
         </Col>
       </Row>
 
       <div>
-        <Button type="primary" onClick={onHandleSave}>
+        <Row gutter={24}>
+          <Col span={24}>
+          <Button type="primary" onClick={onHandleSave} style={{float: 'right'}}>
           Save
         </Button>
+          </Col>
+        </Row>
+       
       </div>
       <div>
         <ReactTable
@@ -121,6 +123,16 @@ const FatsnfRateMatrix = () => {
           columns={columns}
           data={dataSource}
         ></ReactTable>
+      </div>
+      <div>
+        <Row gutter={24}>
+          <Col span={24}>
+          <Button type="primary" onClick={onHandleSave} style={{float: 'right'}}>
+          Save
+        </Button>
+          </Col>
+        </Row>
+       
       </div>
     </div>
   );

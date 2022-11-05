@@ -69,8 +69,10 @@ const PickupEditScreen = () => {
     <div>
       <div>
       <Row>
-      <Col span={4}>
-      <div ><h1 className="head">Edit Pickup</h1></div></Col>
+      <Col span={10}>
+      <PageTitle title="Edit Pickup">
+        </PageTitle>
+        </Col>
       </Row>
         
       <div>

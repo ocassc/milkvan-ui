@@ -3,6 +3,7 @@ import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import React, { useContext, useEffect, useState } from "react";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
+import { PageTitle } from "../../PageTitle";
 
 const RoleScreen = () => {
   const user =useContext(UserContext)
@@ -109,9 +110,11 @@ const RoleScreen = () => {
 
   return (
     <div>
-      <Row >
-      <Col span={4}>
-      <div ><h1>Role Screen</h1></div></Col>
+      <Row>
+      <Col span={10}>
+      <PageTitle title="Fat Screen">
+        </PageTitle>
+        </Col>
       </Row>
      
       <div>
@@ -122,8 +125,8 @@ const RoleScreen = () => {
             wrapperCol={{
               span: 16,
             }}>
-        <Row gutter={20}>
-          <Col span={12}>
+        <Row gutter={5}>
+            <Col span={10}>
             <Form.Item colon={false} label="Name">
               <Input
                 placeholder="Name"
@@ -132,10 +135,7 @@ const RoleScreen = () => {
               />
             </Form.Item>
           </Col>
-        
-        </Row>
-        <Row gutter={20}>
-          <Col span={12}>
+          <Col>
             <Button type="primary" onClick={onSave}>
               Save
             </Button>

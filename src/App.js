@@ -31,6 +31,8 @@ import DefaultUserSetting from "./Screens/DefaultUserSetting/DefaultUserSetting"
 import PickupListScreen from "./Screens/Pickup/PickupListScreen";
 import PickupAddScreen from "./Screens/Pickup/PickupAddScreen";
 import PickupEditScreen from "./Screens/Pickup/PickupEditScreen";
+import MyAccount from "./Screens/MyAccount/MyAccount";
+import ForgotPassword from "./Screens/ForgotPassword/ForgotPassword";
 
 require("./css/App-dev.css");
 
@@ -146,6 +148,8 @@ function App() {
                     path="PickupEditScreen/:id"
                     element={<PickupEditScreen />}
                   />
+                  <Route path="MyAccount" element={<MyAccount/>}/>
+                  <Route path="ForgotPassword" element={<ForgotPassword/>}/>
                 </Routes>
               </ConfigProvider>
               <Footers />

@@ -3,6 +3,7 @@ import { Col, Form, Row, Button, Input, message, Table, Modal } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
+import { PageTitle } from "../../PageTitle";
 
 const RouteScreen = () => {
   const user = useContext(UserContext);
@@ -108,9 +109,11 @@ const RouteScreen = () => {
   return (
     <div>
        
-      <Row >
-      <Col span={5}>
-      <div ><h1>Route Screen</h1></div></Col>
+       <Row>
+      <Col span={10}>
+      <PageTitle title="Route Screen">
+        </PageTitle>
+        </Col>
       </Row>
    
     <div>
@@ -121,8 +124,8 @@ const RouteScreen = () => {
             wrapperCol={{
               span: 16,
             }}>
-        <Row gutter={20}>
-          <Col span={12}>
+          <Row gutter={5}>
+            <Col span={10}>
             <Form.Item colon={false} label="Name">
               <Input
                 placeholder="Name"
@@ -131,15 +134,13 @@ const RouteScreen = () => {
               />
             </Form.Item>
           </Col>
-          
-        </Row>
-        <Row gutter={20}>
-          <Col span={12}>
+          <Col>
             <Button type="primary" onClick={onSave}>
               Save
             </Button>
           </Col>
         </Row>
+       
         </Form>
       </div>
       <div>

@@ -2,6 +2,7 @@ import { Col, Row, Form, Button, Input, Select, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../../axiosInstance";
+import { PageTitle } from "../../PageTitle";
 
 const { Option } = Select;
 const CustomerEditScreen = () => {
@@ -96,168 +97,170 @@ const CustomerEditScreen = () => {
         message.error("Record Already Exists");
       } else if (res.data && res.data.responseCode === 1) {
         message.success("Record Update successfully");
-        window.location.href="/CustomerListScreen"
+        window.location.href = "/CustomerListScreen";
       } else message.error("Something wrong. Please try again...!");
     });
   };
 
   return (
-   
-        <div >
-           <Row>
-      <Col span={4}>
-      <div ><h1 className="head">EditCustomer</h1></div></Col>
+    <div>
+      <Row>
+        <Col span={10}>
+          <PageTitle title="Edit Customer"></PageTitle>
+        </Col>
       </Row>
-          
-          <div>
-          <Form  name="basic"
-            labelCol={{
-              span: 7,
-            }}
-            wrapperCol={{
-              span: 16,
-            }}>
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false} label="Full Name">
-                  <Input
-                    placeholder="Full Name"
-                    value={customerData.name}
-                    onChange={onNameChange}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item colon={false} label="Email">
-                  <Input
-                    placeholder="Email"
-                    value={customerData.email}
-                    onChange={onEmailChange}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false} label="Mobile">
-                  <Input
-                    placeholder="Mobile"
-                    value={customerData.mobile}
-                    onChange={onMobileChange}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item colon={false} label="Registration Date">
-                  <Input
-                    placeholder="Registration Date"
-                    value={customerData.registerDate}
-                    onChange={onRegistrationDateChange}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false} label="Reference By">
-                  <Input
-                    placeholder="Reference By"
-                    value={customerData.referenceBy}
-                    onChange={onReferenceByChange}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item colon={false} label="Landmark">
-                  <Input
-                    placeholder="Landmark"
-                    value={customerData.landmark}
-                    onChange={onLandmarkChange}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false} label="Address Line 1">
-                  <Input
-                    placeholder="Address Line 1"
-                    value={customerData.addressLine1}
-                    onChange={onAddressLine1Change}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item colon={false} label="Address Line 2">
-                  <Input
-                    placeholder="Address Line 2"
-                    value={customerData.addressLine2}
-                    onChange={onAddressLine2Change}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false} label="State">
-                  <Select
-                    placeholder="State"
-                    value={customerData.state}
-                    onChange={onStateChange}
-                  >
-                    {stateList &&
-                      stateList.map((stateList) => (
-                        <Option key={stateList.id}>{stateList.name}</Option>
-                      ))}
-                  </Select>
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item colon={false} label="City">
-                  <Select
-                    placeholder="City"
-                    value={customerData.city}
-                    onChange={onCityChange}
-                  >
-                    {cityList &&
-                      cityList.map((cityList) => (
-                        <Option key={cityList.id}>{cityList.name}</Option>
-                      ))}
-                  </Select>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={20}>
-              <Col span={12}>
-                <Form.Item colon={false} label="Lattitude">
-                  <Input
-                    placeholder="lattitude"
-                    value={customerData.lattitude}
-                    onChange={onLattitudeChange}
-                  />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item colon={false} label="Longitude">
-                  <Input
-                    placeholder="longitude"
-                    value={customerData.longitude}
-                    onChange={onLongitudeChange}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
 
-            <Row gutter={20}>
-          <Col span={12}>
-                <Button type="primary" onClick={() => onUpdateCustomer()}>
-                  Save
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </div>
-        </div>
+      <div>
+        <Form
+          name="basic"
+          labelCol={{
+            span: 7,
+          }}
+          wrapperCol={{
+            span: 16,
+          }}
+        >
+          <Row gutter={20}>
+            <Col span={12}>
+              <Form.Item colon={false} label="Full Name">
+                <Input
+                  placeholder="Full Name"
+                  value={customerData.name}
+                  onChange={onNameChange}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item colon={false} label="Email">
+                <Input
+                  placeholder="Email"
+                  value={customerData.email}
+                  onChange={onEmailChange}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={20}>
+            <Col span={12}>
+              <Form.Item colon={false} label="Mobile">
+                <Input
+                  placeholder="Mobile"
+                  value={customerData.mobile}
+                  onChange={onMobileChange}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item colon={false} label="Registration Date">
+                <Input
+                  placeholder="Registration Date"
+                  value={customerData.registerDate}
+                  onChange={onRegistrationDateChange}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={20}>
+            <Col span={12}>
+              <Form.Item colon={false} label="Reference By">
+                <Input
+                  placeholder="Reference By"
+                  value={customerData.referenceBy}
+                  onChange={onReferenceByChange}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item colon={false} label="Landmark">
+                <Input
+                  placeholder="Landmark"
+                  value={customerData.landmark}
+                  onChange={onLandmarkChange}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={20}>
+            <Col span={12}>
+              <Form.Item colon={false} label="Address Line 1">
+                <Input
+                  placeholder="Address Line 1"
+                  value={customerData.addressLine1}
+                  onChange={onAddressLine1Change}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item colon={false} label="Address Line 2">
+                <Input
+                  placeholder="Address Line 2"
+                  value={customerData.addressLine2}
+                  onChange={onAddressLine2Change}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={20}>
+            <Col span={12}>
+              <Form.Item colon={false} label="State">
+                <Select
+                  placeholder="State"
+                  value={customerData.state}
+                  onChange={onStateChange}
+                >
+                  {stateList &&
+                    stateList.map((stateList) => (
+                      <Option key={stateList.id}>{stateList.name}</Option>
+                    ))}
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item colon={false} label="City">
+                <Select
+                  placeholder="City"
+                  value={customerData.city}
+                  onChange={onCityChange}
+                >
+                  {cityList &&
+                    cityList.map((cityList) => (
+                      <Option key={cityList.id}>{cityList.name}</Option>
+                    ))}
+                </Select>
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={20}>
+            <Col span={12}>
+              <Form.Item colon={false} label="Lattitude">
+                <Input
+                  placeholder="lattitude"
+                  value={customerData.lattitude}
+                  onChange={onLattitudeChange}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item colon={false} label="Longitude">
+                <Input
+                  placeholder="longitude"
+                  value={customerData.longitude}
+                  onChange={onLongitudeChange}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row gutter={20}>
+            <Col span={12}>
+              <Button type="primary" onClick={() => onUpdateCustomer()}>
+                Save
+              </Button>
+            </Col>
+          </Row>
+        </Form>
+      </div>
+    </div>
   );
 };
 

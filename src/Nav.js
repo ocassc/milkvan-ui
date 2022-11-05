@@ -19,7 +19,8 @@ export function Nav() {
   }
   
   const myaccount = () => {
-    window.location = `${environment.url.MYACCOUNT_URL}`;
+    // window.location = `${environment.url.MYACCOUNT_URL}`;
+    window.location.href="MyAccount"
   }
 
   const menu = (

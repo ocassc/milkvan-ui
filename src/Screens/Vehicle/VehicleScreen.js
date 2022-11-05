@@ -13,6 +13,7 @@ import {
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
+import { PageTitle } from "../../PageTitle";
 const { Option } = Select;
 const VehicleScreen = () => {
   const user= useContext(UserContext);
@@ -143,11 +144,12 @@ const VehicleScreen = () => {
 
   return (
     <div>
-      <Row >
-      <Col span={4}>
-      <div ><h1>Vehicle Screen</h1></div></Col>
+     <Row>
+      <Col span={10}>
+      <PageTitle title="Vehicle">
+        </PageTitle>
+        </Col>
       </Row>
-     
 
       <div>
         <Form name="basic"

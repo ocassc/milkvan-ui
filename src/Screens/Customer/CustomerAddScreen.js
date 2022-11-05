@@ -3,6 +3,7 @@ import { Col, Form, Row, Input, Button, Select, message } from "antd";
 import axiosInstance from "../../axiosInstance";
 import FormItem from "antd/es/form/FormItem";
 import { UserContext } from "./../../globalContext";
+import { PageTitle } from "../../PageTitle";
 
 
 const { Option } = Select;
@@ -12,6 +13,7 @@ const CustomerAddScreen = () => {
   let defaultDate = new Date();
   defaultDate.setDate(defaultDate.getDate());
   const user = useContext(UserContext);
+
 
   const [cityList, setCityList] = useState();
   const [stateList, setStateList] = useState();
@@ -86,8 +88,10 @@ const CustomerAddScreen = () => {
     <div>
       <div>
       <Row>
-      <Col span={7}>
-      <div ><h1 className="head">Add New Customer</h1></div></Col>
+      <Col span={10}>
+      <PageTitle title="Add Customer">
+        </PageTitle>
+        </Col>
       </Row>
        
 

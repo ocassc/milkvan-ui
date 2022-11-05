@@ -3,9 +3,10 @@ import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import React, { useContext, useEffect, useState } from "react";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
+import { PageTitle } from "../../PageTitle";
 
 const FatScreen = () => {
-  const user= useContext(UserContext)
+  const user = useContext(UserContext);
   const [value, setValue] = useState("");
   const [fatData, setFatData] = useState([]);
   const [readFatObj, setReadFatObj] = useState({});
@@ -34,32 +35,32 @@ const FatScreen = () => {
       key: "companyId",
     },
     {
-        title: "Action",
-        key: "id",
-        render: (row) => {
-          return (
-            <>
-              <EyeOutlined
-                onClick={() => {
-                  readFat(row);
-                }}
-              />
-              <EditOutlined
-                style={{ marginLeft: 12 }}
-                // onClick={() => {
-                //   modify(row);
-                // }}
-              />
-              <DeleteOutlined
-                style={{ color: "red", marginLeft: 12 }}
-                onClick={() => {
-                  removeFat(row);
-                }}
-              />
-            </>
-          );
-        },
+      title: "Action",
+      key: "id",
+      render: (row) => {
+        return (
+          <>
+            <EyeOutlined
+              onClick={() => {
+                readFat(row);
+              }}
+            />
+            <EditOutlined
+              style={{ marginLeft: 12 }}
+              // onClick={() => {
+              //   modify(row);
+              // }}
+            />
+            <DeleteOutlined
+              style={{ color: "red", marginLeft: 12 }}
+              onClick={() => {
+                removeFat(row);
+              }}
+            />
+          </>
+        );
       },
+    },
   ];
 
   const getFat = () => {
@@ -77,7 +78,7 @@ const FatScreen = () => {
     const data = {
       value: value,
       companyId: 1,
-      userId:parseInt(user.userId)
+      userId: parseInt(user.userId),
     };
     axiosInstance.post(`/fat`, data).then((res) => {
       if (res.data && res.data.responseCode === -1) {
@@ -105,33 +106,34 @@ const FatScreen = () => {
   };
   return (
     <div>
-      <Row >
-      <Col span={4}>
-      <div ><h1>Fat Screen</h1></div></Col>
+      <Row>
+      <Col span={10}>
+      <PageTitle title="Fat Screen">
+        </PageTitle>
+        </Col>
       </Row>
-    
+
       <div>
-        <Form name="basic"
-            labelCol={{
-              span: 6,
-            }}
-            wrapperCol={{
-              span: 16,
-            }}>
-          <Row gutter={20}>
-            <Col span={12}>
-              <Form.Item colon={false} label="Value">
+        <Form
+          name="basic"
+          labelCol={{
+            span: 6,
+          }}
+          wrapperCol={{
+            span: 16,
+          }}
+        >
+          <Row gutter={5}>
+            <Col span={10}>
+              <Form.Item colon={false} label="Fat Value">
                 <Input
-                  placeholder="Value"
+                  placeholder="Fat Value"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
                 />
               </Form.Item>
             </Col>
-           
-          </Row>
-          <Row gutter={20}>
-            <Col span={12}>
+            <Col >
               <Button type="primary" onClick={onSave}>
                 Save
               </Button>
@@ -151,9 +153,11 @@ const FatScreen = () => {
         <ul className="list-group w-50">
           <li className="list-group-item"> ID : {readFatObj.id}</li>
           <li className="list-group-item"> Value : {readFatObj.value}</li>
-          <li className="list-group-item"> Company Id : {readFatObj.companyId}</li>
+          <li className="list-group-item">
+            {" "}
+            Company Id : {readFatObj.companyId}
+          </li>
           <li className="list-group-item"> User Id : {readFatObj.userId}</li>
-         
         </ul>
       </Modal>
     </div>
