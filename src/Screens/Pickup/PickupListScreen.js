@@ -136,18 +136,19 @@ const PickupListScreen = () => {
       })
       .then((res) => {
         if (res.data && res.data.responseCode === -1) {
-          message.error("Record Already Exists");
+          message.error("Failed! please contact administor.");
         } else if (res.data && res.data.responseCode === 1) {
-          message.success("Record saved successfully");
+          message.success("Filter applied successfully");
           setPickupService(res.data.data);
         } else message.error("Something wrong. Please try again...!");
       });
   };
-  const onChange = (date, dateString) => {
+  const onFromChange = (date, dateString) => {
     setFromDate(date, dateString);
+  };
+  const onToChange = (date, dateString) => {
     setToDate(date, dateString);
   };
-
   return (
     <div>
       <div>
@@ -173,13 +174,13 @@ const PickupListScreen = () => {
           <Row gutter={3}>
             <Form.Item colon={false} label="From">
               <Space direction="vertical">
-                <DatePicker onChange={onChange} />
+                <DatePicker onChange={onFromChange} />
               </Space>
             </Form.Item>
 
             <Form.Item colon={false} label="To">
               <Space direction="vertical">
-                <DatePicker onChange={onChange} />
+                <DatePicker onChange={onToChange} />
               </Space>
             </Form.Item>
 
