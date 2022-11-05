@@ -68,7 +68,11 @@ const PickupEditScreen = () => {
   return (
     <div>
       <div>
-        <h1>Edit Pickup</h1>
+      <Row>
+      <Col span={4}>
+      <div ><h1 className="head">Edit Pickup</h1></div></Col>
+      </Row>
+        
       <div>
         <Form  name="basic"
             labelCol={{
@@ -79,12 +83,12 @@ const PickupEditScreen = () => {
             }}>
           <Row gutter={20}>
             <Col span={12}>
-              <Form.Item colon={false} label="SNF">
+              <Form.Item colon={false} label="Snf">
                 <Input value={pickupData.snf} onChange={onSnfChange} />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item colon={false} label="FAT">
+              <Form.Item colon={false} label="Fat">
                 <Input value={pickupData.fat} onChange={onFatChange} />
               </Form.Item>
             </Col>
@@ -115,7 +119,7 @@ const PickupEditScreen = () => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item colon={false} label="Milk-Type">
+              <Form.Item colon={false} label="Milk Type">
                 <Input
                   value={pickupData.milkType}
                   onChange={onMilktypeChange}
@@ -124,7 +128,7 @@ const PickupEditScreen = () => {
             </Col>
 
             <Col span={12}>
-              <Form.Item colon={false} label="Pickup-Shift">
+              <Form.Item colon={false} label="Pickup Shift">
                 <Input
                   value={pickupData.pickupShift}
                   onChange={onPickupShiftChange}

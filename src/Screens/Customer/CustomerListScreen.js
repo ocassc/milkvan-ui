@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Modal, message } from "antd";
+import { Table, Modal, message, Row, Col } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { PageTitle } from "../../PageTitle";
 import axiosInstance from "../../axiosInstance";
@@ -101,18 +101,23 @@ const CustomerListScreen = () => {
   return (
     <div>
       <div>
-        <PageTitle title="Customer List">
+      <Row>
+      <Col span={10}>
+      <PageTitle title="Customer List">
           <button className="btn-tck" onClick={() => onAddClick()}>
             + Add New{" "}
           </button>
         </PageTitle>
+        </Col>
+      </Row>
+       
       </div>
 
       <div>
         <Table rowKey="id" columns={columns} dataSource={list} />
       </div>
       <Modal
-        title="Basic Modal"
+        title="Customer List"
         open={isModalOpen}
         onOk={() => setIsModalOpen(false)}
         onCancel={() => setIsModalOpen(false)}
@@ -128,11 +133,11 @@ const CustomerListScreen = () => {
           </li>
           <li className="list-group-item">
             {" "}
-            RegisterDate : {readCustomerObj.registerDate}
+            Register Date : {readCustomerObj.registerDate}
           </li>
           <li className="list-group-item">
             {" "}
-            ReferenceBy : {readCustomerObj.referenceBy}
+            Reference By : {readCustomerObj.referenceBy}
           </li>
           <li className="list-group-item">
             {" "}
@@ -140,11 +145,11 @@ const CustomerListScreen = () => {
           </li>
           <li className="list-group-item">
             {" "}
-            AddressLine1 : {readCustomerObj.addressLine1}
+            Address Line 1 : {readCustomerObj.addressLine1}
           </li>
           <li className="list-group-item">
             {" "}
-            AddressLine2 : {readCustomerObj.addressLine2}
+            Address Line 2 : {readCustomerObj.addressLine2}
           </li>
           <li className="list-group-item"> City : {readCustomerObj.city}</li>
           <li className="list-group-item"> State: {readCustomerObj.state}</li>
@@ -167,11 +172,11 @@ const CustomerListScreen = () => {
          
           <li className="list-group-item">
             {" "}
-            CompanyId : {readCustomerObj.companyId}
+            Company Id : {readCustomerObj.companyId}
           </li>
           <li className="list-group-item">
             {" "}
-            UserId : {readCustomerObj.userId}
+            User Id : {readCustomerObj.userId}
           </li>
         </ul>
       </Modal>

@@ -37,12 +37,12 @@ const PickupListScreen = () => {
       key: "id",
     },
     {
-      title: "SNF",
+      title: "Snf",
       dataIndex: "snf",
       key: "snf",
     },
     {
-      title: "FAT",
+      title: "Fat",
       dataIndex: "fat",
       key: "fat",
     },
@@ -53,7 +53,7 @@ const PickupListScreen = () => {
     },
 
     {
-      title: "MilkType",
+      title: "Milk Type",
       dataIndex: "milkType",
       key: "milkType",
     },
@@ -151,11 +151,16 @@ const PickupListScreen = () => {
   return (
     <div>
       <div>
-        <PageTitle title="PickUp List">
+      <Row>
+      <Col span={9}>
+      <PageTitle title="Pickup List">
           <button className="btn-tck" onClick={() => onAddClick()}>
             + Add New{" "}
           </button>
         </PageTitle>
+        </Col>
+      </Row>
+        
         <Form
           name="basic"
           labelCol={{
@@ -190,31 +195,31 @@ const PickupListScreen = () => {
         <Table columns={columns} dataSource={pickupService} />
       </div>
       <Modal
-        title="PickUp-Details"
+        title="Pickup Details"
         open={isModalOpen}
         onOk={() => setIsModalOpen(false)}
         onCancel={() => setIsModalOpen(false)}
       >
         <ul className="list-group w-50">
           <li className="list-group-item"> ID : {readPickupObj.id}</li>
-          <li className="list-group-item"> User-ID : {readPickupObj.userId}</li>
+          <li className="list-group-item"> User ID : {readPickupObj.userId}</li>
           <li className="list-group-item">
-            CompanyId : {readPickupObj.companyId}
+            Company Id : {readPickupObj.companyId}
           </li>
           <li className="list-group-item">
             {" "}
-            Route-Id : {readPickupObj.routeId}
+            Route Id : {readPickupObj.routeId}
           </li>
           <li className="list-group-item">
             {" "}
-            Vehicle-Id : {readPickupObj.vehicleId}
+            Vehicle Id : {readPickupObj.vehicleId}
           </li>
           <li className="list-group-item">
             {" "}
-            Customer-Id : {readPickupObj.customerId}
+            Customer Id : {readPickupObj.customerId}
           </li>
-          <li className="list-group-item"> SNF : {readPickupObj.snf}</li>
-          <li className="list-group-item"> FAT : {readPickupObj.fat}</li>
+          <li className="list-group-item"> Snf : {readPickupObj.snf}</li>
+          <li className="list-group-item"> Fat : {readPickupObj.fat}</li>
           <li className="list-group-item"> Rate : {readPickupObj.rate}</li>
           <li className="list-group-item">
             {" "}
@@ -224,7 +229,7 @@ const PickupListScreen = () => {
           <li className="list-group-item"> UOM : {readPickupObj.uom}</li>
           <li className="list-group-item">
             {" "}
-            Milk-Type : {readPickupObj.milkType}
+            Milk Type : {readPickupObj.milkType}
           </li>
           <li className="list-group-item">
             {" "}

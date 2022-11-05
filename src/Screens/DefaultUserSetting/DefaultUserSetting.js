@@ -48,12 +48,12 @@ const DefaultUserSetting = () => {
       key: "fat",
     },
     {
-      title: "Comapny-Name",
+      title: "Comapny Name",
       dataIndex: "showCompanyName",
       key: "showCompanyName",
     },
     {
-      title: "User-Name",
+      title: "User Name",
       dataIndex: "showUserName",
       key: "showUserName",
     },
@@ -143,7 +143,11 @@ const DefaultUserSetting = () => {
 
   return (
     <div>
-      <div><h1>Default User Setting</h1></div>
+      <Row >
+      <Col span={5}>
+      <div ><h1>Default User Setting</h1></div></Col>
+      </Row>
+     
       <div>
         <Form  name="basic"
             labelCol={{
@@ -172,18 +176,18 @@ const DefaultUserSetting = () => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item colon={false} label="Comapny-Name">
+              <Form.Item colon={false} label="Comapny Name">
                 <Input
-                  placeholder="Comapny-Name"
+                  placeholder="Comapny Name"
                   value={showCompanyName}
                   onChange={(e) => setShowCompanyName(e.target.value)}
                 />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item colon={false} label="User-Name">
+              <Form.Item colon={false} label="User Name">
                 <Input
-                  placeholder="User-Name"
+                  placeholder="User Name"
                   value={showUserName}
                   onChange={(e) => setShowUserName(e.target.value)}
                 />
@@ -208,7 +212,7 @@ const DefaultUserSetting = () => {
         <Table columns={columns} dataSource={deafultUser} />
       </div>
       <Modal
-        title="Role-List"
+        title="Default User Setting List"
         open={isModalOpen}
         onOk={() => setIsModalOpen(false)}
         onCancel={() => setIsModalOpen(false)}
@@ -219,11 +223,11 @@ const DefaultUserSetting = () => {
           <li className="list-group-item"> FAT : {readDefaultUserObj.fat}</li>
           <li className="list-group-item">
             {" "}
-            Comapny-Name : {readDefaultUserObj.showCompanyName}
+            Comapny Name : {readDefaultUserObj.showCompanyName}
           </li>
           <li className="list-group-item">
             {" "}
-            User-Name : {readDefaultUserObj.showUserName}
+            User Name : {readDefaultUserObj.showUserName}
           </li>
           <li className="list-group-item">
             {" "}
@@ -231,11 +235,11 @@ const DefaultUserSetting = () => {
           </li>
           <li className="list-group-item">
             {" "}
-            CompanyId : {readDefaultUserObj.companyId}
+            Company Id : {readDefaultUserObj.companyId}
           </li>
           <li className="list-group-item">
             {" "}
-            UserId : {readDefaultUserObj.userId}
+            User Id : {readDefaultUserObj.userId}
           </li>
         </ul>
       </Modal>

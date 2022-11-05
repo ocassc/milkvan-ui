@@ -23,17 +23,17 @@ const UserRoleScreen = () => {
       key: "id",
     },
     {
-      title: "UserId",
+      title: "User Id",
       dataIndex: "userId",
       key: "userId",
     },
     {
-        title: "RoleId",
+        title: "Role Id",
         dataIndex: "roleId",
         key: "roleId",
       },
     {
-      title: "CompanyId",
+      title: "Company Id",
       dataIndex: "companyId",
       key: "companyId",
     },
@@ -112,7 +112,11 @@ const UserRoleScreen = () => {
   };
   return (
     <div>
+      <Row> <Col span={5}>
       <div><h1>User Role Screen</h1></div>
+        </Col>
+      </Row>
+      
       <div>
         <Form name="basic"
             labelCol={{
@@ -123,9 +127,9 @@ const UserRoleScreen = () => {
             }}>
           <Row gutter={20}>
             <Col span={12}>
-              <Form.Item colon={false} label="Role-Id">
+              <Form.Item colon={false} label="Role Id">
                 <Input
-                  placeholder="Role-Id"
+                  placeholder="Role Id"
                   value={roleId}
                   onChange={(e) => setRoleId(e.target.value)}
                 />
@@ -146,15 +150,15 @@ const UserRoleScreen = () => {
         <Table columns={columns} dataSource={userRoleData} />
       </div>
       <Modal
-        title="Role-List"
+        title="User Role List"
         open={isModalOpen}
         onOk={() => setIsModalOpen(false)}
         onCancel={() => setIsModalOpen(false)}
       >
         <ul className="list-group w-50">
           <li className="list-group-item"> ID : {userRoleObj.id}</li>
-          <li className="list-group-item"> User-Id : {userRoleObj.userId}</li>
-          <li className="list-group-item"> Role-Id : {userRoleObj.roleId}</li>
+          <li className="list-group-item"> User Id : {userRoleObj.userId}</li>
+          <li className="list-group-item"> Role Id : {userRoleObj.roleId}</li>
           <li className="list-group-item">
             {" "}
             CompanyId : {userRoleObj.companyId}

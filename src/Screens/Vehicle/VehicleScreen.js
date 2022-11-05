@@ -51,12 +51,12 @@ const VehicleScreen = () => {
       key: "name",
     },
     {
-      title: "RegistrationNo",
+      title: "Registration No",
       dataIndex: "registrationNo",
       key: "registrationNo",
     },
     {
-      title: "CompanyId",
+      title: "Company Id",
       dataIndex: "companyId",
       key: "companyId",
     },
@@ -143,7 +143,11 @@ const VehicleScreen = () => {
 
   return (
     <div>
-      <div><h1>VehicleScreen</h1></div>
+      <Row >
+      <Col span={4}>
+      <div ><h1>Vehicle Screen</h1></div></Col>
+      </Row>
+     
 
       <div>
         <Form name="basic"
@@ -157,43 +161,43 @@ const VehicleScreen = () => {
           <Col span={12}>
             <Form.Item colon={false} label="Name">
               <Input
-                placeholder="Nmae"
+                placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item colon={false} label="RegistrationNo">
+            <Form.Item colon={false} label="Registration No">
               <Input
-                placeholder="registrationNo"
+                placeholder="Registration No"
                 value={registrationNo}
                 onChange={(e) => setRegistrationNo(e.target.value)}
               />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item colon={false} label="Contact-Person">
+            <Form.Item colon={false} label="Contact Person">
               <Input
-                placeholder="Contact-Person"
+                placeholder="Contact Person"
                 value={contactPerson}
                 onChange={(e) => setContactPerson(e.target.value)}
               />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item colon={false} label="Contact-Number">
+            <Form.Item colon={false} label="Contact Number">
               <Input
-                placeholder="Contact-Number"
+                placeholder="Contact Number"
                 value={contactNumber}
                 onChange={(e) => setContactNumber(e.target.value)}
               />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item colon={false} label="Vehicle-Type">
+            <Form.Item colon={false} label="Vehicle Type">
               <Select
-                placeholder="Vehicle-Type"
+                placeholder="Vehicle Type"
                 value={vehcleType}
                 onChange={onVehicletypeChange}
               >
@@ -220,7 +224,7 @@ const VehicleScreen = () => {
         <Table columns={columns} dataSource={vehicleData} />
       </div>
       <Modal
-        title="Role-List"
+        title="Vehicle List"
         open={isModalOpen}
         onOk={() => setIsModalOpen(false)}
         onCancel={() => setIsModalOpen(false)}
@@ -230,7 +234,7 @@ const VehicleScreen = () => {
           <li className="list-group-item"> Name: {readVehicleObj.name}</li>
           <li className="list-group-item">
             {" "}
-            RegistrationNo: {readVehicleObj.registrationNo}
+            Registration No: {readVehicleObj.registrationNo}
           </li>
           <li className="list-group-item">
             {" "}
@@ -242,15 +246,15 @@ const VehicleScreen = () => {
           </li>
           <li className="list-group-item">
             {" "}
-            Vehicle-Type: {readVehicleObj.vehcleType}
+            Vehicle Type: {readVehicleObj.vehcleType}
           </li>
           <li className="list-group-item">
             {" "}
-            CompanyId : {readVehicleObj.companyId}
+            Company Id : {readVehicleObj.companyId}
           </li>
           <li className="list-group-item">
             {" "}
-            UserId : {readVehicleObj.userId}
+            User Id : {readVehicleObj.userId}
           </li>
          
         </ul>

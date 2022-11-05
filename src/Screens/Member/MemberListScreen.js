@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Modal, message } from "antd";
+import { Table, Modal, message, Row, Col } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { PageTitle } from "../../PageTitle";
 import axiosInstance from "../../axiosInstance";
@@ -102,11 +102,17 @@ const MemberListScreen = () => {
   return (
     <div>
       <div>
-        <PageTitle title="Member List">
+
+      <Row>
+      <Col span={10}>
+      <PageTitle title="Member List">
           <button className="btn-tck" onClick={() => onAddClick()}>
             + Add New{" "}
           </button>
         </PageTitle>
+        </Col>
+      </Row>
+       
       </div>
 
       <div>

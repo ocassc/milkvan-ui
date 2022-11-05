@@ -29,7 +29,7 @@ const RoleScreen = () => {
       key: "name",
     },
     {
-      title: "CompanyId",
+      title: "Company Id",
       dataIndex: "companyId",
       key: "companyId",
     },
@@ -109,7 +109,11 @@ const RoleScreen = () => {
 
   return (
     <div>
-      <div><h1>RoleScreen</h1></div>
+      <Row >
+      <Col span={4}>
+      <div ><h1>Role Screen</h1></div></Col>
+      </Row>
+     
       <div>
         <Form name="basic"
             labelCol={{
@@ -122,7 +126,7 @@ const RoleScreen = () => {
           <Col span={12}>
             <Form.Item colon={false} label="Name">
               <Input
-                placeholder="Nmae"
+                placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />

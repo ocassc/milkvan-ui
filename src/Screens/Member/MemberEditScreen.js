@@ -53,7 +53,12 @@ const MemberEditScreen = () => {
   return (
    
         <div>
-          <h1 className="head">Edit-Member</h1>
+<Row>
+      <Col span={5}>
+      <div ><h1 className="head">Edit Member</h1></div></Col>
+      </Row>
+
+         
           <Form name="basic"
             labelCol={{
               span: 7,

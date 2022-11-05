@@ -29,7 +29,7 @@ const FatScreen = () => {
       key: "value",
     },
     {
-      title: "CompanyId",
+      title: "Company Id",
       dataIndex: "companyId",
       key: "companyId",
     },
@@ -105,7 +105,11 @@ const FatScreen = () => {
   };
   return (
     <div>
-      <div><h1>Fat Screen</h1></div>
+      <Row >
+      <Col span={4}>
+      <div ><h1>Fat Screen</h1></div></Col>
+      </Row>
+    
       <div>
         <Form name="basic"
             labelCol={{
@@ -147,8 +151,8 @@ const FatScreen = () => {
         <ul className="list-group w-50">
           <li className="list-group-item"> ID : {readFatObj.id}</li>
           <li className="list-group-item"> Value : {readFatObj.value}</li>
-          <li className="list-group-item"> CompanyId : {readFatObj.companyId}</li>
-          <li className="list-group-item"> UserId : {readFatObj.userId}</li>
+          <li className="list-group-item"> Company Id : {readFatObj.companyId}</li>
+          <li className="list-group-item"> User Id : {readFatObj.userId}</li>
          
         </ul>
       </Modal>

@@ -29,7 +29,7 @@ const VehicleTypeScreen = () => {
       key: "name",
     },
     {
-      title: "CompanyId",
+      title: "Company Id",
       dataIndex: "companyId",
       key: "companyId",
     },
@@ -107,7 +107,11 @@ const VehicleTypeScreen = () => {
   }
   return (
     <div>
-      <div><h1>VehicleTypeScreen</h1></div>
+      <Row >
+      <Col span={5}>
+      <div ><h1>Vehicle Type Screen</h1></div></Col>
+      </Row>
+      
       <div>
         <Form name="basic"
             labelCol={{
@@ -120,7 +124,7 @@ const VehicleTypeScreen = () => {
           <Col span={12}>
             <Form.Item colon={false} label="Name">
               <Input
-                placeholder="Nmae"
+                placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -141,7 +145,7 @@ const VehicleTypeScreen = () => {
         <Table columns={columns} dataSource={vehicleTypeData} />
       </div>
       <Modal
-        title="Role-List"
+        title="Vehicle Type List"
         open={isModalOpen}
         onOk={() => setIsModalOpen(false)}
         onCancel={() => setIsModalOpen(false)}
@@ -149,8 +153,8 @@ const VehicleTypeScreen = () => {
         <ul className="list-group w-50">
           <li className="list-group-item"> ID : {readVehicleObj.id}</li>
           <li className="list-group-item"> Type : {readVehicleObj.name}</li>
-          <li className="list-group-item"> CompanyId : {readVehicleObj.companyId}</li>
-          <li className="list-group-item"> UserId : {readVehicleObj.userId}</li>
+          <li className="list-group-item"> Company Id : {readVehicleObj.companyId}</li>
+          <li className="list-group-item"> User Id : {readVehicleObj.userId}</li>
          
         </ul>
       </Modal>

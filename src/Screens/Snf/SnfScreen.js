@@ -28,7 +28,7 @@ const SnfScreen = () => {
       key: "value",
     },
     {
-      title: "CompanyId",
+      title: "Company Id",
       dataIndex: "companyId",
       key: "companyId",
     },
@@ -107,7 +107,11 @@ const SnfScreen = () => {
 
   return (
     <div>
-      <div><h1>SnfScreen</h1></div>
+      <Row >
+      <Col span={4}>
+      <div ><h1>Snf Screen</h1></div></Col>
+      </Row>
+      
       <div>
         <Form name="basic"
             labelCol={{
@@ -150,8 +154,8 @@ const SnfScreen = () => {
         <ul className="list-group w-50">
           <li className="list-group-item"> ID : {readSnfObj.id}</li>
           <li className="list-group-item"> Value : {readSnfObj.value}</li>
-          <li className="list-group-item"> CompanyId : {readSnfObj.companyId}</li>
-          <li className="list-group-item"> UserId : {readSnfObj.userId}</li>
+          <li className="list-group-item"> Company Id : {readSnfObj.companyId}</li>
+          <li className="list-group-item"> User Id : {readSnfObj.userId}</li>
          
         </ul>
       </Modal>

@@ -39,12 +39,14 @@ function App() {
   const [authToken, setAuthToken] = useState(null);
 
   useEffect(() => {
+   
     if (
       localStorage.getItem("authtoken") !== null &&
       localStorage.getItem("authtoken") !== undefined
     ) {
       setAuthToken(JSON.parse(localStorage.getItem("authtoken")));
       setWaitstate(false);
+      localStorage.setItem("username", JSON.parse(localStorage.getItem("authtoken")).name)
     } else {
       setWaitstate(false);
       setAuthToken(null);
@@ -60,6 +62,7 @@ function App() {
               authToken !== null
                 ? {
                     userId: authToken.id === undefined ? 1 : authToken.id,
+                 
                     config: {
                       dateFormat: "DD-MMM-YYYY",
                       datetimeFormat: "DD-MMM-YYYY HH:mm",
@@ -67,14 +70,24 @@ function App() {
                       datetimeSecondFormat: "DD-MMM-YYYY HH:mm:ss",
                       datetimeSecondFormatAMPM: "DD-MMM-YYYY hh:mm:ss A",
                       timeFormat: "hh:mm:ss A",
-                    },
-                    customer: localStorage.getItem("customer"),
+                    }
                   }
-                : null
+                : {
+                  userId: null,
+               
+                  config: {
+                    dateFormat: "DD-MMM-YYYY",
+                    datetimeFormat: "DD-MMM-YYYY HH:mm",
+                    datetimeFormatWithoutYear: "DD-MMM HH:mm",
+                    datetimeSecondFormat: "DD-MMM-YYYY HH:mm:ss",
+                    datetimeSecondFormatAMPM: "DD-MMM-YYYY hh:mm:ss A",
+                    timeFormat: "hh:mm:ss A",
+                  }
+                }
             }
           >
             <Layout className="layout">
-              {authToken && <Nav />}
+              {authToken && authToken.id !== undefined && <Nav />}
               <ConfigProvider locale={enUS}>
                 <Routes>
                   <Route path="/" element={<LoginScreen />} />

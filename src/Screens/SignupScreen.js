@@ -2,7 +2,6 @@ import { Col, Form, Row, Input, Button, message } from "antd";
 import React, { useState } from "react";
 import axiosInstance from "../axiosInstance";
 
-
 const SignupScreen = () => {
   const [fullname, setFullname] = useState();
   const [email, setEmail] = useState();
@@ -23,7 +22,7 @@ const SignupScreen = () => {
         message.error("Record Already Exists");
       } else if (res.data && res.data.responseCode === 1) {
         message.success("Record saved successfully");
-        window.location.href="HomeScreen"
+        window.location.href = "HomeScreen";
       } else message.error("Something wrong. Please try again...!");
     });
   };
@@ -36,7 +35,13 @@ const SignupScreen = () => {
 
   return (
     <div>
-      <h1 className="head">Sign up</h1>
+      <Row>
+        <Col span={3}>
+          <div>
+            <h1 className="head">Sign up</h1>
+          </div>
+        </Col>
+      </Row>
 
       <Form
         name="basic"
@@ -100,7 +105,6 @@ const SignupScreen = () => {
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                
               />
             </Form.Item>
           </Col>
@@ -172,7 +176,12 @@ const SignupScreen = () => {
 
         <Row gutter={20}>
           <Col span={12}>
-            <Button type="primary" shape="round" htmlType="submit" onClick={() => onSignup()}>
+            <Button
+              type="primary"
+              shape="round"
+              htmlType="submit"
+              onClick={() => onSignup()}
+            >
               Sign up
             </Button>
           </Col>

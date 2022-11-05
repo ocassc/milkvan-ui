@@ -104,7 +104,11 @@ const CustomerEditScreen = () => {
   return (
    
         <div >
-          <h1 className="head">Edit-Customer</h1>
+           <Row>
+      <Col span={4}>
+      <div ><h1 className="head">EditCustomer</h1></div></Col>
+      </Row>
+          
           <div>
           <Form  name="basic"
             labelCol={{
@@ -117,7 +121,7 @@ const CustomerEditScreen = () => {
               <Col span={12}>
                 <Form.Item colon={false} label="Full Name">
                   <Input
-                    placeholder="Full-Name"
+                    placeholder="Full Name"
                     value={customerData.name}
                     onChange={onNameChange}
                   />
@@ -144,9 +148,9 @@ const CustomerEditScreen = () => {
                 </Form.Item>
               </Col>
               <Col span={12}>
-                <Form.Item colon={false} label="Registration-Date">
+                <Form.Item colon={false} label="Registration Date">
                   <Input
-                    placeholder="Registration-Date"
+                    placeholder="Registration Date"
                     value={customerData.registerDate}
                     onChange={onRegistrationDateChange}
                   />
@@ -155,9 +159,9 @@ const CustomerEditScreen = () => {
             </Row>
             <Row gutter={20}>
               <Col span={12}>
-                <Form.Item colon={false} label="ReferenceBy">
+                <Form.Item colon={false} label="Reference By">
                   <Input
-                    placeholder="ReferenceBy"
+                    placeholder="Reference By"
                     value={customerData.referenceBy}
                     onChange={onReferenceByChange}
                   />
@@ -175,18 +179,18 @@ const CustomerEditScreen = () => {
             </Row>
             <Row gutter={20}>
               <Col span={12}>
-                <Form.Item colon={false} label="Address-Line 1">
+                <Form.Item colon={false} label="Address Line 1">
                   <Input
-                    placeholder="Address-Line 1"
+                    placeholder="Address Line 1"
                     value={customerData.addressLine1}
                     onChange={onAddressLine1Change}
                   />
                 </Form.Item>
               </Col>
               <Col span={12}>
-                <Form.Item colon={false} label="Address-Line 2">
+                <Form.Item colon={false} label="Address Line 2">
                   <Input
-                    placeholder="Address-Line 2"
+                    placeholder="Address Line 2"
                     value={customerData.addressLine2}
                     onChange={onAddressLine2Change}
                   />

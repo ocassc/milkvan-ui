@@ -4,7 +4,9 @@ import axiosInstance from "../../axiosInstance";
 import FormItem from "antd/es/form/FormItem";
 import { UserContext } from "./../../globalContext";
 
+
 const { Option } = Select;
+
 
 const CustomerAddScreen = () => {
   let defaultDate = new Date();
@@ -79,11 +81,15 @@ const CustomerAddScreen = () => {
   const onSetDate = (event) => {
     setRegisterDate(new Date(event.target.value));
   };
-
+ 
   return (
     <div>
       <div>
-        <h1>Add New Customer</h1>
+      <Row>
+      <Col span={7}>
+      <div ><h1 className="head">Add New Customer</h1></div></Col>
+      </Row>
+       
 
         <div>
           <Form
@@ -109,7 +115,7 @@ const CustomerAddScreen = () => {
                   ]}
                 >
                   <Input
-                    placeholder="Full-Name"
+                    placeholder="Full Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     autoFocus={true}
@@ -140,7 +146,7 @@ const CustomerAddScreen = () => {
 
             <Row gutter={20}>
               <Col span={12}>
-                <Form.Item
+                <Form.Item 
                   colon={false}
                   label="Mobile"
                   name="mobile"
@@ -151,7 +157,7 @@ const CustomerAddScreen = () => {
                     },
                   ]}
                 >
-                  <Input
+                  <Input 
                     placeholder="Mobile"
                     value={mobile}
                     onChange={(e) => setMobile(e.target.value)}
@@ -272,22 +278,7 @@ const CustomerAddScreen = () => {
                   />
                 </Form.Item>
               </Col>
-              <Col span={12}>
-                <FormItem colon={false} label=" Map Location">
-                  <iframe
-                    title="Map location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28450.546553129665!2d75.68522088150291!3d26.956817166570143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4cd47d26a84b%3A0xaca32f17838b07d0!2sGovindpura%2C%20Jaipur%2C%20Rajasthan%20302012!5e0!3m2!1sen!2sin!4v1664946376325!5m2!1sen!2sin"
-                    style={{
-                      width: "300px",
-                      height: "150px",
-                      style: "border:0",
-                      allowfullscreen: "",
-                      loading: "lazy",
-                      referrerpolicy: "no-referrer-when-downgrade",
-                    }}
-                  ></iframe>
-                </FormItem>
-              </Col>
+             
             </Row>
 
             <Row gutter={20}>
@@ -303,6 +294,7 @@ const CustomerAddScreen = () => {
             </Row>
           </Form>
         </div>
+       
       </div>
     </div>
   );

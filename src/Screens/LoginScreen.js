@@ -1,10 +1,18 @@
 import { Col, Form, Row, Input, Button, message } from "antd";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axiosInstance from "../axiosInstance";
-
-const LoginScreen = () => {
+import { UserContext } from "../globalContext";
+const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const user = useContext(UserContext);
+
+
+  if(user.userId !== undefined && user.userId !== null)
+  {
+    //redict dashboard
+    window.location.href="HomeScreen"
+  }
 
   const onSignin = () => {
     axiosInstance
@@ -26,12 +34,19 @@ const LoginScreen = () => {
 
   return (
     <Row>
-      <Col span={15}></Col>
+      <Col span={12}></Col>
 
-      <Col span={7}>
+      <Col span={11}>
         <div className="login-page-form">
           <h1 className="head">Login</h1>
           <Form
+            name="basic"
+            labelCol={{
+              span: 10,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}
             onKeyPress={(e) => {
               if (e.key === "Enter") {
                 onSignin();
@@ -39,7 +54,7 @@ const LoginScreen = () => {
             }}
           >
             <Row gutter={20}>
-              <Col span={16}>
+              <Col span={20}>
                 <Form.Item
                   colon={false}
                   label="Email"
@@ -63,7 +78,7 @@ const LoginScreen = () => {
             </Row>
 
             <Row gutter={20}>
-              <Col span={16}>
+              <Col span={20}>
                 <Form.Item
                   colon={false}
                   label="Password"
@@ -75,7 +90,7 @@ const LoginScreen = () => {
                     },
                   ]}
                 >
-                  <Input
+                  <Input type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
@@ -86,7 +101,7 @@ const LoginScreen = () => {
 
             <Row gutter={20}>
               <Col span={7}>
-                <Button type="link" onClick={() => onSignup()}>
+                <Button type="primary" onClick={() => onSignup()}>
                   Sign-up
                 </Button>
               </Col>

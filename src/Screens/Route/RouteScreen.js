@@ -29,7 +29,7 @@ const RouteScreen = () => {
       key: "name",
     },
     {
-      title: "CompanyId",
+      title: "Company Id",
       dataIndex: "companyId",
       key: "companyId",
     },
@@ -107,7 +107,12 @@ const RouteScreen = () => {
   }
   return (
     <div>
-    <div><h1>RouteScreen</h1></div>
+       
+      <Row >
+      <Col span={5}>
+      <div ><h1>Route Screen</h1></div></Col>
+      </Row>
+   
     <div>
         <Form name="basic"
             labelCol={{
@@ -120,7 +125,7 @@ const RouteScreen = () => {
           <Col span={12}>
             <Form.Item colon={false} label="Name">
               <Input
-                placeholder="Nmae"
+                placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -141,7 +146,7 @@ const RouteScreen = () => {
         <Table columns={columns} dataSource={routeData} />
       </div>
       <Modal
-        title="Role-List"
+        title="Route List"
         open={isModalOpen}
         onOk={() => setIsModalOpen(false)}
         onCancel={() => setIsModalOpen(false)}
@@ -149,8 +154,8 @@ const RouteScreen = () => {
         <ul className="list-group w-50">
           <li className="list-group-item"> ID : {readRouteObj.id}</li>
           <li className="list-group-item"> Type : {readRouteObj.name}</li>
-          <li className="list-group-item"> CompanyId : {readRouteObj.companyId}</li>
-          <li className="list-group-item"> UserId : {readRouteObj.userId}</li>
+          <li className="list-group-item"> Company Id : {readRouteObj.companyId}</li>
+          <li className="list-group-item"> User Id : {readRouteObj.userId}</li>
          
         </ul>
       </Modal>

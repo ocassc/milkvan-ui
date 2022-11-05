@@ -114,7 +114,11 @@ const PickupAddScreen = () => {
 
   return (
     <div>
-      <h1 className="head">Add Pickup</h1>
+      <Row>
+      <Col span={4}>
+      <div ><h1 className="head">Add Pickup</h1></div></Col>
+      </Row>
+      <div>
       <Form  name="basic"
         labelCol={{
           span: 5,
@@ -124,18 +128,19 @@ const PickupAddScreen = () => {
         }}>
         <Row gutter={15}>
           <Col span={12}>
-            <Form.Item colon={false} label="SNF">
-              <Input
-                placeholder="SNF"
+            <Form.Item colon={false} label="Snf">
+              <Input type="Number"
+                placeholder="Snf"
+                autoFocus={true}
                 value={snf}
                 onChange={(e) => setSnf(e.target.value)}
               />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item colon={false} label="FAT">
-              <Input
-                placeholder="FAT"
+            <Form.Item colon={false} label="Fat">
+              <Input type="Number"
+                placeholder="Fat"
                 value={fat}
                 onChange={(e) => onFatChange(e.target.value)}
               />
@@ -150,6 +155,7 @@ const PickupAddScreen = () => {
           <Col span={12}>
             <Form.Item colon={false} label="Quantity">
               <Input
+              type="Number"
                 placeholder="Quantity"
                 value={quantity}
                 onChange={(e) => onQuantityChange(e.target.value)}
@@ -196,9 +202,9 @@ const PickupAddScreen = () => {
         </Row>
         <Row gutter={20}>
           <Col span={12}>
-            <Form.Item colon={false} label="RouteId">
+            <Form.Item colon={false} label="Route Id">
               <Select
-                placeholder="RouteId"
+                placeholder="Route Id"
                 value={routeId}
                 onChange={onRouteChange}
               >
@@ -210,9 +216,9 @@ const PickupAddScreen = () => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item colon={false} label="VehicleId">
+            <Form.Item colon={false} label="Vehicle Id">
               <Select
-                placeholder="VehicleId"
+                placeholder="Vehicle Id"
                 value={vehicleId}
                 onChange={onVehicleidChange}
               >
@@ -224,9 +230,9 @@ const PickupAddScreen = () => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item colon={false} label=" CustomerId">
+            <Form.Item colon={false} label=" Customer Id">
               <Select
-                placeholder="CustomerId"
+                placeholder="Customer Id"
                 value={customerId}
                 onChange={onCustomeridChange}
               >
@@ -255,6 +261,7 @@ const PickupAddScreen = () => {
           </Col>
         </Row>
       </Form>
+    </div>
     </div>
   );
 };
