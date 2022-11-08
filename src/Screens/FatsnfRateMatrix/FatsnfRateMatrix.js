@@ -20,7 +20,6 @@ const FatsnfRateMatrix = () => {
     return () => (mounted = false);
   }, []);
 
-
   const getData = () => {
     axiosInstance.get(`/fatsnfRateMatrix/user/1`).then((response) => {
       var options = {
@@ -100,21 +99,23 @@ const FatsnfRateMatrix = () => {
   return (
     <div>
       <Row>
-      <Col span={10}>
-      <PageTitle title="Rate Matrix">
-        </PageTitle>
+        <Col span={10}>
+          <PageTitle title="Rate Matrix"></PageTitle>
         </Col>
       </Row>
 
       <div>
         <Row gutter={24}>
           <Col span={24}>
-          <Button type="primary" onClick={onHandleSave} style={{float: 'right'}}>
-          Save
-        </Button>
+            <Button
+              type="primary"
+              onClick={onHandleSave}
+              style={{ float: "right" }}
+            >
+              Save
+            </Button>
           </Col>
         </Row>
-       
       </div>
       <div>
         <ReactTable
@@ -127,12 +128,15 @@ const FatsnfRateMatrix = () => {
       <div>
         <Row gutter={24}>
           <Col span={24}>
-          <Button type="primary" onClick={onHandleSave} style={{float: 'right'}}>
-          Save
-        </Button>
+            <Button
+              type="primary"
+              onClick={onHandleSave}
+              style={{ float: "right" }}
+            >
+              Save
+            </Button>
           </Col>
         </Row>
-       
       </div>
     </div>
   );

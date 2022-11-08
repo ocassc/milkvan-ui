@@ -27,19 +27,12 @@ const SignupScreen = () => {
       } else message.error("Something wrong. Please try again...!");
     });
   };
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
 
   return (
     <div>
-       <Row>
-      <Col span={10}>
-      <PageTitle title="Sign up">
-        </PageTitle>
+      <Row>
+        <Col span={10}>
+          <PageTitle title="Sign up"></PageTitle>
         </Col>
       </Row>
 
@@ -51,12 +44,6 @@ const SignupScreen = () => {
         wrapperCol={{
           span: 16,
         }}
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
       >
         <Row gutter={20}>
           <Col span={12}>
@@ -122,12 +109,12 @@ const SignupScreen = () => {
                   message: "Please input your Mobile!",
                 },
                 {
-                  max:"10",
-                  message:"Maximum 10 Digits"
-                }
+                  max: "10",
+                  message: "Maximum 10 Digits",
+                },
               ]}
             >
-              <Input 
+              <Input
                 placeholder="Mobile"
                 maxLength={10}
                 minLength={10}
@@ -150,7 +137,8 @@ const SignupScreen = () => {
                 },
               ]}
             >
-              <Input  type="password"
+              <Input
+                type="password"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
@@ -183,12 +171,7 @@ const SignupScreen = () => {
 
         <Row gutter={20}>
           <Col span={12}>
-            <Button
-              type="primary"
-              shape="round"
-              htmlType="submit"
-              onClick={() => onSignup()}
-            >
+            <Button type="primary" htmlType="submit" onClick={() => onSignup()}>
               Sign up
             </Button>
           </Col>

@@ -14,8 +14,8 @@ const PickupAddScreen = () => {
   const [customerList, setCustomerList] = useState("");
   const [vehicleList, setVehicleList] = useState("");
   const [milkType, setMilkType] = useState("");
-  const [pickupShift, setPickupShift] = useState("");
-  const [uom, setUom] = useState("");
+  const [pickupShift, setPickupShift] = useState("Morning Shift");
+  const [uom, setUom] = useState("Litre");
   const [quantity, setQuantity] = useState("");
   const [amount, setAmount] = useState("");
   const [rate, setRate] = useState("");
@@ -61,7 +61,7 @@ const PickupAddScreen = () => {
       transactionDate: new Date(transactionDate),
       routeId: routeId,
       customer: customerId,
-      vehicleId: vehicleId,
+      vehicle: vehicleId,
       userId: parseInt(user.userId),
       companyId: 1,
     };
@@ -231,7 +231,7 @@ const PickupAddScreen = () => {
               >
                 {vehicleList &&
                   vehicleList.map((vehicleList) => (
-                    <Option key={vehicleList.id}>{vehicleList.name}</Option>
+                    <Option key={vehicleList._id}>{vehicleList.name}</Option>
                   ))}
               </Select>
             </Form.Item>

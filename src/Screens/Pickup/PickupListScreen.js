@@ -29,21 +29,13 @@ const PickupListScreen = () => {
   const [readPickupObj, setReadPickupObj] = useState({});
   const [fromDate, setFromDate] = useState(defaultOldDate);
   const [toDate, setToDate] = useState(defaultDate);
-  const [customerList, setCustomerList] = useState("");
 
   useEffect(() => {
     let mounted = true;
     if (mounted) getPickup();
-    getCustomer();
+
     return () => (mounted = false);
   }, []);
-
-  const getCustomer=()=>{
-    axiosInstance.get(`/customer`).then((res=>{
-      setCustomerList(res.data.data)
-      console.log(res.data.data);
-    }))
-  }
 
   const columns1 = [
     {
@@ -53,15 +45,13 @@ const PickupListScreen = () => {
     },
     {
       title: "Customer",
-      dataIndex: "customerId",
-      key: "customerId",
-      render: (customerId) => {
-        return (
-         
-          customerList &&
-          customerList.map((customerList) => {
-            <div key={customerList.id}>{customerList.name}</div>;
-          })
+      dataIndex: "customers",
+      key: "customers",
+      render: (customers) => {
+        return customers.length > 0 ? (
+          <div>{customers[0].name}</div>
+        ) : (
+          <div> </div>
         );
       },
     },
@@ -96,6 +86,18 @@ const PickupListScreen = () => {
       title: "Milk Type",
       dataIndex: "milkType",
       key: "milkType",
+    },
+    {
+      title: "Vehicle",
+      dataIndex: "vehicles",
+      key: "vehicles",
+      render: (vehicles) => {
+        return vehicles.length > 0 ? (
+          <div>{vehicles[0].name}</div>
+        ) : (
+          <div> </div>
+        );
+      },
     },
     {
       title: "Transaction Date",
@@ -137,6 +139,7 @@ const PickupListScreen = () => {
   const getPickup = () => {
     axiosInstance.get(`/pickup/user/${user.userId}`).then((res) => {
       setPickupService(res.data.data);
+      console.log(res.data.data);
     });
   };
 
@@ -266,11 +269,11 @@ const PickupListScreen = () => {
           </li>
           <li className="list-group-item">
             {" "}
-            Vehicle Id : {readPickupObj.vehicleId}
+            Vehicle Id : {readPickupObj.vehicle}
           </li>
           <li className="list-group-item">
             {" "}
-            Customer Id : {readPickupObj.customerId}
+            Customer Id : {readPickupObj.customer}
           </li>
           <li className="list-group-item"> Snf : {readPickupObj.snf}</li>
           <li className="list-group-item"> Fat : {readPickupObj.fat}</li>
