@@ -14,30 +14,58 @@ import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { PageTitle } from "../../PageTitle";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
+import moment from "moment";
 
 const PickupListScreen = () => {
   const user = useContext(UserContext);
   let defaultDate = new Date();
   defaultDate.setDate(defaultDate.getDate());
 
+  let defaultOldDate = new Date();
+  defaultOldDate.setDate(defaultOldDate.getDate() - 30);
+
   const [pickupService, setPickupService] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [readPickupObj, setReadPickupObj] = useState({});
-  const [fromDate, setFromDate] = useState();
+  const [fromDate, setFromDate] = useState(defaultOldDate);
   const [toDate, setToDate] = useState(defaultDate);
+  const [customerList, setCustomerList] = useState("");
 
   useEffect(() => {
     let mounted = true;
-    if (mounted) getPickup(user.userId);
+    if (mounted) getPickup();
+    getCustomer();
     return () => (mounted = false);
   }, []);
 
-  const columns = [
+  const getCustomer=()=>{
+    axiosInstance.get(`/customer`).then((res=>{
+      setCustomerList(res.data.data)
+      console.log(res.data.data);
+    }))
+  }
+
+  const columns1 = [
     {
       title: "ID",
       dataIndex: "id",
       key: "id",
     },
+    {
+      title: "Customer",
+      dataIndex: "customerId",
+      key: "customerId",
+      render: (customerId) => {
+        return (
+         
+          customerList &&
+          customerList.map((customerList) => {
+            <div key={customerList.id}>{customerList.name}</div>;
+          })
+        );
+      },
+    },
+
     {
       title: "Snf",
       dataIndex: "snf",
@@ -70,9 +98,12 @@ const PickupListScreen = () => {
       key: "milkType",
     },
     {
-      title: "Date",
+      title: "Transaction Date",
       dataIndex: "transactionDate",
       key: "transactionDate",
+      render: (transactionDate) => {
+        return <div>{moment(transactionDate).format("DD-MMM-yyyy")}</div>;
+      },
     },
     {
       title: "Action",
@@ -160,21 +191,22 @@ const PickupListScreen = () => {
   };
   const onToChange = (date, dateString) => {
     setToDate(date, dateString);
-    
   };
+
+  const dateFormat = "DD/MM/YYYY";
   return (
     <div>
       <div>
-      <Row>
-      <Col span={9}>
-      <PageTitle title="Pickup List">
-          <button className="btn-tck" onClick={() => onAddClick()}>
-            + Add New{" "}
-          </button>
-        </PageTitle>
-        </Col>
-      </Row>
-        
+        <Row>
+          <Col span={9}>
+            <PageTitle title="Pickup List">
+              <button className="btn-tck" onClick={() => onAddClick()}>
+                + Add New{" "}
+              </button>
+            </PageTitle>
+          </Col>
+        </Row>
+
         <Form
           name="basic"
           labelCol={{
@@ -185,15 +217,23 @@ const PickupListScreen = () => {
           }}
         >
           <Row gutter={3}>
-          <Form.Item colon={false} label="From">
+            <Form.Item colon={false} label="From">
               <Space direction="vertical">
-                <DatePicker onChange={onFromChange} />
+                <DatePicker
+                  defaultValue={moment(defaultOldDate, dateFormat)}
+                  format={dateFormat}
+                  onChange={onFromChange}
+                />
               </Space>
             </Form.Item>
 
             <Form.Item colon={false} label="To">
               <Space direction="vertical">
-                <DatePicker onChange={onToChange} />
+                <DatePicker
+                  defaultValue={moment(defaultDate, dateFormat)}
+                  format={dateFormat}
+                  onChange={onToChange}
+                />
               </Space>
             </Form.Item>
 
@@ -206,7 +246,7 @@ const PickupListScreen = () => {
         </Form>
       </div>
       <div>
-        <Table columns={columns} dataSource={pickupService} />
+        <Table key="id" columns={columns1} dataSource={pickupService} />
       </div>
       <Modal
         title="Pickup Details"
@@ -252,7 +292,7 @@ const PickupListScreen = () => {
 
           <li className="list-group-item">
             {" "}
-            Date : {readPickupObj.transactionDate}
+            Date : {moment(readPickupObj.transactionDate).format("DD-MM-yyyy")}
           </li>
         </ul>
       </Modal>

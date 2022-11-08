@@ -13,6 +13,7 @@ import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import axiosInstance from "../../axiosInstance";
 import { UserContext } from "../../globalContext";
 import { PageTitle } from "../../PageTitle";
+import moment from 'moment'
 const DefaultUserSetting = () => {
   let defaultDate = new Date();
   defaultDate.setDate(defaultDate.getDate());
@@ -62,6 +63,11 @@ const DefaultUserSetting = () => {
       title: "Date",
       dataIndex: "dateFormate",
       key: "dateFormate",
+      render:(dateFormate)=>{
+        return(
+          <div>{moment(dateFormate).format('DD-MMM-yyyy')}</div>
+        )
+      }
     },
     {
       title: "Action",
@@ -234,7 +240,7 @@ const DefaultUserSetting = () => {
           </li>
           <li className="list-group-item">
             {" "}
-            Date : {readDefaultUserObj.dateFormate}
+            Date : {moment(readDefaultUserObj.dateFormate).format("DD-MM-yyyy")}
           </li>
           <li className="list-group-item">
             {" "}

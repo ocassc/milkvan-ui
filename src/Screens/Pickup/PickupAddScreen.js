@@ -60,7 +60,7 @@ const PickupAddScreen = () => {
       pickupShift: pickupShift,
       transactionDate: new Date(transactionDate),
       routeId: routeId,
-      customerId: customerId,
+      customer: customerId,
       vehicleId: vehicleId,
       userId: parseInt(user.userId),
       companyId: 1,
@@ -132,7 +132,7 @@ const PickupAddScreen = () => {
         <Row gutter={15}>
           <Col span={12}>
             <Form.Item colon={false} label="Snf">
-              <Input type="Number"
+              <Input type="integer"
                 placeholder="Snf"
                 autoFocus={true}
                 value={snf}
@@ -142,7 +142,11 @@ const PickupAddScreen = () => {
           </Col>
           <Col span={12}>
             <Form.Item colon={false} label="Fat">
-              <Input type="Number"
+              <Input type="integer"
+              min={1}
+              precision={2}
+              step={0.1}
+              max={2}
                 placeholder="Fat"
                 value={fat}
                 onChange={(e) => onFatChange(e.target.value)}
@@ -158,7 +162,7 @@ const PickupAddScreen = () => {
           <Col span={12}>
             <Form.Item colon={false} label="Quantity">
               <Input
-              type="Number"
+              type="integer"
                 placeholder="Quantity"
                 value={quantity}
                 onChange={(e) => onQuantityChange(e.target.value)}
@@ -241,7 +245,7 @@ const PickupAddScreen = () => {
               >
                 {customerList &&
                   customerList.map((customerList) => (
-                    <Option key={customerList.id}>{customerList.name}</Option>
+                    <Option key={customerList._id}>{customerList.name}</Option>
                   ))}
               </Select>
             </Form.Item>

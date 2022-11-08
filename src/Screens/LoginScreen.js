@@ -41,14 +41,18 @@ const LoginScreen = (props) => {
 
       <Col span={11}>
         <div className="login-page-form">
-          <img
-            src={logo}
-            alt=""
-            style={{ width: "70px", height: "70px", alignItems: "center" }}
-          />
-
-          <h1 className="head">Login</h1>
-
+          <Row>
+            <Col span={15}>
+              <img 
+                src={logo}
+                alt=""
+                style={{ width: "100px", height: "100px" }}
+              />
+            </Col>
+            <Col span={4}>
+              <h1 className="login-page-form" >Login</h1>
+            </Col>
+          </Row>
           <Form
             name="basic"
             labelCol={{
@@ -111,7 +115,7 @@ const LoginScreen = (props) => {
             </Row>
 
             <Row gutter={20}>
-              <Col span={24}>
+              <Col span={15}>
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -120,14 +124,14 @@ const LoginScreen = (props) => {
                   Sign-in
                 </Button>
               </Col>
-            </Row>
-            <Row gutter={20}>
-              <Col span={24}>
+              <Col span={5}>
                 <Button type="secondary" onClick={() => onSignup()}>
                   Sign-up
                 </Button>
               </Col>
-              <Col span={10}>
+            </Row>
+            <Row gutter={20}>
+              <Col>
                 <Button type="link" onClick={() => onForgotPassword()}>
                   ForgotPassword
                 </Button>
@@ -136,7 +140,7 @@ const LoginScreen = (props) => {
           </Form>
         </div>
       </Col>
-      <Col span={2}>
+      <Col span={1}>
         <div className="login-right-bg"></div>
       </Col>
     </Row>

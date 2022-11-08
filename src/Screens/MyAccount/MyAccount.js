@@ -1,26 +1,28 @@
-import React, {useState, useEffect, useContext} from "react";
-import { Col, Row } from "antd";
+import React, { useState, useEffect, useContext } from "react";
+import { Col, Row, Card, Avatar } from "antd";
+import Icon, { HomeOutlined, MailOutlined,PhoneOutlined } from '@ant-design/icons';
+
 import { PageTitle } from "../../PageTitle";
 import axiosInstance from "../../axiosInstance";
-import { useParams } from "react-router-dom";
 import { UserContext } from "../../globalContext";
-
+const { Meta } = Card;
 const MyAccount = () => {
-    let { id } = useParams();
-    const user =useContext(UserContext)
-  const [readMemberObj, setReadMemberObj] = useState({});
+  const user = useContext(UserContext);
+  const memberObj = {};
+  const [readMemberObj, setReadMemberObj] = useState(memberObj);
 
   useEffect(() => {
     let mounted = true;
-    if (mounted) readMember(user.userId);
+    if (mounted) readMember();
     return () => (mounted = false);
   }, []);
 
-  const readMember = (id) => {
-    axiosInstance.get(`/member/${user.userId}`).then((response) => {
+  const readMember = () => {
+    axiosInstance.get(`/member/user/${user.userId}`).then((response) => {
       setReadMemberObj(response.data.data);
     });
   };
+
   return (
     <div>
       <Row>
@@ -28,20 +30,39 @@ const MyAccount = () => {
           <PageTitle title="My Account"></PageTitle>
         </Col>
       </Row>
-      <div>
-      <Row>
-        <Col span={10}>
-          <li className="list-group-item"> Name : {readMemberObj.name}</li>
-
-          <li className="list-group-item"> Email : {readMemberObj.email}</li>
-
-          <li className="list-group-item"> Mobile : {readMemberObj.mobile}</li>
-          <li className="list-group-item">
-            {" "}
-            Address : {readMemberObj.address}
-          </li>
-          </Col>
-      </Row>
+      <div className="site-card-border-less-wrapper">
+        {readMemberObj.length > 0 && (
+          <Card
+            title="Profile"
+            bordered={true}
+            style={{
+              width: 300,
+              marginTop: 16,
+            }}
+          >
+            <Meta
+              avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+              description={readMemberObj.map((readMemberObj) => (
+                <h1 key={readMemberObj.id}>{readMemberObj.name}</h1>
+              ))}
+            />
+            <Meta
+              description={readMemberObj.map((readMemberObj) => (
+                <p key={readMemberObj.id}><Icon component={MailOutlined} /> {readMemberObj.email}</p>
+              ))}
+            />
+            <Meta
+              description={readMemberObj.map((readMemberObj) => (
+                <p key={readMemberObj.id}><Icon component={PhoneOutlined} /> {readMemberObj.mobile}</p>
+              ))}
+            />
+            <Meta
+              description={readMemberObj.map((readMemberObj) => (
+                <p key={readMemberObj.id}> <Icon component={HomeOutlined} /> {readMemberObj.address}</p>
+              ))}
+            />
+          </Card>
+        )}
       </div>
     </div>
   );

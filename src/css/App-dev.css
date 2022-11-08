@@ -126,3 +126,7 @@ select {
     margin-top: 40%;
     padding:15px;
 }
+.site-card-border-less-wrapper {
+    padding: 30px;
+    background: #fbf7f7;
+  }

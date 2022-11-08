@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Col, Form, Row, Input, Button, Select, message } from "antd";
 import axiosInstance from "../../axiosInstance";
-import FormItem from "antd/es/form/FormItem";
 import { UserContext } from "./../../globalContext";
 import { PageTitle } from "../../PageTitle";
 
@@ -10,10 +9,10 @@ const { Option } = Select;
 
 
 const CustomerAddScreen = () => {
+
+  const user = useContext(UserContext);
   let defaultDate = new Date();
   defaultDate.setDate(defaultDate.getDate());
-  const user = useContext(UserContext);
-
 
   const [cityList, setCityList] = useState();
   const [stateList, setStateList] = useState();
@@ -159,11 +158,15 @@ const CustomerAddScreen = () => {
                       required: true,
                       message: "Please input your Mobile!",
                     },
+                   
                   ]}
                 >
                   <Input 
                     placeholder="Mobile"
                     value={mobile}
+                    maxLength={10}
+                    minLength={10}
+                    
                     onChange={(e) => setMobile(e.target.value)}
                   />
                 </Form.Item>

@@ -129,6 +129,8 @@ const SignupScreen = () => {
             >
               <Input 
                 placeholder="Mobile"
+                maxLength={10}
+                minLength={10}
                 onChange={(e) => setMobile(e.target.value)}
                 value={mobile}
               />

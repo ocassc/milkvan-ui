@@ -3,6 +3,7 @@ import { Table, Modal, message, Row, Col } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { PageTitle } from "../../PageTitle";
 import axiosInstance from "../../axiosInstance";
+import moment from 'moment';
 
 const CustomerListScreen = () => {
   const [list, setList] = useState([]);
@@ -30,6 +31,16 @@ const CustomerListScreen = () => {
       title: "Mobile",
       dataIndex: "mobile",
       key: "mobile",
+    },
+    {
+      title: "Date",
+      dataIndex: "registerDate",
+      key: "registerDate",
+      render:(registerDate)=>{
+        return(
+          <div>{moment(registerDate).format('DD-MMM-yyyy')}</div>
+        )
+      }
     },
   
     {
@@ -133,7 +144,7 @@ const CustomerListScreen = () => {
           </li>
           <li className="list-group-item">
             {" "}
-            Register Date : {readCustomerObj.registerDate}
+            Register Date : {moment(readCustomerObj.registerDate).format("DD-MM-yyyy")}
           </li>
           <li className="list-group-item">
             {" "}
