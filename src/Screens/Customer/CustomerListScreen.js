@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Table, Modal, message, Row, Col } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { PageTitle } from "../../PageTitle";
 import axiosInstance from "../../axiosInstance";
 import moment from 'moment';
+import { UserContext } from "../../globalContext";
 
 const CustomerListScreen = () => {
+  const user =useContext(UserContext);
   const [list, setList] = useState([]);
   const [readCustomerObj, setReadCustomerObj] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,7 +75,7 @@ const CustomerListScreen = () => {
   ];
 
   const getCustomer = () => {
-    axiosInstance.get("/customer").then((response) => {
+    axiosInstance.get(`/customer/user/${user.userId}`).then((response) => {
       setList(response.data.data);
     });
   };

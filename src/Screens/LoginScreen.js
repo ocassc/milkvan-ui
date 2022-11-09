@@ -115,8 +115,8 @@ const LoginScreen = (props) => {
               </Col>
             </Row>
 
-            <Row gutter={0}>
-              <Col span={15}>
+            <Row gutter={5}>
+              <Col span={13}>
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -125,7 +125,7 @@ const LoginScreen = (props) => {
                   Sign-in
                 </Button>
               </Col>
-              <Col span={1}>
+              <Col span={5}>
                 <Button type="secondary" onClick={() => onSignup()}>
                   Sign-up
                 </Button>

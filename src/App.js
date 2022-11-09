@@ -33,6 +33,7 @@ import PickupAddScreen from "./Screens/Pickup/PickupAddScreen";
 import PickupEditScreen from "./Screens/Pickup/PickupEditScreen";
 import MyAccount from "./Screens/MyAccount/MyAccount";
 import ForgotPassword from "./Screens/ForgotPassword/ForgotPassword";
+import RouteEditScreen from "./Screens/Route/RouteEditScreen";
 
 require("./css/App-dev.css");
 
@@ -150,6 +151,10 @@ function App() {
                   />
                   <Route path="MyAccount" element={<MyAccount/>}/>
                   <Route path="ForgotPassword" element={<ForgotPassword/>}/>
+                  <Route
+                    path="RouteEditScreen/:id"
+                    element={<RouteEditScreen />}
+                  />
                 </Routes>
               </ConfigProvider>
               <Footers />

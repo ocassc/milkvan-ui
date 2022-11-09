@@ -144,9 +144,10 @@ const PickupListScreen = () => {
   };
 
   const readPickup = (obj) => {
-    axiosInstance.get(`/pickup/${obj.id}`).then((response) => {
-      setReadPickupObj(response.data.data);
-    });
+    // axiosInstance.get(`/pickup/${obj.id}`).then((response) => {
+    //   setReadPickupObj(response.data.data);
+    // });
+    setReadPickupObj(obj)
     setIsModalOpen(true);
   };
 
