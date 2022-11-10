@@ -128,14 +128,13 @@ const RouteScreen = () => {
     setArrCustomers([...tempArrCustomer]);
   };
   const handleOnChange = (e, i) => {
-    console.log(e);
-    console.log(i);
+  
     let tempArrCustomer = arrCustomers;
     tempArrCustomer[i] = e;
 
     setArrCustomers([...tempArrCustomer]);
 
-    console.log(arrCustomers);
+    
   };
   return (
     <div>

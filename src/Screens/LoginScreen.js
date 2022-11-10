@@ -1,11 +1,13 @@
-import { Col, Form, Row, Input, Button, message } from "antd";
+import { Col, Form, Row, Input, Button, message, Modal } from "antd";
 import React, { useState, useContext } from "react";
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import axiosInstance from "../axiosInstance";
 import { UserContext } from "../globalContext";
 import logo from "../../src/images/logo.jpg";
 const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const user = useContext(UserContext);
 
   if (user.userId !== undefined && user.userId !== null) {
@@ -32,7 +34,23 @@ const LoginScreen = (props) => {
   };
 
   const onForgotPassword = () => {
-    window.location.href = "ForgotPassword";
+    setIsModalOpen(true);
+    // window.location.href = "ForgotPassword";
+  };
+
+  const onSendResetCode = () => {
+    axiosInstance
+      .post("/login/email", { email: email })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data && res.data.responseCode === 1) {
+          message.success("Code Senden On Your Email")
+        } else message.error("Member Not Found");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setIsModalOpen(false);
   };
 
   return (
@@ -44,7 +62,6 @@ const LoginScreen = (props) => {
           <Row>
             <Col span={15}>
               <img
-              
                 src={logo}
                 alt=""
                 style={{ width: "100px", height: "100px" }}
@@ -105,11 +122,12 @@ const LoginScreen = (props) => {
                     },
                   ]}
                 >
-                  <Input
+                  <Input.Password
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
+                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                   />
                 </Form.Item>
               </Col>
@@ -141,6 +159,48 @@ const LoginScreen = (props) => {
           </Form>
         </div>
       </Col>
+      <div>
+        <Modal
+          title="Verify Email"
+          open={isModalOpen}
+          okText="Send Reset Code"
+          onOk={() => onSendResetCode()}
+          onCancel={() => setIsModalOpen(false)}
+        >
+          <Form
+            name="basic"
+            labelCol={{
+              span: 8,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}
+          >
+            <Row gutter={20}>
+              <Col span={18}>
+                <Form.Item
+                  colon={false}
+                  label="Email"
+                  name="email"
+                  rules={[
+                    {
+                      type: "email",
+                      message: "Please input Valid Email!",
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    autoFocus={true}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+          </Form>
+        </Modal>
+      </div>
       <Col span={2}>
         <div className="login-right-bg"></div>
       </Col>

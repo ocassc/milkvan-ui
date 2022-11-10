@@ -1,13 +1,16 @@
-import React from "react";
-import { Row, Col, Form, Input, Button } from "antd";
+import React,{ useState } from "react";
+import { Row, Col, Form, Input, Button, message } from "antd";
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { PageTitle } from "../../PageTitle";
 
+
 const ForgotPassword = () => {
+const [password, setPassword]=useState("");
 
 
 
-  const onResetCode=()=>{
-alert("Enter OTP")
+  const onSetPassword=()=>{
+message.success("Password Changed Successfully")
   }
   return (
     <div>
@@ -16,7 +19,6 @@ alert("Enter OTP")
           <PageTitle title="Forgot Password"></PageTitle>
         </Col>
       </Row>
-
       <div>
         <Form
           name="basic"
@@ -28,27 +30,56 @@ alert("Enter OTP")
           }}
         >
           <Row gutter={20}>
-            <Col span={12}>
-              <Form.Item
-                colon={false}
-                label="Email"
-                name="email"
-                rules={[
-                  {
-                    type: "email",
-                    message: "Please input Valid Email!",
-                  },
-                ]}
-              >
-                <Input placeholder="Email Address" />
-              </Form.Item>
-            </Col>
-          </Row>
+              <Col span={20}>
+                <Form.Item
+                  colon={false}
+                  label="New Password"
+                  name="password"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your New Password!",
+                    },
+                  ]}
+                >
+                  <Input.Password
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="New Password"
+                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={20}>
+              <Col span={20}>
+                <Form.Item
+                  colon={false}
+                  label="Confirm Password"
+                  name="Confirm Password"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please Confirm Password!",
+                    },
+                  ]}
+                >
+                 <Input.Password
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Confirm Password"
+                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
 
           <Row gutter={20}>
             <Col span={15}>
-              <Button type="primary" htmlType="submit" onClick={() => onResetCode()}>
-                Send Reset Code
+              <Button type="primary" htmlType="submit" onClick={() => onSetPassword()}>
+                Set Password
               </Button>
             </Col>
           </Row>
