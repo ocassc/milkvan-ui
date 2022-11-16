@@ -55,7 +55,7 @@ const LoginScreen = (props) => {
 
   return (
     <Row>
-      <Col span={13}></Col>
+      <Col span={13}>Welcome</Col>
 
       <Col span={11}>
         <div className="login-page-form">

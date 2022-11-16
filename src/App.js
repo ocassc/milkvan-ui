@@ -34,6 +34,7 @@ import PickupEditScreen from "./Screens/Pickup/PickupEditScreen";
 import MyAccount from "./Screens/MyAccount/MyAccount";
 import ForgotPassword from "./Screens/ForgotPassword/ForgotPassword";
 import RouteEditScreen from "./Screens/Route/RouteEditScreen";
+import MemberAddScreen from './Screens/Member/MemberAddScreen';
 
 require("./css/App-dev.css");
 
@@ -94,8 +95,9 @@ function App() {
               <ConfigProvider locale={enUS}>
                 <Routes>
                   <Route path="/" element={<LoginScreen />} />
-                  <Route path="WelcomeScreen" element={<WelcomeScreen />} />
+                  <Route path="LoginScreen" element={<LoginScreen />} />
                   <Route path="SignupScreen" element={<SignupScreen />} />
+                  <Route path="MemberAddScreen" element={<MemberAddScreen/>}/>
                   <Route
                     path="MemberEditScreen/:id"
                     element={<MemberEditScreen />}

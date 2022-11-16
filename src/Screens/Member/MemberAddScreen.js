@@ -1,8 +1,8 @@
 import { Col, Form, Row, Input, Button, message } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import React, { useState } from "react";
-import axiosInstance from "../axiosInstance";
-import { PageTitle } from "../PageTitle";
+import axiosInstance from "../../axiosInstance";
+import { PageTitle } from "../../PageTitle";
 
 const SignupScreen = () => {
   const [fullname, setFullname] = useState();
@@ -24,7 +24,7 @@ const SignupScreen = () => {
         message.error("Record Already Exists");
       } else if (res.data && res.data.responseCode === 1) {
         message.success("Record saved successfully");
-        window.location.href = "LoginScreen";
+        window.location.href = "MemberListScreen";
       } else message.error("Something wrong. Please try again...!");
     });
   };

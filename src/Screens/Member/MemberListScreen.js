@@ -97,7 +97,7 @@ const MemberListScreen = () => {
     });
   };
   const onAddClick = () => {
-    window.location.href = "SignupScreen";
+    window.location.href = "MemberAddScreen";
   };
   return (
     <div>
@@ -119,7 +119,7 @@ const MemberListScreen = () => {
         <Table rowKey="id" columns={columns} dataSource={list} />
       </div>
       <Modal
-        title="Member"
+        title={readMemberObj.name}
         open={isModalOpen}
         onOk={() => setIsModalOpen(false)}
         onCancel={() => setIsModalOpen(false)}

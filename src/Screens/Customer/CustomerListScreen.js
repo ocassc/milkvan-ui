@@ -130,7 +130,7 @@ const CustomerListScreen = () => {
         <Table rowKey="id" columns={columns} dataSource={list} />
       </div>
       <Modal
-        title="Customer List"
+        title={readCustomerObj.name}
         open={isModalOpen}
         onOk={() => setIsModalOpen(false)}
         onCancel={() => setIsModalOpen(false)}

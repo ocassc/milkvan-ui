@@ -21,7 +21,7 @@ const FatsnfRateMatrix = () => {
   }, []);
 
   const getData = () => {
-    axiosInstance.get(`/fatsnfRateMatrix/user/1`).then((response) => {
+    axiosInstance.get(`/fatsnfRateMatrix/user/${user.userId}`).then((response) => {
       var options = {
         row: "fat",
         column: "snf",
